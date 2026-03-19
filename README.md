@@ -43,7 +43,7 @@ Human data (script 07) uses supplementary tables from:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/motrpac-redox.git
+git clone https://github.com/jackmis610/motrpac-redox.git
 cd motrpac-redox
 
 # 2. Install R dependencies (run once — takes ~5 min first time)
