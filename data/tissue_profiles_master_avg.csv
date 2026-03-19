@@ -1,0 +1,20 @@
+tissue,ets_mean_avg,buf_mean_avg,buf_ets_ratio_male,buf_ets_ratio_female,redox_status,sex_diff_ets,top_r23_cat,top_gene,top_gene_adj_p,trx_prot_r_ets,assay_coverage
+SKM-GN,0.175,0.034,0.346,0.051,ETS-only (deficit),FALSE,mtUPR,Cox6b1,8.06e-4,0.38,PPhM
+SKM-VL,0.197,0.089,0.844,0.249,Balanced expansion,FALSE,Fission,Cycs,1.03e-6,NA,M
+HEART,0.019,0.034,NA,0.65,Minimal response,FALSE,Fission,Ucp2,2.95e-7,0.03,PPhAUM
+BAT,-0.599,-0.214,0.348,0.391,ETS suppression,TRUE,Mitokines,Hmox1,3.86e-12,NA,M
+WAT-SC,0.089,0.035,1.065,0.457,Minimal response,TRUE,Mitokines,Sod1,9.1e-5,-0.11,PPhM
+LIVER,-0.003,0.002,-0.265,-0.097,Minimal response,FALSE,AMPK,Ldha,0.00168,-0.09,PPhAUM
+KIDNEY,0.001,-0.024,NA,1.177,Minimal response,FALSE,Fission,Etfdh,1,-0.19,PPhM
+LUNG,0.012,-0.005,NA,0.282,Minimal response,FALSE,Mitokines,Txnip,0.575,-0.16,PPhM
+ADRNL,-0.33,0.03,0.512,0.021,ETS suppression,TRUE,Mitokines,Ucp1,1.55e-18,NA,M
+BLOOD,0.35,0.344,1.222,0.306,Balanced expansion,TRUE,AMPK,Atp5f1b,7.23e-13,NA,
+CORTEX,-0.008,0.005,-0.403,-0.19,Minimal response,FALSE,Fission,Pdp1,0.0157,0.29,PPhM
+HIPPOC,-0.002,0.003,1.406,0.984,Minimal response,FALSE,Mitokines,Atf5,1,NA,M
+HYPOTH,-0.007,0.009,0.572,2.837,Minimal response,FALSE,Mitokines,Mff,1,NA,M
+VENACV,0.064,0.068,-2.256,0.716,Mixed / moderate,TRUE,Fusion,Mff,1,NA,M
+COLON,0.132,0.064,0.643,0.415,Balanced expansion,FALSE,Fission,Mdh2,0.065,NA,M
+SMLINT,-0.005,0.012,NA,NA,Minimal response,FALSE,Fission,Mff,1,NA,M
+SPLEEN,0.071,0.112,1.539,1.614,Mixed / moderate,FALSE,Fission,Bnip3l,0.0102,NA,M
+OVARY,NA,NA,NA,-1.283,Mixed / moderate,NA,Mitokines,Slc16a2,1,NA,M
+TESTES,NA,NA,-1.227,NA,Mixed / moderate,NA,Mitokines,Me2,1,NA,M
