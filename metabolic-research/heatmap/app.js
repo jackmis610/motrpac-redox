@@ -1,22 +1,14 @@
-/* Longevity Biomarker Heat Map — vanilla JS.
-   Reads ../data/biomarkers.json (the data layer). No build step, no framework. */
+/* Longevity Biomarker Heat Map — vanilla JS, single view.
+   Loads the bundled data layer (window.BIOMARKER_DATA) or fetches the JSON. */
 
 'use strict';
 
 const OUTCOMES = [
-  { key: 'all_cause_mortality', label: 'All-Cause\nMortality' },
+  { key: 'all_cause_mortality', label: 'All-Cause\nMortality', anchor: true },
   { key: 'cvd',                 label: 'Cardiovascular\nDisease' },
   { key: 'cancer',              label: 'Cancer' },
   { key: 'dementia',            label: 'Dementia /\nCognitive Decline' },
   { key: 'frailty',             label: 'Frailty /\nSarcopenia' }
-];
-
-const BUCKETS = [
-  { id: 0, label: 'Minimal',     sub: 'HR ≈1.0',        max: 0.10 },
-  { id: 1, label: 'Modest',      sub: 'HR ≈1.1–1.25', max: 0.223 },
-  { id: 2, label: 'Moderate',    sub: 'HR ≈1.25–1.5', max: 0.405 },
-  { id: 3, label: 'Strong',      sub: 'HR ≈1.5–2.0',  max: 0.693 },
-  { id: 4, label: 'Very strong', sub: 'HR ≥2.0',        max: Infinity }
 ];
 
 const MOD_RATINGS = {
@@ -28,7 +20,7 @@ const MOD_RATINGS = {
 
 const LN2 = Math.log(2); // magnitude scale ceiling
 
-const state = { view: 'A', sort: 'domain', filter: '', collapsed: new Set() };
+const state = { sort: 'domain', filter: '', collapsed: new Set() };
 let DATA = null;
 
 /* ---- math / color helpers --------------------------------------------- */
@@ -54,14 +46,12 @@ function ramp(stops, t) {
 }
 const RISK_RAMP = [[0, [255, 255, 255]], [0.5, [253, 187, 132]], [1, [178, 24, 43]]];
 const PROT_RAMP = [[0, [255, 255, 255]], [0.5, [146, 197, 222]], [1, [33, 102, 172]]];
-const EVID_RAMP = { A: '#1a3c5e', B: '#6c8aa3', C: '#c2ccd4' };
 
-/* The comparable figure the heat map's magnitude scale uses: HR per +1 SD.
+/* The comparable figure the magnitude scale uses: HR per +1 SD.
    null for categorical / unconvertible / qualitative / no-data cells. */
 function comparableHr(cell) {
   return (cell && typeof cell.hr_per_sd === 'number') ? cell.hr_per_sd : null;
 }
-
 function effectColor(cell) {
   const h = comparableHr(cell);
   if (h == null) return null;
@@ -76,11 +66,6 @@ function textColorFor(bg) {
 }
 function tierClass(tier) {
   return tier === 'A' ? 'tier-A' : tier === 'B' ? 'tier-B' : 'tier-C';
-}
-function bucketFor(hr) {
-  const m = magnitude(hr);
-  if (m == null) return null;
-  return BUCKETS.find(b => m < b.max) || BUCKETS[BUCKETS.length - 1];
 }
 
 /* Cell states:
@@ -148,7 +133,7 @@ function biomarkersForDomain(domainId) {
   return list;
 }
 
-/* ---- rendering: shared ------------------------------------------------- */
+/* ---- rendering --------------------------------------------------------- */
 const $map = document.getElementById('map');
 
 function el(tag, cls, html) {
@@ -163,9 +148,7 @@ function labelCell(bm) {
   const name = el('span', 'bm-label__name', escapeHtml(bm.name));
   name.addEventListener('click', () => openModal(bm));
   td.appendChild(name);
-  if (state.view === 'C' && isPriority(bm)) {
-    td.appendChild(el('span', 'bm-label__tag', '★ PRIORITY'));
-  }
+  if (isPriority(bm)) td.appendChild(el('span', 'bm-label__tag', '★ PRIORITY'));
   return td;
 }
 
@@ -244,86 +227,20 @@ function modCell(bm) {
   return td;
 }
 
-/* ---- View A: all-cause mortality, bucketed ---------------------------- */
-function renderViewA() {
-  const table = el('table', 'hmtable');
-  const head = el('tr');
-  head.appendChild(el('th', 'col-head col-head--label', 'Biomarker'));
-  BUCKETS.forEach(b => {
-    head.appendChild(el('th', 'col-head',
-      `${b.label}<small>${b.sub}</small>`));
-  });
-  const thead = el('thead'); thead.appendChild(head); table.appendChild(thead);
-  const tbody = el('tbody');
-
-  domainList().forEach(domain => {
-    const bms = biomarkersForDomain(domain.id);
-    if (!bms.length) return;
-    tbody.appendChild(domainRow(domain, BUCKETS.length + 1, bms.length));
-    if (state.collapsed.has(domain.id)) return;
-    bms.forEach(bm => {
-      const tr = el('tr', 'bm-row');
-      tr.appendChild(labelCell(bm));
-      const cell = bm.outcomes && bm.outcomes.all_cause_mortality;
-      const st = cellState(cell);
-      if (st !== 'comparable') {
-        const klass = st === 'qualitative' ? 'cell--qual'
-          : st === 'categorical' ? 'cell--cat'
-          : st === 'unconvertible' ? 'cell--unconv' : 'cell--nodata';
-        const td = el('td', 'cell ' + klass);
-        td.colSpan = BUCKETS.length;
-        const inner = el('div', 'cell__inner');
-        inner.style.fontSize = '11px';
-        if (st === 'none') {
-          inner.textContent = 'No all-cause mortality evidence';
-        } else {
-          inner.classList.add('has-data');
-          inner.textContent =
-            st === 'qualitative' ? 'Association documented — effect size not quantified'
-            : st === 'categorical' ? 'Categorical exposure — native HR ' + fmtHr(cell.hr) + ' (not per-SD comparable)'
-            : 'Native HR ' + fmtHr(cell.hr) + ' — not standardizable to per-SD';
-          attachTip(inner, () => tipForCell(bm, 'all_cause_mortality', cell));
-        }
-        td.appendChild(inner);
-        tr.appendChild(td);
-      } else {
-        const bkt = bucketFor(comparableHr(cell));
-        BUCKETS.forEach(b => {
-          const td = el('td', 'cell');
-          if (b.id === bkt.id) {
-            const inner = el('div', 'cell__inner has-data ' + tierClass(cell.evidence_tier));
-            inner.style.background = EVID_RAMP[cell.evidence_tier] || EVID_RAMP.C;
-            inner.style.color = textColorFor(toRgb(inner.style.background));
-            const arrow = cell.direction === 'protective' ? '▼' : '▲';
-            inner.innerHTML = `<span class="cell__hr">${arrow} ${fmtHr(comparableHr(cell))}</span>` +
-              `<span class="cell__sub">tier ${cell.evidence_tier}</span>`;
-            attachTip(inner, () => tipForCell(bm, 'all_cause_mortality', cell));
-            td.appendChild(inner);
-          }
-          tr.appendChild(td);
-        });
-      }
-      tbody.appendChild(tr);
-    });
-  });
-  table.appendChild(tbody);
-  $map.innerHTML = '';
-  $map.appendChild(table);
-}
-
-/* ---- View B / C: outcome grid ----------------------------------------- */
-function renderGrid(withMod) {
+function render() {
   const table = el('table', 'hmtable');
   const head = el('tr');
   head.appendChild(el('th', 'col-head col-head--label', 'Biomarker'));
   OUTCOMES.forEach(o => {
-    head.appendChild(el('th', 'col-head', escapeHtml(o.label).replace(/\n/g, '<br>')));
+    const th = el('th', 'col-head' + (o.anchor ? ' col-acm' : ''),
+      escapeHtml(o.label).replace(/\n/g, '<br>'));
+    head.appendChild(th);
   });
-  if (withMod) head.appendChild(el('th', 'col-head', 'Modifiability'));
+  head.appendChild(el('th', 'col-head', 'Modifiability'));
   const thead = el('thead'); thead.appendChild(head); table.appendChild(thead);
-  const tbody = el('tbody');
 
-  const span = OUTCOMES.length + 1 + (withMod ? 1 : 0);
+  const tbody = el('tbody');
+  const span = OUTCOMES.length + 2;
   domainList().forEach(domain => {
     const bms = biomarkersForDomain(domain.id);
     if (!bms.length) return;
@@ -331,30 +248,33 @@ function renderGrid(withMod) {
     if (state.collapsed.has(domain.id)) return;
     bms.forEach(bm => {
       const tr = el('tr', 'bm-row');
-      if (withMod && isPriority(bm)) tr.classList.add('is-priority');
+      if (isPriority(bm)) tr.classList.add('is-priority');
       tr.appendChild(labelCell(bm));
-      OUTCOMES.forEach(o => tr.appendChild(dataCell(bm, o.key)));
-      if (withMod) tr.appendChild(modCell(bm));
+      OUTCOMES.forEach(o => {
+        const td = dataCell(bm, o.key);
+        if (o.anchor) td.classList.add('col-acm');
+        tr.appendChild(td);
+      });
+      tr.appendChild(modCell(bm));
       tbody.appendChild(tr);
     });
   });
   table.appendChild(tbody);
   $map.innerHTML = '';
   $map.appendChild(table);
+  renderLegend();
 }
 
 /* ---- tooltip ----------------------------------------------------------- */
 const $tip = document.getElementById('tooltip');
-let tipBuilder = null;
 
 function attachTip(node, builder) {
   node.addEventListener('mouseenter', () => {
-    tipBuilder = builder;
     $tip.innerHTML = builder();
     $tip.hidden = false;
   });
   node.addEventListener('mousemove', moveTip);
-  node.addEventListener('mouseleave', () => { $tip.hidden = true; tipBuilder = null; });
+  node.addEventListener('mouseleave', () => { $tip.hidden = true; });
 }
 function moveTip(e) {
   if ($tip.hidden) return;
@@ -486,11 +406,9 @@ function dRow(k, v) {
 /* ---- legend ------------------------------------------------------------ */
 function renderLegend() {
   const $l = document.getElementById('legend');
-  const gradient = (rampStops) => {
+  const gradient = rampStops => {
     const stops = [];
-    for (let i = 0; i <= 6; i++) {
-      stops.push(ramp(rampStops, i / 6) + ' ' + Math.round(i / 6 * 100) + '%');
-    }
+    for (let i = 0; i <= 6; i++) stops.push(ramp(rampStops, i / 6) + ' ' + Math.round(i / 6 * 100) + '%');
     return stops.join(',');
   };
   let html = `<div class="legend__block">
@@ -522,49 +440,18 @@ function renderLegend() {
     <div class="legend__row"><span class="legend__chip cell--nodata" style="background:#f0f0ee"></span>no usable evidence</div>
   </div>`;
 
-  if (state.view === 'A') {
-    html += `<div class="legend__block"><h4>View A cell fill</h4>
-      <div class="legend__row"><span class="legend__chip" style="background:${EVID_RAMP.A}"></span>tier A</div>
-      <div class="legend__row"><span class="legend__chip" style="background:${EVID_RAMP.B}"></span>tier B</div>
-      <div class="legend__row"><span class="legend__chip" style="background:${EVID_RAMP.C}"></span>tier C</div>
-      <div class="legend__row" style="margin-top:4px">▲ risk &nbsp;&nbsp; ▼ protective</div>
-    </div>`;
-  }
-  if (state.view === 'C') {
-    html += `<div class="legend__block"><h4>Modifiability</h4>` +
-      Object.keys(MOD_RATINGS).map(k =>
-        `<div class="legend__row"><span class="mod-dot" style="background:${MOD_RATINGS[k].color}"></span>${MOD_RATINGS[k].label}</div>`
-      ).join('') +
-      `<div class="legend__row" style="margin-top:4px;color:var(--priority)">★ priority = high predictive &amp; high modifiable</div>
-    </div>`;
-  }
+  html += `<div class="legend__block"><h4>Modifiability</h4>` +
+    Object.keys(MOD_RATINGS).map(k =>
+      `<div class="legend__row"><span class="mod-dot" style="background:${MOD_RATINGS[k].color}"></span>${MOD_RATINGS[k].label}</div>`
+    ).join('') +
+    `<div class="legend__row" style="margin-top:4px;color:var(--priority)">★ priority = high predictive &amp; high modifiable</div>
+  </div>`;
+
   $l.innerHTML = html;
-}
-
-/* ---- view notes -------------------------------------------------------- */
-const VIEW_NOTES = {
-  A: 'Each biomarker placed in the column matching its all-cause-mortality effect size, ' +
-     'standardized to HR per +1 SD. Cell fill encodes evidence tier (darker = stronger). ' +
-     'Categorical exposures are shown off-scale with their native HR — the cleanest defensible academic view.',
-  B: 'HR per +1 SD across five outcomes; all markers on one comparable scale. Cell colour = ' +
-     'standardized effect size and direction; border = evidence tier (bold = A, grey = B, dashed = C). ' +
-     'Categorical / non-standardizable cells show the native HR and are visually flagged.',
-  C: 'Outcome grid plus an intervention-modifiability column. Priority targets — high predictive ' +
-     'weight and high modifiability — are flagged ★ and rail-marked. Sort by priority to surface them.'
-};
-
-/* ---- render orchestration --------------------------------------------- */
-function render() {
-  document.getElementById('view-note').textContent = VIEW_NOTES[state.view];
-  document.getElementById('sort-wrap').style.display = state.view === 'A' ? 'none' : '';
-  if (state.view === 'A') renderViewA();
-  else renderGrid(state.view === 'C');
-  renderLegend();
 }
 
 /* ---- formatting -------------------------------------------------------- */
 function fmtHr(v) { return (Math.round(v * 100) / 100).toFixed(2); }
-function toRgb(s) { return s.startsWith('rgb') ? s : s; }
 function escapeHtml(s) {
   return String(s).replace(/[&<>"]/g, c =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -572,14 +459,6 @@ function escapeHtml(s) {
 
 /* ---- boot -------------------------------------------------------------- */
 function wireControls() {
-  document.getElementById('view-toggle').addEventListener('click', e => {
-    const btn = e.target.closest('.viewtoggle__btn');
-    if (!btn) return;
-    state.view = btn.dataset.view;
-    document.querySelectorAll('.viewtoggle__btn').forEach(b =>
-      b.classList.toggle('is-active', b === btn));
-    render();
-  });
   document.getElementById('sort-select').addEventListener('change', e => {
     state.sort = e.target.value; render();
   });
@@ -626,9 +505,7 @@ function init(json) {
 
 function boot() {
   wireControls();
-  // Preferred: the bundled data (works when opened directly from disk).
   if (window.BIOMARKER_DATA) { init(window.BIOMARKER_DATA); return; }
-  // Fallback: fetch the raw JSON (only works when served over HTTP).
   fetch('../data/biomarkers.json', { cache: 'no-store' })
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(init)

@@ -13,24 +13,53 @@
     <h1>Longevity Biomarker Heat Map</h1>
     <p class="masthead__sub">
       Citation-backed associations between biomarkers and aging-related outcomes,
-      with an intervention-modifiability layer. Hover any cell for the underlying
-      study; click a biomarker name for its full profile.
+      with an intervention-modifiability layer.
     </p>
     <p class="masthead__meta" id="meta-line">Loading data&hellip;</p>
   </div>
 </header>
 
+<section class="primer">
+  <div class="masthead__inner">
+    <h2>How to read this table</h2>
+    <p>
+      Each row is a biomarker, grouped by physiological domain. The five outcome
+      columns show how strongly that biomarker predicts each aging-related
+      outcome &mdash; <strong>all-cause mortality</strong> (the highlighted anchor
+      column), cardiovascular disease, cancer, dementia, and frailty. Every cell
+      is a hazard ratio standardized to a common scale, <strong>HR per +1
+      standard deviation</strong> of the biomarker, so markers measured in
+      different units can be compared directly. Cell colour encodes effect size
+      and direction &mdash; <span class="ink-prot">blue = protective</span>,
+      <span class="ink-risk">red = risk</span> &mdash; and the cell border
+      encodes evidence quality (A &gt; B &gt; C). Exposures that are inherently
+      categorical (genotypes, calcium scores) cannot be standardized; they are
+      shown with their native HR and visually flagged, never ranked against the
+      per-SD scale. Hover any cell for the source study; click a biomarker name
+      for its full profile.
+    </p>
+    <h2>The modifiability layer</h2>
+    <p>
+      Prediction alone does not tell you what to <em>do</em>. The rightmost
+      column rates how much each biomarker moves in response to the
+      best-available intervention &mdash; <strong>high</strong>,
+      <strong>moderate</strong>, <strong>low</strong>, or <strong>fixed</strong>
+      (genetically or structurally set). A marker that is both highly predictive
+      and highly modifiable is a <strong>priority target</strong> (marked
+      &#9733;): worth measuring <em>and</em> worth acting on. High predictive
+      weight with low modifiability is for risk stratification; high
+      modifiability with little predictive weight is largely noise. Sort by
+      <em>Priority</em> to bring the priority targets to the top of each domain.
+    </p>
+  </div>
+</section>
+
 <nav class="controls">
   <div class="controls__inner">
-    <div class="viewtoggle" role="tablist" id="view-toggle">
-      <button class="viewtoggle__btn is-active" data-view="A" role="tab">View A · All-Cause Mortality</button>
-      <button class="viewtoggle__btn" data-view="B" role="tab">View B · Outcomes</button>
-      <button class="viewtoggle__btn" data-view="C" role="tab">View C · Outcomes + Modifiability</button>
-    </div>
     <label>Filter
       <input type="search" id="filter-input" placeholder="biomarker name&hellip;" autocomplete="off">
     </label>
-    <label id="sort-wrap">Sort
+    <label>Sort
       <select id="sort-select">
         <option value="domain">Domain order</option>
         <option value="predictive">Predictive strength</option>
@@ -40,21 +69,17 @@
   </div>
 </nav>
 
-<p class="viewnote" id="view-note"></p>
-
 <main id="map" class="map"></main>
 
 <section class="legend" id="legend"></section>
 
 <footer class="footnote">
   <div class="masthead__inner" style="padding:0">
-    <p><strong>Reading the map.</strong> Source studies report hazard ratios in
-      incompatible units (per SD, per quartile, per fixed unit). Every continuous
-      marker is standardized to <em>HR per +1 SD</em> so the map is comparable;
-      the conversion method and basis are recorded per cell and shown in the
-      tooltip (see <code style="display:inline">data/HR_STANDARDIZATION.md</code>).
-      Categorical exposures cannot be standardized — they are shown with their
-      native HR and visually flagged, never mixed into the comparable scale.</p>
+    <p><strong>Standardization.</strong> Continuous markers are converted to HR
+      per +1 SD by a deterministic script; the native HR and the conversion
+      basis are recorded per cell and shown in the tooltip (see
+      <code style="display:inline">data/HR_STANDARDIZATION.md</code>). Converted
+      quantile estimates assume an approximately normal exposure.</p>
     <p><strong>Verification status.</strong> Each evidence cell is flagged
       <em>verified</em> (source study located and figures confirmed),
       <em>approximate</em> (study identified, exact CI/N not confirmed), or

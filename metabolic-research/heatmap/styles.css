@@ -76,30 +76,6 @@ html, body {
   gap: 14px 22px;
   align-items: center;
 }
-.viewtoggle {
-  display: inline-flex;
-  border: 1px solid var(--rule-strong);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.viewtoggle__btn {
-  appearance: none;
-  border: 0;
-  border-right: 1px solid var(--rule-strong);
-  background: var(--bg);
-  color: var(--ink-soft);
-  font: inherit;
-  font-size: 12.5px;
-  padding: 7px 13px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.viewtoggle__btn:last-child { border-right: 0; }
-.viewtoggle__btn:hover { background: var(--panel); }
-.viewtoggle__btn.is-active {
-  background: var(--accent);
-  color: #fff;
-}
 .controls label {
   font-size: 12.5px;
   color: var(--ink-soft);
@@ -120,14 +96,31 @@ html, body {
 .controls input[type="search"] { width: 190px; }
 .controls .spacer { flex: 1; }
 
-/* ---- View note --------------------------------------------------------- */
-.viewnote {
-  max-width: 1180px;
-  margin: 16px auto 0;
-  padding: 0 32px;
-  color: var(--ink-soft);
-  font-size: 13px;
+/* ---- Primer ------------------------------------------------------------ */
+.primer {
+  border-bottom: 1px solid var(--rule);
+  background: var(--panel);
+  padding: 20px 32px 22px;
 }
+.primer .masthead__inner { padding: 0; }
+.primer h2 {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: var(--accent);
+}
+.primer h2 + p { margin-top: 0; }
+.primer p {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 980px;
+}
+.primer p:last-child { margin-bottom: 0; }
+.ink-prot { color: #1f5fa6; font-weight: 600; }
+.ink-risk { color: #b2182b; font-weight: 600; }
 
 /* ---- Map --------------------------------------------------------------- */
 .map {
@@ -170,6 +163,19 @@ html, body {
   font-size: 10.5px;
   text-transform: none;
 }
+
+/* highlighted anchor column — all-cause mortality */
+.col-acm { background: #eaeef3; }
+th.col-acm {
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+td.col-acm {
+  border-left: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+tr.bm-row:last-child td.col-acm { border-bottom: 2px solid var(--accent); }
 
 .domain-row td {
   background: var(--panel);
