@@ -2,14 +2,14 @@
 
 **Interim writeup — domains 2–4 of 14.** This covers Lipids / Cardiovascular
 Risk, Mitochondrial / Cardiorespiratory Fitness, and Inflammation (38 biomarkers,
-92 evidence cells). It will be revised into a full synthesis once the remaining
+122 evidence cells). It will be revised into a full synthesis once the remaining
 domains are researched. Conclusions below are scoped to these three domains.
 
 All hazard ratios for continuous exposures are standardized to **HR per +1 SD**
-(method: `data/HR_STANDARDIZATION.md`); 58 cells are on this comparable scale
-(32 reported natively per SD, 26 converted), 17 are categorical exposures shown
-off-scale, 1 is flagged unconvertible, and 16 carry documented-but-unquantified
-evidence.
+(method: `data/HR_STANDARDIZATION.md`); 82 cells are on this comparable scale
+(40 reported natively per SD, 42 converted), 13 are categorical exposures shown
+off-scale, 1 is flagged unconvertible, and 26 carry documented-but-unquantified
+evidence (including several deliberate "tested, no effect" nulls).
 
 ---
 
@@ -42,13 +42,13 @@ predict all-cause mortality, CVD, *and* dementia. The signal is real and broad,
 but mostly modest per-SD and — with one exception — non-causal (see §2).
 
 > **On comparability.** Source studies report HRs in incompatible units, so
-> every continuous marker is standardized to HR per +1 SD before ranking. This
-> matters: the sit-to-stand test, reported as lowest-vs-highest group (native
-> HR ≈ 3.8–6.0), looks dominant on raw HR but is a categorical exposure that
-> cannot be placed on the per-SD scale — it is shown off-scale, not ranked
-> against per-SD markers. Converted quantile HRs (e.g. GlycA, LDL particle
-> size) are flagged `converted` and rest on a normal-distribution assumption;
-> natively-reported per-SD estimates are preferred and flagged `native`.
+> every continuous marker is standardized to HR per +1 SD before ranking
+> (`data/HR_STANDARDIZATION.md`). Two limits remain. Converted quantile HRs
+> (flagged `converted`) rest on an approximate-normality assumption; natively
+> per-SD estimates (`native`) are preferred where available. And genuinely
+> categorical exposures — ApoE genotype, coronary-calcium strata — cannot be
+> placed on the per-SD scale at all; they are shown with their native HR and
+> flagged, never ranked against the standardized markers.
 
 ## 2. Where the field oversells
 
@@ -85,17 +85,18 @@ but mostly modest per-SD and — with one exception — non-causal (see §2).
 The coaching sweet spot is markers that are both predictive *and* responsive to
 intervention. From these three domains, the priority targets are:
 
-Ranked by standardized predictive strength (largest |ln(HR per SD)| across
-outcomes) among markers rated highly modifiable:
+Ranked by standardized predictive strength (peak HR per +1 SD across outcomes)
+among markers rated highly modifiable:
 
 | Marker | Peak HR per SD | Intervention leverage |
 |---|---|---|
-| VO2max | 0.45 (cancer/mortality) | +10–25% with structured training, 8–12 wk |
-| Grip strength | 0.43 (dementia/mortality) | Resistance training, measurable in 8–12 wk |
-| hsCRP | 0.43 (mortality) | Falls with weight loss, exercise, statins |
-| Non-HDL / ApoB / LDL-C / LDL-P | 0.28–0.41 (CVD) | Statin ± ezetimibe ± PCSK9: 35–60%, 4–6 wk |
-| IL-6 | 0.39 (mortality/CVD) | Falls with weight loss, exercise; IL-6 pathway drugs |
-| Triglycerides | 0.31 (mortality) | Diet, weight loss, fitness — fast-responding |
+| Sit-to-stand / chair-rise | 1.87 — mortality (B) | Resistance + balance training; 8–12 wk |
+| Grip strength | 1.54 — dementia (B) | Resistance training; 8–12 wk |
+| hsCRP | 1.54 — mortality (A) | Falls with weight loss, exercise, statins |
+| Non-HDL-C / ApoB / LDL-C / LDL-P | 1.32–1.50 — CVD (A–B) | Statin ± ezetimibe ± PCSK9: 35–60%, 4–6 wk |
+| IL-6 | 1.48 — mortality (A) | Weight loss, exercise; IL-6-pathway drugs |
+| Triglycerides | 1.37 — CVD (A) | Diet, weight loss, fitness — fast-responding |
+| VO2max | 0.64 — cancer (B), protective | +10–25% with structured training, 8–12 wk |
 
 Note the asymmetry: lipid markers are highly modifiable *pharmacologically*;
 fitness and strength are highly modifiable *behaviourally*. hsCRP is modifiable
@@ -125,9 +126,9 @@ These belong in the baseline risk picture, not the quarterly scorecard.
   distinction should be made explicit with clients.
 - **Residual comparability limits.** Standardizing to per-SD solves most of the
   unit problem, but converted quantile estimates assume an approximately normal
-  exposure, and genuinely categorical markers (ApoE, CAC, the sit-to-stand test)
-  remain off-scale by necessity — informative, but not rankable against per-SD
-  markers.
+  exposure, and genuinely categorical markers (ApoE genotype, coronary-calcium
+  strata) remain off-scale by necessity — informative, but not rankable against
+  per-SD markers.
 - **Newer markers** (suPAR, GlycA, HDL efflux capacity) are mechanistically
   interesting but rest on thin, few-cohort evidence — reasonable to measure, not
   yet reasonable to weight heavily.
