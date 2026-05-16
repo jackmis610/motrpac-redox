@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Longevity Biomarker Heat Map</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <h1>Longevity Biomarker Heat Map</h1>
+    <p class="masthead__sub">
+      Citation-backed associations between biomarkers and aging-related outcomes,
+      with an intervention-modifiability layer. Hover any cell for the underlying
+      study; click a biomarker name for its full profile.
+    </p>
+    <p class="masthead__meta" id="meta-line">Loading data&hellip;</p>
+  </div>
+</header>
+
+<nav class="controls">
+  <div class="controls__inner">
+    <div class="viewtoggle" role="tablist" id="view-toggle">
+      <button class="viewtoggle__btn is-active" data-view="A" role="tab">View A · All-Cause Mortality</button>
+      <button class="viewtoggle__btn" data-view="B" role="tab">View B · Outcomes</button>
+      <button class="viewtoggle__btn" data-view="C" role="tab">View C · Outcomes + Modifiability</button>
+    </div>
+    <label>Filter
+      <input type="search" id="filter-input" placeholder="biomarker name&hellip;" autocomplete="off">
+    </label>
+    <label id="sort-wrap">Sort
+      <select id="sort-select">
+        <option value="domain">Domain order</option>
+        <option value="predictive">Predictive strength</option>
+        <option value="priority">Priority (predictive &times; modifiable)</option>
+      </select>
+    </label>
+  </div>
+</nav>
+
+<p class="viewnote" id="view-note"></p>
+
+<main id="map" class="map"></main>
+
+<section class="legend" id="legend"></section>
+
+<footer class="footnote">
+  <div class="masthead__inner" style="padding:0">
+    <p><strong>Reading the map.</strong> Hazard ratios are drawn from the source
+      study and are <em>not</em> all on the same scale &mdash; some are per standard
+      deviation, some per quartile contrast, some per fixed unit. The exact metric
+      is shown in every tooltip. Cell intensity encodes effect magnitude as
+      |ln(HR)| so that risk and protective markers of equal strength read alike.</p>
+    <p><strong>Verification status.</strong> Each evidence cell is flagged
+      <em>verified</em> (source study located and figures confirmed),
+      <em>approximate</em> (study identified, exact CI/N not confirmed), or
+      <em>unverified</em> (general domain knowledge). Verify all figures against
+      primary sources before clinical use.</p>
+    <p id="footnote-version"></p>
+  </div>
+</footer>
+
+<div id="tooltip" class="tooltip" hidden></div>
+<div id="modal" class="modal" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>

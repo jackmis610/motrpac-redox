@@ -1,26 +1,11 @@
-# R
-.Rproj.user/
-.Rhistory
-.RData
-.Ruserdata
-*.Rproj.bak
-
-# Raw downloaded data — re-downloadable, keep out of version control
-data/raw/*
-!data/raw/.gitkeep
-
-# Processed data — regenerate from scripts; comment out to track
-data/processed/*
-!data/processed/.gitkeep
-
-# Generated outputs
-figures/*
-!figures/.gitkeep
-results/*
-!results/.gitkeep
+# Temporary per-domain research files (merged into data/biomarkers.json)
+data/_research_*.json
 
 # OS / editor
 .DS_Store
 Thumbs.db
 *.swp
-.Rproj.user
+*~
+
+# Local tooling
+node_modules/
