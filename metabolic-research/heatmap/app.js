@@ -56,9 +56,16 @@ const RISK_RAMP = [[0, [255, 255, 255]], [0.5, [253, 187, 132]], [1, [178, 24, 4
 const PROT_RAMP = [[0, [255, 255, 255]], [0.5, [146, 197, 222]], [1, [33, 102, 172]]];
 const EVID_RAMP = { A: '#1a3c5e', B: '#6c8aa3', C: '#c2ccd4' };
 
+/* The comparable figure the heat map's magnitude scale uses: HR per +1 SD.
+   null for categorical / unconvertible / qualitative / no-data cells. */
+function comparableHr(cell) {
+  return (cell && typeof cell.hr_per_sd === 'number') ? cell.hr_per_sd : null;
+}
+
 function effectColor(cell) {
-  if (!cell || cell.hr == null) return null;
-  const t = clamp01(magnitude(cell.hr) / LN2);
+  const h = comparableHr(cell);
+  if (h == null) return null;
+  const t = clamp01(magnitude(h) / LN2);
   return ramp(cell.direction === 'protective' ? PROT_RAMP : RISK_RAMP, t);
 }
 function textColorFor(bg) {
@@ -76,11 +83,19 @@ function bucketFor(hr) {
   return BUCKETS.find(b => m < b.max) || BUCKETS[BUCKETS.length - 1];
 }
 
-/* A cell is 'quantified' (numeric HR), 'qualitative' (evidence documented but
-   no usable pooled HR), or 'none' (no evidence at all). */
+/* Cell states:
+   'comparable'    — has a per-SD HR; sits on the comparable magnitude scale
+   'categorical'   — categorical exposure; native HR shown, off the scale
+   'unconvertible' — continuous but not standardizable; native HR shown, flagged
+   'qualitative'   — evidence documented but no usable pooled HR
+   'none'          — no evidence at all */
 function cellState(cell) {
-  if (cell && typeof cell.hr === 'number') return 'quantified';
-  if (cell && cell.qualitative) return 'qualitative';
+  if (!cell) return 'none';
+  if (typeof cell.hr_per_sd === 'number') return 'comparable';
+  if (typeof cell.hr === 'number') {
+    return cell.comparability === 'categorical' ? 'categorical' : 'unconvertible';
+  }
+  if (cell.qualitative) return 'qualitative';
   return 'none';
 }
 
@@ -89,7 +104,7 @@ function predictiveStrength(bm) {
   let best = 0;
   OUTCOMES.forEach(o => {
     const c = bm.outcomes && bm.outcomes[o.key];
-    const m = c ? magnitude(c.hr) : null;
+    const m = c ? magnitude(comparableHr(c)) : null;
     if (m != null && m > best) best = m;
   });
   return best;
@@ -190,11 +205,20 @@ function dataCell(bm, outcomeKey) {
     td.appendChild(inner);
     return td;
   }
+  if (st === 'categorical' || st === 'unconvertible') {
+    td.classList.add(st === 'categorical' ? 'cell--cat' : 'cell--unconv');
+    inner.classList.add('has-data', tierClass(cell.evidence_tier));
+    inner.innerHTML = `<span class="cell__hr">${fmtHr(cell.hr)}</span>` +
+      `<span class="cell__sub">${st === 'categorical' ? 'categ.' : 'n/c'}</span>`;
+    attachTip(inner, () => tipForCell(bm, outcomeKey, cell));
+    td.appendChild(inner);
+    return td;
+  }
   const bg = effectColor(cell);
   inner.classList.add('has-data', tierClass(cell.evidence_tier));
   inner.style.background = bg;
   inner.style.color = textColorFor(bg);
-  inner.innerHTML = `<span class="cell__hr">${fmtHr(cell.hr)}</span>`;
+  inner.innerHTML = `<span class="cell__hr">${fmtHr(cell.hr_per_sd)}</span>`;
   attachTip(inner, () => tipForCell(bm, outcomeKey, cell));
   td.appendChild(inner);
   return td;
@@ -242,22 +266,28 @@ function renderViewA() {
       tr.appendChild(labelCell(bm));
       const cell = bm.outcomes && bm.outcomes.all_cause_mortality;
       const st = cellState(cell);
-      if (st === 'none' || st === 'qualitative') {
-        const td = el('td', 'cell ' + (st === 'qualitative' ? 'cell--qual' : 'cell--nodata'));
+      if (st !== 'comparable') {
+        const klass = st === 'qualitative' ? 'cell--qual'
+          : st === 'categorical' ? 'cell--cat'
+          : st === 'unconvertible' ? 'cell--unconv' : 'cell--nodata';
+        const td = el('td', 'cell ' + klass);
         td.colSpan = BUCKETS.length;
         const inner = el('div', 'cell__inner');
         inner.style.fontSize = '11px';
-        if (st === 'qualitative') {
-          inner.classList.add('has-data');
-          inner.textContent = 'Association documented — effect size not quantified';
-          attachTip(inner, () => tipForCell(bm, 'all_cause_mortality', cell));
-        } else {
+        if (st === 'none') {
           inner.textContent = 'No all-cause mortality evidence';
+        } else {
+          inner.classList.add('has-data');
+          inner.textContent =
+            st === 'qualitative' ? 'Association documented — effect size not quantified'
+            : st === 'categorical' ? 'Categorical exposure — native HR ' + fmtHr(cell.hr) + ' (not per-SD comparable)'
+            : 'Native HR ' + fmtHr(cell.hr) + ' — not standardizable to per-SD';
+          attachTip(inner, () => tipForCell(bm, 'all_cause_mortality', cell));
         }
         td.appendChild(inner);
         tr.appendChild(td);
       } else {
-        const bkt = bucketFor(cell.hr);
+        const bkt = bucketFor(comparableHr(cell));
         BUCKETS.forEach(b => {
           const td = el('td', 'cell');
           if (b.id === bkt.id) {
@@ -265,7 +295,7 @@ function renderViewA() {
             inner.style.background = EVID_RAMP[cell.evidence_tier] || EVID_RAMP.C;
             inner.style.color = textColorFor(toRgb(inner.style.background));
             const arrow = cell.direction === 'protective' ? '▼' : '▲';
-            inner.innerHTML = `<span class="cell__hr">${arrow} ${fmtHr(cell.hr)}</span>` +
+            inner.innerHTML = `<span class="cell__hr">${arrow} ${fmtHr(comparableHr(cell))}</span>` +
               `<span class="cell__sub">tier ${cell.evidence_tier}</span>`;
             attachTip(inner, () => tipForCell(bm, 'all_cause_mortality', cell));
             td.appendChild(inner);
@@ -343,13 +373,23 @@ function tipForCell(bm, outcomeKey, cell) {
     ? `${fmtHr(cell.ci_low)}–${fmtHr(cell.ci_high)}` : 'not reported';
   const flag = cell.verification_status || 'unverified';
   let html = `<h5>${escapeHtml(bm.name)} &mdash; ${escapeHtml(oLabel)}</h5><dl>`;
-  if (typeof cell.hr === 'number') {
-    html += row('HR', `${fmtHr(cell.hr)} <span style="color:#a9b4bd">(${escapeHtml(cell.direction || '')})</span>`);
-    html += row('95% CI', ci);
+  if (typeof cell.hr_per_sd === 'number') {
+    const ciSd = cell.hr_per_sd_ci
+      ? `${fmtHr(cell.hr_per_sd_ci[0])}–${fmtHr(cell.hr_per_sd_ci[1])}` : 'n/a';
+    html += row('HR per SD', `<b>${fmtHr(cell.hr_per_sd)}</b> (${ciSd}) ` +
+      `<span style="color:#a9b4bd">${escapeHtml(cell.direction || '')}</span>`);
+    html += row('Native', `${fmtHr(cell.hr)} (${ci}) · ${escapeHtml(cell.hr_unit_detail || cell.hr_metric || '')}`);
+    html += row('Standardized', escapeHtml((cell.comparability || '') +
+      (cell.hr_per_sd_basis ? ' — ' + cell.hr_per_sd_basis : '')));
+  } else if (typeof cell.hr === 'number') {
+    html += row('Native HR', `${fmtHr(cell.hr)} (${ci}) ` +
+      `<span style="color:#a9b4bd">(${escapeHtml(cell.direction || '')})</span>`);
+    html += row('Metric', escapeHtml(cell.hr_unit_detail || cell.hr_metric || '—'));
+    html += row('Standardized', `<em>not per-SD comparable — ${escapeHtml(cell.comparability || 'n/a')}</em>`);
   } else {
     html += row('HR', '<em>evidence documented; no usable pooled HR</em>');
+    html += row('Metric', escapeHtml(cell.hr_unit_detail || cell.hr_metric || '—'));
   }
-  html += row('Metric', escapeHtml(cell.hr_unit_detail || cell.hr_metric || '—'));
   html += row('Evidence', `Tier ${escapeHtml(cell.evidence_tier || '?')}`);
   html += row('Study type', escapeHtml(cell.study_type || '—'));
   html += row('Sample', cell.n != null ? escapeHtml(String(cell.n)) : '—');
@@ -416,13 +456,17 @@ function openModal(bm) {
 
   const oRows = OUTCOMES.map(o => {
     const c = bm.outcomes && bm.outcomes[o.key];
+    const lbl = o.label.replace(/\n/g, ' ');
     const st = cellState(c);
-    if (st === 'none') return dRow(o.label.replace(/\n/g, ' '), 'no usable evidence');
-    if (st === 'qualitative') return dRow(o.label.replace(/\n/g, ' '),
+    if (st === 'none') return dRow(lbl, 'no usable evidence');
+    if (st === 'qualitative') return dRow(lbl,
       'documented; effect size not quantified — ' + (c.study || c.notes || ''));
+    if (st === 'comparable') {
+      const ci = c.hr_per_sd_ci ? ` (${fmtHr(c.hr_per_sd_ci[0])}–${fmtHr(c.hr_per_sd_ci[1])})` : '';
+      return dRow(lbl, `HR/SD ${fmtHr(c.hr_per_sd)}${ci}, tier ${c.evidence_tier} — ${c.study || ''}`);
+    }
     const ci = (c.ci_low != null) ? ` (${fmtHr(c.ci_low)}–${fmtHr(c.ci_high)})` : '';
-    return dRow(o.label.replace(/\n/g, ' '),
-      `HR ${fmtHr(c.hr)}${ci}, tier ${c.evidence_tier} — ${escapeHtml(c.study || '')}`);
+    return dRow(lbl, `native HR ${fmtHr(c.hr)}${ci} [${c.comparability}], tier ${c.evidence_tier} — ${c.study || ''}`);
   }).join('');
   html += `<section><h3>Outcome associations</h3><dl class="modal__grid">${oRows}</dl></section>`;
 
@@ -450,7 +494,7 @@ function renderLegend() {
     return stops.join(',');
   };
   let html = `<div class="legend__block">
-    <h4>Effect magnitude (|ln HR|)</h4>
+    <h4>Effect magnitude (HR per +1 SD)</h4>
     <div class="legend__ramp">
       <span>weak</span>
       <span class="legend__swatches" style="width:120px;height:14px;
@@ -469,6 +513,11 @@ function renderLegend() {
     <div class="legend__row"><span class="legend__chip tier-A" style="background:#fff"></span>A &mdash; multiple MA / MA + MR</div>
     <div class="legend__row"><span class="legend__chip tier-B" style="background:#fff"></span>B &mdash; single MA / strong cohort</div>
     <div class="legend__row"><span class="legend__chip tier-C" style="background:#fff"></span>C &mdash; limited / observational</div>
+  </div>`;
+
+  html += `<div class="legend__block"><h4>Off the per-SD scale</h4>
+    <div class="legend__row"><span class="legend__chip legend__chip--cat"></span>categorical exposure (native HR shown)</div>
+    <div class="legend__row"><span class="legend__chip legend__chip--unconv"></span>not standardizable (flagged)</div>
     <div class="legend__row"><span class="legend__chip legend__chip--qual"></span>documented, no usable pooled HR</div>
     <div class="legend__row"><span class="legend__chip cell--nodata" style="background:#f0f0ee"></span>no usable evidence</div>
   </div>`;
@@ -494,10 +543,12 @@ function renderLegend() {
 
 /* ---- view notes -------------------------------------------------------- */
 const VIEW_NOTES = {
-  A: 'Each biomarker placed in the column matching its all-cause-mortality effect size. ' +
-     'Cell fill encodes evidence tier (darker = stronger evidence base) — the cleanest defensible academic view.',
-  B: 'Hazard ratio magnitude across five outcomes. Cell colour = effect size and direction; ' +
-     'border = evidence tier (solid bold = A, solid grey = B, dashed = C).',
+  A: 'Each biomarker placed in the column matching its all-cause-mortality effect size, ' +
+     'standardized to HR per +1 SD. Cell fill encodes evidence tier (darker = stronger). ' +
+     'Categorical exposures are shown off-scale with their native HR — the cleanest defensible academic view.',
+  B: 'HR per +1 SD across five outcomes; all markers on one comparable scale. Cell colour = ' +
+     'standardized effect size and direction; border = evidence tier (bold = A, grey = B, dashed = C). ' +
+     'Categorical / non-standardizable cells show the native HR and are visually flagged.',
   C: 'Outcome grid plus an intervention-modifiability column. Priority targets — high predictive ' +
      'weight and high modifiability — are flagged ★ and rail-marked. Sort by priority to surface them.'
 };

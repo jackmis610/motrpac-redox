@@ -48,11 +48,13 @@
 
 <footer class="footnote">
   <div class="masthead__inner" style="padding:0">
-    <p><strong>Reading the map.</strong> Hazard ratios are drawn from the source
-      study and are <em>not</em> all on the same scale &mdash; some are per standard
-      deviation, some per quartile contrast, some per fixed unit. The exact metric
-      is shown in every tooltip. Cell intensity encodes effect magnitude as
-      |ln(HR)| so that risk and protective markers of equal strength read alike.</p>
+    <p><strong>Reading the map.</strong> Source studies report hazard ratios in
+      incompatible units (per SD, per quartile, per fixed unit). Every continuous
+      marker is standardized to <em>HR per +1 SD</em> so the map is comparable;
+      the conversion method and basis are recorded per cell and shown in the
+      tooltip (see <code style="display:inline">data/HR_STANDARDIZATION.md</code>).
+      Categorical exposures cannot be standardized — they are shown with their
+      native HR and visually flagged, never mixed into the comparable scale.</p>
     <p><strong>Verification status.</strong> Each evidence cell is flagged
       <em>verified</em> (source study located and figures confirmed),
       <em>approximate</em> (study identified, exact CI/N not confirmed), or

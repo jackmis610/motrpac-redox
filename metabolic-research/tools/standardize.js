@@ -1,0 +1,100 @@
+#!/usr/bin/env node
+/* Deterministic HR standardization.
+   Reads data/biomarkers.json, recomputes hr_per_sd / hr_per_sd_ci /
+   comparability / hr_per_sd_basis for every quantified cell from its native
+   hr + hr_metric + conversion inputs, and writes the file back in place.
+
+   Idempotent: edit a native HR or conversion input, re-run, hr_per_sd updates.
+   See data/HR_STANDARDIZATION.md for the methodology.
+
+   Usage:  node tools/standardize.js [path/to/biomarkers.json] */
+
+'use strict';
+const fs = require('fs');
+
+const FILE = process.argv[2] || 'data/biomarkers.json';
+const OUTCOMES = ['all_cause_mortality', 'cvd', 'cancer', 'dementia', 'frailty'];
+
+/* Normal-approximation SD separation between extreme groups. */
+const SPREAD = { tertile: 2.18, quartile: 2.54, quintile: 2.80, median_split: 1.60, decile: 3.51 };
+
+const round = (x, n) => { const f = 10 ** n; return Math.round(x * f) / f; };
+
+function standardizeCell(c) {
+  if (!c || typeof c.hr !== 'number') return null;   // qualitative / null untouched
+  const m = c.hr_metric;
+  let k = null, comparability, basis;
+
+  if (m === 'per_sd' || m === 'per_log_sd') {
+    k = 1; comparability = 'native';
+    basis = m === 'per_log_sd'
+      ? 'native: HR per 1 SD of log-transformed marker'
+      : 'native: HR reported per 1 SD';
+  } else if (SPREAD[m]) {
+    k = 1 / SPREAD[m]; comparability = 'converted';
+    basis = `${m} contrast; k = 1/${SPREAD[m]} (normal-approx extreme-group SD separation)`;
+  } else if (m === 'per_unit') {
+    const cv = c.conversion || {};
+    if (typeof cv.unit_value === 'number' && cv.unit_value > 0 && typeof cv.population_sd === 'number') {
+      k = cv.population_sd / cv.unit_value; comparability = 'converted';
+      basis = `per_unit: native HR per ${cv.unit_value}; population SD ${cv.population_sd} ` +
+        `(${cv.sd_source || 'source unspecified'}); k = SD/unit = ${round(k, 3)}`;
+    } else {
+      comparability = 'unconvertible';
+      basis = 'per_unit but population SD unavailable — not standardized';
+    }
+  } else if (m === 'per_doubling') {
+    const cv = c.conversion || {};
+    if (typeof cv.log2_sd === 'number') {
+      k = cv.log2_sd; comparability = 'converted';
+      basis = `per_doubling: k = SD of log2(marker) = ${cv.log2_sd} ` +
+        `(${cv.sd_source || 'source unspecified'})`;
+    } else {
+      comparability = 'unconvertible';
+      basis = 'per_doubling but log2 SD unavailable — not standardized';
+    }
+  } else if (m === 'categorical') {
+    comparability = 'categorical';
+    basis = 'categorical exposure — not placed on the per-SD scale';
+  } else {
+    comparability = 'unconvertible';
+    basis = `unrecognized hr_metric ${JSON.stringify(m)} — not standardized`;
+  }
+
+  c.comparability = comparability;
+  c.hr_per_sd_basis = basis;
+  if (k != null) {
+    c.hr_per_sd = round(Math.pow(c.hr, k), 4);
+    c.hr_per_sd_ci = (typeof c.ci_low === 'number' && typeof c.ci_high === 'number')
+      ? [round(Math.pow(c.ci_low, k), 4), round(Math.pow(c.ci_high, k), 4)]
+      : null;
+  } else {
+    c.hr_per_sd = null;
+    c.hr_per_sd_ci = null;
+  }
+  return comparability;
+}
+
+const data = JSON.parse(fs.readFileSync(FILE, 'utf8'));
+const stats = { native: 0, converted: 0, categorical: 0, unconvertible: 0 };
+const flagged = [];
+for (const bm of data.biomarkers) {
+  for (const o of OUTCOMES) {
+    const r = standardizeCell(bm.outcomes[o]);
+    if (r) {
+      stats[r]++;
+      if (r === 'unconvertible') flagged.push(`${bm.id}/${o}: ${bm.outcomes[o].hr_per_sd_basis}`);
+    }
+  }
+}
+fs.writeFileSync(FILE, JSON.stringify(data, null, 2) + '\n');
+
+console.log('Standardized ' + FILE);
+console.log('  native      ' + stats.native);
+console.log('  converted   ' + stats.converted);
+console.log('  categorical ' + stats.categorical);
+console.log('  unconvertible ' + stats.unconvertible);
+if (flagged.length) {
+  console.log('\nUnconvertible cells (flagged, excluded from comparable scale):');
+  flagged.forEach(f => console.log('  ' + f));
+}

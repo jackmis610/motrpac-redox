@@ -78,12 +78,24 @@ it as an explicit "no data" cell rather than implying a null effect.
 
 ```json
 {
-  "hr": 1.43,
-  "hr_metric": "per SD | per quartile | per unit | categorical",
+  "hr": 1.43,                         // NATIVE HR, exactly as the source study reported it
+  "hr_metric": "per_sd | per_log_sd | tertile | quartile | quintile | median_split | per_unit | per_doubling | categorical",
   "hr_unit_detail": "Exact contrast, e.g. 'per 1 SD higher', 'per 5 kg lower', 'Q4 vs Q1'.",
   "direction": "risk | protective",   // risk: higher value -> worse outcome
-  "ci_low": 1.35,
+  "ci_low": 1.35,                     // native CI
   "ci_high": 1.52,
+
+  "hr_per_sd": 1.16,                  // STANDARDIZED: HR per +1 SD. null if categorical/unconvertible.
+  "hr_per_sd_ci": [1.10, 1.23],       // standardized CI. null if unavailable.
+  "comparability": "native | converted | categorical | unconvertible",
+  "hr_per_sd_basis": "How hr_per_sd was derived: 'native', or conversion formula + inputs.",
+  "conversion": {                     // inputs the standardization script uses; omit/null when not needed
+    "unit_value": 10,                 // per_unit: numeric size of the reported unit
+    "population_sd": 35,              // per_unit: biomarker SD in the SAME units as unit_value
+    "log2_sd": 0.90,                  // per_doubling: SD of log2(marker)
+    "sd_source": "Source of the SD (study name or referenced population)."
+  },
+
   "evidence_tier": "A | B | C",
   "n": 350000,                        // number or descriptive string
   "followup_years": 12.0,
@@ -91,9 +103,17 @@ it as an explicit "no data" cell rather than implying a null effect.
   "study_type": "meta-analysis | mendelian-randomization | prospective-cohort | pooled-cohort | RCT",
   "citation": "Full citation with DOI or PMID where possible.",
   "verification_status": "verified | approximate | unverified",
-  "notes": "Caveats: unit conversions, association vs causal, conflicting data."
+  "notes": "Caveats: association vs causal, conflicting data, non-linearity."
 }
 ```
+
+### Standardization fields
+`hr` / `ci_low` / `ci_high` always hold the **native** figures as published.
+`hr_per_sd` holds the **comparable** figure (HR per +1 SD) and is what the heat
+map's magnitude scale uses. See `HR_STANDARDIZATION.md` for the conversion rules.
+`hr_per_sd` is computed by a deterministic script from `hr_metric` + `conversion`,
+never entered by hand. Quantile metrics need no `conversion` inputs (the SD
+spread is fixed); `per_unit` and `per_doubling` require it.
 
 ### `verification_status`
 - `verified` — the cited study was located and the HR / CI / N / follow-up confirmed against it.
@@ -104,7 +124,9 @@ Cells must never carry invented precision. If a number cannot be sourced, leave
 the field `null` and explain in `notes`, rather than guessing.
 
 ## Color / encoding conventions used by the heat map
-- HR magnitude is rendered as `|ln(HR)|` so risk and protective markers of equal
-  strength read as equal intensity; `direction` drives the hue.
+- Magnitude is rendered as `|ln(hr_per_sd)|` so all markers sit on one comparable
+  scale; `direction` drives the hue.
+- `categorical` and `unconvertible` cells have no `hr_per_sd`; they are shown in a
+  separate band and never bucketed on the comparable scale.
 - `evidence_tier` drives cell border weight / icon (A strongest).
-- View A additionally buckets all-cause-mortality HR into effect-size columns.
+- View A additionally buckets all-cause-mortality `hr_per_sd` into effect-size columns.
