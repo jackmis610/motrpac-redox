@@ -430,6 +430,8 @@ td.cell {
   padding: 48px 20px;
   overflow-y: auto;
 }
+/* `.modal { display: flex }` outranks the UA [hidden] rule — restore it. */
+.modal[hidden] { display: none; }
 .modal__card {
   background: var(--bg);
   max-width: 620px;
