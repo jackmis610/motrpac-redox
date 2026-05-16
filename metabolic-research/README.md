@@ -44,14 +44,15 @@ heat map code. See `data/SCHEMA.md` for the contract.
 
 ## Running the heat map
 
-Browsers block local file reads, so the page must be served over HTTP:
+Open `heatmap/index.html` directly in any browser — no web server needed. The
+data layer is bundled into `heatmap/data.bundle.js` so it loads from `file://`.
+
+`data/biomarkers.json` remains the editable source of truth. After changing it,
+regenerate the bundle and the per-SD standardized values:
 
 ```sh
-cd metabolic-research
-python3 -m http.server 8000
+node tools/standardize.js
 ```
-
-Then open <http://localhost:8000/heatmap/>.
 
 ## The three views
 

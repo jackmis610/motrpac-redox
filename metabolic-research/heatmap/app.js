@@ -608,25 +608,30 @@ function showMeta() {
 function showLoadError() {
   $map.innerHTML = `<div class="loaderr">
     <h3>Could not load the data layer</h3>
-    <p>The heat map reads <code style="display:inline">../data/biomarkers.json</code>.
-       Browsers block that file access when the page is opened directly from disk
-       (<code style="display:inline">file://</code>). Serve the project folder over HTTP:</p>
-    <code>cd metabolic-research &amp;&amp; python3 -m http.server 8000</code>
-    <p>Then open <code style="display:inline">http://localhost:8000/heatmap/</code></p>
+    <p>The heat map expects <code style="display:inline">heatmap/data.bundle.js</code>
+       (a generated mirror of <code style="display:inline">data/biomarkers.json</code>).
+       If it is missing, regenerate it:</p>
+    <code>node tools/standardize.js</code>
+    <p>Run that from the project root, then reload this page.</p>
   </div>`;
+}
+
+function init(json) {
+  DATA = json;
+  DATA.meta = DATA.meta || {};
+  DATA.biomarkers = DATA.biomarkers || [];
+  showMeta();
+  render();
 }
 
 function boot() {
   wireControls();
+  // Preferred: the bundled data (works when opened directly from disk).
+  if (window.BIOMARKER_DATA) { init(window.BIOMARKER_DATA); return; }
+  // Fallback: fetch the raw JSON (only works when served over HTTP).
   fetch('../data/biomarkers.json', { cache: 'no-store' })
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(json => {
-      DATA = json;
-      DATA.meta = DATA.meta || {};
-      DATA.biomarkers = DATA.biomarkers || [];
-      showMeta();
-      render();
-    })
+    .then(init)
     .catch(showLoadError);
 }
 document.addEventListener('DOMContentLoaded', boot);
