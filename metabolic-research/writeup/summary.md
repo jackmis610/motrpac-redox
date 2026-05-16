@@ -2,8 +2,14 @@
 
 **Interim writeup — domains 2–4 of 14.** This covers Lipids / Cardiovascular
 Risk, Mitochondrial / Cardiorespiratory Fitness, and Inflammation (38 biomarkers,
-80 evidence cells). It will be revised into a full synthesis once the remaining
+92 evidence cells). It will be revised into a full synthesis once the remaining
 domains are researched. Conclusions below are scoped to these three domains.
+
+All hazard ratios for continuous exposures are standardized to **HR per +1 SD**
+(method: `data/HR_STANDARDIZATION.md`); 58 cells are on this comparable scale
+(32 reported natively per SD, 26 converted), 17 are categorical exposures shown
+off-scale, 1 is flagged unconvertible, and 16 carry documented-but-unquantified
+evidence.
 
 ---
 
@@ -35,11 +41,14 @@ predicts as many outcomes at once.
 predict all-cause mortality, CVD, *and* dementia. The signal is real and broad,
 but mostly modest per-SD and — with one exception — non-causal (see §2).
 
-> **Units caveat.** Hazard ratios here are not on one scale. Categorical
-> extreme-group contrasts (e.g. the sit-to-stand test, lowest vs highest group,
-> HR ≈ 3.8–6.0) look dramatically larger than per-SD markers but are not directly
-> comparable. The heat map records the exact metric per cell; do not rank
-> biomarkers on raw HR without checking it.
+> **On comparability.** Source studies report HRs in incompatible units, so
+> every continuous marker is standardized to HR per +1 SD before ranking. This
+> matters: the sit-to-stand test, reported as lowest-vs-highest group (native
+> HR ≈ 3.8–6.0), looks dominant on raw HR but is a categorical exposure that
+> cannot be placed on the per-SD scale — it is shown off-scale, not ranked
+> against per-SD markers. Converted quantile HRs (e.g. GlycA, LDL particle
+> size) are flagged `converted` and rest on a normal-distribution assumption;
+> natively-reported per-SD estimates are preferred and flagged `native`.
 
 ## 2. Where the field oversells
 
@@ -76,17 +85,27 @@ but mostly modest per-SD and — with one exception — non-causal (see §2).
 The coaching sweet spot is markers that are both predictive *and* responsive to
 intervention. From these three domains, the priority targets are:
 
-| Marker | Predictive role | Intervention leverage |
+Ranked by standardized predictive strength (largest |ln(HR per SD)| across
+outcomes) among markers rated highly modifiable:
+
+| Marker | Peak HR per SD | Intervention leverage |
 |---|---|---|
-| VO2max | Tier A, broad outcomes | +10–25% with structured training, 8–12 wk |
-| Grip / lower-body strength | Tier A mortality + frailty | Resistance training, measurable in 8–12 wk |
-| ApoB / non-HDL / LDL-P | Tier A causal CVD | Statin ± ezetimibe ± PCSK9: 35–60%, 4–6 wk |
-| Triglycerides | Tier B–C, metabolic | Diet, weight loss, fitness — fast-responding |
-| hsCRP | Broad predictor | Falls with weight loss, exercise, statins |
+| VO2max | 0.45 (cancer/mortality) | +10–25% with structured training, 8–12 wk |
+| Grip strength | 0.43 (dementia/mortality) | Resistance training, measurable in 8–12 wk |
+| hsCRP | 0.43 (mortality) | Falls with weight loss, exercise, statins |
+| Non-HDL / ApoB / LDL-C / LDL-P | 0.28–0.41 (CVD) | Statin ± ezetimibe ± PCSK9: 35–60%, 4–6 wk |
+| IL-6 | 0.39 (mortality/CVD) | Falls with weight loss, exercise; IL-6 pathway drugs |
+| Triglycerides | 0.31 (mortality) | Diet, weight loss, fitness — fast-responding |
 
 Note the asymmetry: lipid markers are highly modifiable *pharmacologically*;
 fitness and strength are highly modifiable *behaviourally*. hsCRP is modifiable
 only indirectly (it follows its upstream drivers).
+
+> **A caveat on the priority heuristic.** Homocysteine also clears the
+> high-modifiable + meaningful-predictive threshold, but it is a false priority:
+> B-vitamins lower the *number* without lowering events (§2). "Modifiable" must
+> mean the *outcome* moves, not just the marker. The priority flag is a
+> screening heuristic, not a substitute for the causal judgement in §2.
 
 **Predictive but fixed — use for stratification, not coaching:** Lp(a) and ApoE
 genotype (genetically set), and CAC (established disease that does not regress).
@@ -104,8 +123,11 @@ These belong in the baseline risk picture, not the quarterly scorecard.
 - **Causal vs observational gap.** Much of the fitness and inflammation evidence
   is observational. The heat map's A/B/C tiers and per-cell notes flag this; the
   distinction should be made explicit with clients.
-- **Unit inconsistency** (per SD vs per quartile vs categorical) limits direct
-  cross-marker comparison and is an inherent property of the literature.
+- **Residual comparability limits.** Standardizing to per-SD solves most of the
+  unit problem, but converted quantile estimates assume an approximately normal
+  exposure, and genuinely categorical markers (ApoE, CAC, the sit-to-stand test)
+  remain off-scale by necessity — informative, but not rankable against per-SD
+  markers.
 - **Newer markers** (suPAR, GlycA, HDL efflux capacity) are mechanistically
   interesting but rest on thin, few-cohort evidence — reasonable to measure, not
   yet reasonable to weight heavily.

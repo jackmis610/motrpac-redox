@@ -1,13 +1,10 @@
 # Biomarker Profiles
 
-Deliverable 1 (profiles) and Deliverable 3 (modifiability layer), generated from `data/biomarkers.json`.
+Deliverable 1 (profiles) and Deliverable 3 (modifiability layer), generated from `data/biomarkers.json` by `tools/`.
 Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 
-| Field | Meaning |
-|---|---|
-| Signal quality | `clean` / `moderate` / `noisy` — biological + analytic reproducibility |
-| Cadence | suggested retest interval in a longevity protocol |
-| Modifiability rating | `high` / `moderate` / `low` / `fixed` intervention leverage |
+Hazard ratios in the outcome line are standardized to **HR per +1 SD** where the
+exposure is continuous; categorical exposures show the native HR (see `data/HR_STANDARDIZATION.md`).
 
 
 ## Lipids / Cardiovascular Risk
@@ -22,7 +19,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** acute illness/inflammation; pregnancy; recent very high-fat meal (modest); lipid-lowering medication
 - **Testing cadence.** baseline + annual; more frequent during lipid-lowering titration
 - **Modifiability (high).** Statins, ezetimibe, and PCSK9 inhibitors lower apoB; PCSK9 inhibitors and high-intensity statins produce the largest reductions. — *effect:* High-intensity statin lowers apoB ~35-45%; adding ezetimibe +15-20%; PCSK9 inhibitors lower apoB 45-55%.; *timeframe:* 4-6 weeks to steady state; *evidence:* RCT meta-analysis. CTT Collaboration statin meta-analyses; FOURIER (Sabatine 2017) and ODYSSEY OUTCOMES (Schwartz 2018) PCSK9 RCTs.
-- **Outcome evidence.** All-cause mortality HR 1.07 (tier C); CVD HR 1.58 (tier A)
+- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier B); CVD HR/SD 1.43 (tier A); Cancer HR/SD 1.10 (tier C)
 
 ### LDL-C
 
@@ -34,7 +31,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** non-fasting state (affects calculated value); high triglycerides; acute illness; pregnancy; lipid-lowering drugs
 - **Testing cadence.** baseline + annual; more frequent during treatment titration
 - **Modifiability (high).** Statins (first-line), ezetimibe, PCSK9 inhibitors, bempedoic acid; diet (reduced saturated fat, fiber, plant sterols). — *effect:* High-intensity statin lowers LDL-C ~50%; ezetimibe ~15-20% additional; PCSK9 inhibitor ~50-60%; diet alone ~5-15%.; *timeframe:* 4-6 weeks to steady state; *evidence:* RCT meta-analysis. Cholesterol Treatment Trialists' (CTT) Collaboration meta-analyses, Lancet.
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR 1.21 (tier A)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.38 (tier A); Dementia (documented, no pooled HR)
 
 ### LDL particle number (LDL-P)
 
@@ -46,7 +43,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** insulin resistance / metabolic syndrome; high triglycerides; acute illness; lipid-lowering drugs; assay platform differences
 - **Testing cadence.** baseline; repeat if discordance with LDL-C suspected
 - **Modifiability (high).** Same lipid-lowering therapies as LDL-C (statins, ezetimibe, PCSK9 inhibitors); addressing insulin resistance reduces discordance. — *effect:* Statins lower LDL-P broadly in parallel with LDL-C/apoB (~30-50%); residual discordant LDL-P may persist with insulin resistance.; *timeframe:* 4-6 weeks to steady state; *evidence:* RCT. Statin trials with NMR substudies; CTT-class evidence extrapolated via apoB equivalence.
-- **Outcome evidence.** CVD HR 1.32 (tier B)
+- **Outcome evidence.** CVD HR/SD 1.32 (tier B)
 
 ### LDL particle size
 
@@ -58,7 +55,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** triglyceride level; insulin resistance; particle number (collinearity); assay method differences
 - **Testing cadence.** baseline; limited incremental value over apoB/LDL-P
 - **Modifiability (moderate).** Triglyceride-lowering measures: weight loss, carbohydrate reduction, exercise, glycemic control; fibrates and high-dose omega-3 shift LDL toward larger particles. — *effect:* Lifestyle and triglyceride reduction can shift LDL phenotype from pattern B to A; magnitude depends on baseline metabolic state.; *timeframe:* 3-6 months; *evidence:* observational. Intervention studies of low-carbohydrate diets and fibrates on LDL subfractions.
-- **Outcome evidence.** CVD HR 1.51 (tier B)
+- **Outcome evidence.** CVD HR/SD 1.18 (tier B)
 
 ### HDL-C
 
@@ -70,7 +67,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** alcohol intake; smoking; inflammation/acute illness; metabolic syndrome; estrogen status; genetic variants (CETP)
 - **Testing cadence.** baseline + periodic with standard lipid panel
 - **Modifiability (low).** Exercise, smoking cessation, weight loss, moderate alcohol modestly raise HDL-C; however raising HDL-C has not been shown to reduce events. — *effect:* Lifestyle changes raise HDL-C ~5-10%; CETP inhibitors raise it >50% but without clinical benefit.; *timeframe:* 3-6 months for lifestyle change; *evidence:* RCT. AIM-HIGH, HPS2-THRIVE (niacin); dal-OUTCOMES, ACCELERATE (CETP inhibitors) - all neutral for events.
-- **Outcome evidence.** All-cause mortality HR 1.68 (tier B); CVD HR 0.78 (tier B)
+- **Outcome evidence.** All-cause mortality native HR 1.68 [categorical, tier B]; CVD HR/SD 0.78 (tier A); Dementia native HR 1.66 [categorical, tier B]
 
 ### HDL functionality (cholesterol efflux capacity)
 
@@ -82,7 +79,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** assay methodology differences; inflammation; diabetes; HDL particle concentration; lack of assay standardization
 - **Testing cadence.** research use; not part of routine clinical monitoring
 - **Modifiability (low).** Exercise, weight loss, and statins modestly improve efflux capacity; no proven therapy reliably raises it with demonstrated clinical benefit. — *effect:* Lifestyle and statin effects on CEC are small and variable.; *timeframe:* months; *evidence:* observational. Intervention substudies of exercise and statins on HDL function.
-- **Outcome evidence.** CVD HR 0.68 (tier B)
+- **Outcome evidence.** CVD HR/SD 0.68 (tier B)
 
 ### Triglycerides
 
@@ -94,7 +91,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** fasting/non-fasting state; recent alcohol; recent meal; uncontrolled diabetes; acute illness; pregnancy; estrogen therapy
 - **Testing cadence.** baseline + annual; repeat for confirmation given variability
 - **Modifiability (high).** Weight loss, carbohydrate/alcohol reduction, exercise, glycemic control; fibrates, high-dose omega-3 fatty acids (icosapent ethyl); statins lower TG modestly. — *effect:* Lifestyle can lower TG 20-50%; fibrates ~30-50%; icosapent ethyl ~20%.; *timeframe:* 4-12 weeks; *evidence:* RCT. REDUCE-IT (icosapent ethyl, Bhatt 2019); fibrate trial meta-analyses.
-- **Outcome evidence.** CVD HR 1.37 (tier B)
+- **Outcome evidence.** CVD HR/SD 1.37 (tier A)
 
 ### Triglyceride:HDL ratio
 
@@ -106,7 +103,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** fasting state; alcohol; recent meal; insulin resistance status; ethnicity-specific thresholds; unit convention (mg/dL vs mmol/L)
 - **Testing cadence.** baseline + periodic with lipid panel
 - **Modifiability (moderate).** Weight loss, low-carbohydrate diet, exercise, glycemic control improve the ratio mainly by lowering triglycerides and raising HDL-C. — *effect:* Lifestyle interventions can lower the ratio substantially (often 25-50%) by improving insulin sensitivity.; *timeframe:* 8-12 weeks; *evidence:* observational. Low-carbohydrate diet and exercise intervention studies on TG/HDL-C.
-- **Outcome evidence.** All-cause mortality HR 2.00 (tier C); CVD HR 1.38 (tier C)
+- **Outcome evidence.** All-cause mortality native HR 2.00 [categorical, tier C]; CVD native HR 1.38 [categorical, tier C]; Dementia HR/SD 1.12 (tier C)
 
 ### Lp(a)
 
@@ -118,7 +115,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** assay isoform sensitivity (mass vs molar units); acute inflammation (modest rise); renal disease; estrogen status
 - **Testing cadence.** once in a lifetime for most adults (genetically stable); recheck only if new therapy or clinical change
 - **Modifiability (low).** Largely non-modifiable by lifestyle or diet. PCSK9 inhibitors lower Lp(a) ~20-25%; niacin ~20-30%; targeted antisense/siRNA agents (pelacarsen, olpasiran) lower it 80-90% but cardiovascular outcome trials are ongoing. Lipoprotein apheresis lowers it acutely in severe cases. — *effect:* Diet/exercise: essentially no effect. PCSK9i: ~20-25%. Investigational RNA therapies: 80-90% (outcomes not yet proven).; *timeframe:* Lifestyle: no meaningful change. Drug therapy: weeks.; *evidence:* RCT. Pelacarsen/olpasiran phase 2 trials (Tsimikas 2020; O'Donoghue 2022); HORIZON outcomes trial ongoing.
-- **Outcome evidence.** CVD HR 1.33 (tier A)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.13 (tier A); Dementia HR/SD 0.94 (tier C)
 
 ### Non-HDL cholesterol
 
@@ -130,7 +127,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** acute illness/inflammation; pregnancy; lipid-lowering medication
 - **Testing cadence.** baseline + annual with lipid panel
 - **Modifiability (high).** Statins, ezetimibe, PCSK9 inhibitors; diet (reduced saturated fat, fiber); triglyceride-lowering lifestyle changes also reduce non-HDL-C. — *effect:* High-intensity statin lowers non-HDL-C ~45-50%; further reductions with add-on agents.; *timeframe:* 4-6 weeks to steady state; *evidence:* RCT meta-analysis. CTT Collaboration statin meta-analyses; non-HDL-C is a guideline secondary treatment target.
-- **Outcome evidence.** CVD HR 1.59 (tier A)
+- **Outcome evidence.** CVD HR/SD 1.50 (tier A)
 
 ### Remnant cholesterol
 
@@ -142,7 +139,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** fasting/non-fasting state; recent alcohol/meal; diabetes; method used to estimate LDL-C; acute illness
 - **Testing cadence.** baseline + periodic with lipid panel
 - **Modifiability (moderate).** Weight loss, reduced carbohydrate and alcohol intake, exercise, glycemic control; statins, fibrates, high-dose omega-3 and (investigationally) ANGPTL3/APOC3 inhibitors lower remnant cholesterol. — *effect:* Lifestyle can lower remnant-C substantially via triglyceride reduction; statins lower it ~20-30%.; *timeframe:* 8-12 weeks; *evidence:* observational. Lifestyle and lipid-lowering intervention studies; MR supports causal benefit of lowering.
-- **Outcome evidence.** All-cause mortality HR 1.60 (tier B); CVD HR 2.80 (tier A)
+- **Outcome evidence.** All-cause mortality HR/SD 1.17 (tier B); CVD HR/SD 1.67 (tier A)
 
 ### Oxidized LDL
 
@@ -154,7 +151,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** overall LDL/apoB level (collinearity); assay/antibody differences; acute inflammation; smoking; diabetes; lack of standardization
 - **Testing cadence.** research use; not part of routine clinical monitoring
 - **Modifiability (moderate).** Statins lower circulating oxLDL (largely by lowering LDL particle number); smoking cessation and improved glycemic control reduce oxidative modification. — *effect:* Statins reduce oxLDL roughly in proportion to LDL-C reduction.; *timeframe:* weeks to months; *evidence:* observational. Statin intervention studies measuring oxLDL as a secondary endpoint.
-- **Outcome evidence.** CVD HR 1.79 (tier B)
+- **Outcome evidence.** CVD HR/SD 1.44 (tier B)
 
 ### Coronary artery calcium score (CAC)
 
@@ -166,7 +163,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** age (calcium accumulates with age); chronic kidney disease (vascular calcification); scanner/protocol differences; statin use can increase plaque calcification density
 - **Testing cadence.** one-time for risk stratification in intermediate-risk adults; repeat scanning generally not recommended at short intervals
 - **Modifiability (fixed).** CAC reflects established calcified plaque and does not regress; the score itself cannot be lowered. Statins paradoxically increase calcified plaque density while stabilizing plaque. The actionable response is aggressive risk-factor and lipid management triggered by an elevated score. — *effect:* CAC score is essentially fixed/non-regressing; clinical value is in guiding intensity of preventive therapy.; *timeframe:* not applicable (score does not decrease); *evidence:* observational. Statin-CAC progression studies; guideline use of CAC to guide therapy intensity.
-- **Outcome evidence.** All-cause mortality HR 2.60 (tier A); CVD HR 6.84 (tier A)
+- **Outcome evidence.** All-cause mortality native HR 2.60 [categorical, tier A]; CVD native HR 6.84 [categorical, tier A]; Dementia native HR 1.71 [categorical, tier B]
 
 ### Carotid intima-media thickness (cIMT)
 
@@ -178,7 +175,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** age; operator/sonographer variability; measurement protocol differences (segment, wall); ultrasound equipment differences
 - **Testing cadence.** one-time for risk assessment; serial measurement of progression has not proven clinically useful
 - **Modifiability (moderate).** Statins, blood pressure control, and lifestyle changes slow or modestly reverse cIMT progression. — *effect:* Statins can slow progression and produce small regression of cIMT; absolute changes are small.; *timeframe:* 1-2 years for measurable change; *evidence:* RCT meta-analysis. Meta-analyses of statin and antihypertensive trials measuring cIMT progression (surrogate endpoint).
-- **Outcome evidence.** CVD HR 1.27 (tier A)
+- **Outcome evidence.** CVD HR/SD 1.27 (tier A); Dementia HR/SD 1.08 (tier B)
 
 ### ApoE genotype
 
@@ -190,7 +187,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** none for the genotype itself (fixed); phenotypic expression modified by environment, sex, ancestry
 - **Testing cadence.** once in a lifetime (genotype is fixed)
 - **Modifiability (fixed).** Genotype is fixed and cannot be changed. e4 carriers benefit from earlier and more intensive management of modifiable risk factors (LDL-C lowering, blood pressure, exercise, sleep) for both cardiovascular and dementia risk. — *effect:* Not applicable - genotype is immutable; downstream lipid and cognitive risk is partially modifiable.; *timeframe:* not applicable; *evidence:* mechanistic. APOE biology; risk-factor modification trials in e4 carriers.
-- **Outcome evidence.** All-cause mortality HR 1.22 (tier B); CVD HR 1.09 (tier B); Dementia HR 3.20 (tier A)
+- **Outcome evidence.** All-cause mortality native HR 1.22 [categorical, tier B]; CVD native HR 1.09 [categorical, tier B]; Dementia native HR 3.20 [categorical, tier A]
 
 
 ## Mitochondrial / Cardiorespiratory Fitness
@@ -205,7 +202,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** age; sex; body composition / adiposity; submaximal vs maximal effort; altitude; beta-blocker use; test modality (treadmill vs cycle); reverse causation from subclinical disease
 - **Testing cadence.** baseline + every 1-2 years
 - **Modifiability (high).** Structured aerobic / endurance training, especially moderate-to-vigorous continuous exercise and high-intensity interval training. — *effect:* Typically 10-25% increase in VO2max with 3-6 months of training; larger relative gains in deconditioned and older individuals, attenuated in already-fit and very old.; *timeframe:* 8-12 weeks for measurable gains; 6 months for substantial improvement.; *evidence:* RCT meta-analysis. Numerous RCT meta-analyses of aerobic and HIIT training (e.g., Bacon 2013 PLoS One; Milanovic 2015 Sports Med) consistently show ~10-25% VO2max improvement.
-- **Outcome evidence.** All-cause mortality HR 0.87 (tier A); CVD HR 0.85 (tier A); Cancer HR 0.80 (tier B); Dementia HR 0.64 (tier B)
+- **Outcome evidence.** All-cause mortality HR/SD 0.76 (tier A); CVD HR/SD 0.72 (tier A); Cancer HR/SD 0.64 (tier B); Dementia HR/SD 0.81 (tier B)
 
 ### Ventilatory thresholds (VT1, VT2)
 
@@ -277,7 +274,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** age; sex; body size / height; hand dominance; arthritis or hand injury; dynamometer type and protocol; reverse causation from subclinical disease
 - **Testing cadence.** baseline + annual
 - **Modifiability (high).** Progressive resistance training, including grip- and forearm-specific loading. — *effect:* Resistance training increases grip and overall strength by ~10-30% in older adults within months; among the most trainable functional markers.; *timeframe:* 8-12 weeks.; *evidence:* RCT meta-analysis. Resistance-training RCT meta-analyses in older adults consistently show meaningful strength gains.
-- **Outcome evidence.** All-cause mortality HR 1.16 (tier A); CVD HR 1.17 (tier A); Cancer HR 1.10 (tier B); Dementia HR 1.54 (tier B); Frailty HR 1.90 (tier B)
+- **Outcome evidence.** All-cause mortality HR/SD 1.27 (tier A); CVD HR/SD 1.29 (tier A); Cancer HR/SD 1.16 (tier B); Dementia HR/SD 1.54 (tier B); Frailty HR/SD 1.29 (tier B)
 
 ### Lower-body strength / power relative to body mass
 
@@ -289,7 +286,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** body mass; joint pain / orthopedic limitation; test technique; motivation / effort; age; sex
 - **Testing cadence.** baseline + annual
 - **Modifiability (high).** Progressive resistance training, especially high-velocity / power-oriented training and explosive sit-to-stand exercise. — *effect:* Lower-body strength improves 25-100%+ and muscle power improves substantially in older adults with 8-12 weeks of resistance/power training; power-oriented training is more effective than slow heavy training for power gains.; *timeframe:* 8-12 weeks.; *evidence:* RCT meta-analysis. Power- and resistance-training RCT meta-analyses in older adults.
-- **Outcome evidence.** All-cause mortality HR 1.57 (tier B); Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality native HR 1.57 [categorical, tier B]; Frailty (documented, no pooled HR)
 
 ### Muscle mass (appendicular lean mass index)
 
@@ -301,7 +298,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** body size / height normalization; hydration status; fat mass (obesity); DEXA vs BIA method; age; sex; ethnicity
 - **Testing cadence.** baseline + every 1-2 years
 - **Modifiability (moderate).** Progressive resistance training, with adequate dietary protein; combined with anabolic stimulus in deficient states. — *effect:* Resistance training increases appendicular lean mass by roughly 0.5-2 kg over 3-6 months in older adults; gains are modest in magnitude relative to strength gains.; *timeframe:* 12-24 weeks.; *evidence:* RCT meta-analysis. Resistance-training RCT meta-analyses (e.g., Peterson 2011 Ageing Res Rev) show significant lean-mass gains in older adults.
-- **Outcome evidence.** All-cause mortality HR 1.86 (tier B); Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality HR/SD 0.50 (tier B); Frailty (documented, no pooled HR)
 
 ### Gait speed
 
@@ -313,7 +310,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** age; height / leg length; orthopedic and neurological conditions; course length and start protocol; footwear; test environment
 - **Testing cadence.** baseline + annual
 - **Modifiability (moderate).** Multicomponent exercise (aerobic + resistance + balance/gait training); resistance and power training in deconditioned older adults. — *effect:* Exercise interventions improve gait speed by roughly 0.05-0.10+ m/s in older adults; ~0.05 m/s is a clinically meaningful change.; *timeframe:* 12-24 weeks.; *evidence:* RCT meta-analysis. Exercise-intervention RCT meta-analyses in older adults show significant gait-speed improvement.
-- **Outcome evidence.** All-cause mortality HR 0.88 (tier A); Dementia HR 1.53 (tier B); Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality HR/SD 0.71 (tier A); Dementia HR/SD 1.59 (tier B); Frailty (documented, no pooled HR)
 
 ### Sit-to-stand (chair-rise test)
 
@@ -325,7 +322,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** chair height / arm use; joint pain and orthopedic limitation; test version; motivation / effort; age; balance impairment
 - **Testing cadence.** baseline + annual
 - **Modifiability (high).** Progressive resistance and power training targeting the lower body; practiced sit-to-stand exercise. — *effect:* Chair-rise time and repetitions improve substantially with 8-12 weeks of resistance/power training in older adults.; *timeframe:* 8-12 weeks.; *evidence:* RCT meta-analysis. Resistance- and power-training RCT meta-analyses in older adults.
-- **Outcome evidence.** All-cause mortality HR 3.84 (tier B); CVD HR 6.05 (tier C); Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality native HR 3.84 [categorical, tier B]; CVD native HR 6.05 [categorical, tier C]; Frailty (documented, no pooled HR)
 
 ### VO2 kinetics (mean response time)
 
@@ -349,7 +346,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** cool-down protocol (active vs passive); body position during recovery; beta-blockers and rate-limiting drugs; fitness level; peak effort achieved; age
 - **Testing cadence.** baseline + annual (with exercise testing)
 - **Modifiability (moderate).** Aerobic / endurance exercise training, which enhances vagal tone. — *effect:* Heart rate recovery improves by several bpm with regular aerobic training; trained individuals show faster recovery.; *timeframe:* 8-12 weeks.; *evidence:* RCT. Exercise-training trials demonstrate improved heart rate recovery with aerobic training.
-- **Outcome evidence.** All-cause mortality HR 1.68 (tier A); CVD HR 1.69 (tier B)
+- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier A); CVD HR/SD 1.16 (tier B)
 
 ### Heart rate variability (HRV)
 
@@ -361,7 +358,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** age; posture and breathing rate; physical activity and stress before recording; recording length; device / measurement method; medications (beta-blockers); alcohol and caffeine; time of day / circadian phase
 - **Testing cadence.** trend monitoring (e.g., daily wearable) or baseline + annual clinical recording
 - **Modifiability (moderate).** Aerobic exercise training; secondarily slow-paced breathing / HRV-biofeedback and improved sleep and stress management. — *effect:* Aerobic training produces modest increases in HRV (RMSSD/SDNN); biofeedback can acutely raise HRV but durable resting changes are smaller.; *timeframe:* 8-16 weeks.; *evidence:* RCT meta-analysis. Meta-analyses of exercise training and of HRV-biofeedback show modest HRV improvements.
-- **Outcome evidence.** All-cause mortality HR 2.12 (tier B); CVD HR 1.40 (tier B)
+- **Outcome evidence.** All-cause mortality HR/SD 1.19 (tier B); CVD HR/SD 1.21 (tier B)
 
 
 ## Inflammation
@@ -376,7 +373,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** acute infection or recent illness; obesity and adiposity; smoking; estrogen / hormone therapy; recent vigorous exercise or trauma; chronic conditions (RA, periodontal disease); statin and NSAID use
 - **Testing cadence.** baseline + annual; repeat if >10 mg/L to exclude acute inflammation
 - **Modifiability (high).** Statin therapy, weight loss, and regular aerobic exercise; canakinumab/colchicine for residual inflammatory risk. — *effect:* Rosuvastatin lowered hsCRP ~37% in JUPITER; diet-induced weight loss produces a comparable reduction (roughly proportional to kg lost); regular exercise lowers hsCRP by ~20-30%.; *timeframe:* Weeks for statins; 3-6 months for weight loss and exercise.; *evidence:* RCT. Ridker PM et al. JUPITER trial. N Engl J Med. 2008;359:2195-2207. POUNDS LOST trial (weight loss & hsCRP), Am J Clin Nutr 2012.
-- **Outcome evidence.** All-cause mortality HR 1.75 (tier A); CVD HR 1.37 (tier A); Cancer HR 1.25 (tier B); Dementia HR 1.37 (tier B); Frailty HR 1.06 (tier C)
+- **Outcome evidence.** All-cause mortality HR/SD 1.54 (tier A); CVD HR/SD 1.37 (tier A); Cancer native HR 1.25 [categorical, tier B]; Dementia HR/SD 1.37 (tier B); Frailty HR/SD 1.27 (tier C)
 
 ### IL-6
 
@@ -388,7 +385,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** acute infection / illness; obesity (adipose tissue secretes IL-6); recent exercise; smoking; diurnal rhythm; assay platform variability; chronic inflammatory disease
 - **Testing cadence.** baseline + annual; not yet routine in standard care
 - **Modifiability (high).** Direct pathway blockade (IL-6R antibody tocilizumab; IL-1beta antibody canakinumab; colchicine) lowers IL-6 axis activity; lifestyle (exercise, weight loss) produces smaller reductions. — *effect:* Canakinumab (CANTOS) reduced hsCRP ~37% and IL-6 substantially with a 15% cut in major cardiovascular events; tocilizumab strongly suppresses CRP/fibrinogen. Exercise and weight loss lower IL-6 modestly (~10-25%).; *timeframe:* Days to weeks for biologics; months for lifestyle change.; *evidence:* RCT. Ridker PM et al. CANTOS trial (canakinumab). N Engl J Med. 2017;377:1119-1131. IL6R MR consortium, Lancet 2012.
-- **Outcome evidence.** All-cause mortality HR 1.43 (tier A); CVD HR 1.25 (tier A); Cancer HR 1.20 (tier C); Dementia HR 1.40 (tier B); Frailty HR 1.19 (tier C)
+- **Outcome evidence.** All-cause mortality HR/SD 1.48 (tier A); CVD HR/SD 1.25 (tier A); Cancer HR/SD 1.20 (tier C); Dementia HR/SD 1.32 (tier B); Frailty native HR 1.19 [unconvertible, tier C]
 
 ### TNF-alpha
 
@@ -400,7 +397,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** assay sensitivity limits and platform differences; diurnal variation; acute infection; obesity / adipose secretion; renal function (affects soluble receptor clearance); smoking
 - **Testing cadence.** research / specialist use; not routine
 - **Modifiability (moderate).** Anti-TNF biologics (etanercept, infliximab, adalimumab) in inflammatory disease; lifestyle (weight loss, exercise) for modest reductions in the general population. — *effect:* Anti-TNF therapy strongly suppresses TNF signaling and, in observational meta-analysis of rheumatoid arthritis cohorts, was associated with reduced cardiovascular events (RR ~0.46); lifestyle change yields modest reductions.; *timeframe:* Days to weeks for biologics; months for lifestyle.; *evidence:* observational. Barnabe C et al. Systematic review and meta-analysis: anti-TNF therapy and cardiovascular events in rheumatoid arthritis. Arthritis Care Res. 2011;63(4):522-529. PMID: 20957658.
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR 2.90 (tier C); Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality HR/SD 1.34 (tier C); CVD HR/SD 1.63 (tier C); Frailty (documented, no pooled HR)
 
 ### GlycA
 
@@ -412,7 +409,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** obesity / adiposity; smoking; acute infection (less than CRP); metabolic syndrome and diabetes; NMR platform / lab differences; statin use
 - **Testing cadence.** baseline + every few years; not yet routine clinical use
 - **Modifiability (moderate).** Weight loss, exercise, and statin therapy lower GlycA, paralleling effects on other acute-phase markers. — *effect:* Statins and lifestyle interventions reduce GlycA modestly (roughly 5-15%); magnitude tracks reductions in adiposity and CRP.; *timeframe:* Months.; *evidence:* observational. Observational and secondary-analysis data (e.g., statin trials with NMR substudies); no dedicated large RCT with GlycA as primary endpoint.
-- **Outcome evidence.** All-cause mortality HR 1.74 (tier B); CVD HR 1.64 (tier B); Cancer HR 1.08 (tier C)
+- **Outcome evidence.** All-cause mortality HR/SD 1.24 (tier B); CVD HR/SD 1.22 (tier B); Cancer HR/SD 1.08 (tier C); Frailty (documented, no pooled HR)
 
 ### Neutrophil:lymphocyte ratio (NLR)
 
@@ -424,7 +421,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** acute infection or illness; corticosteroid and other immunomodulatory drugs; physical / psychological stress; diurnal variation; smoking; absence of standardized thresholds; hematologic conditions
 - **Testing cadence.** opportunistic -- available on any CBC; interpret with clinical context
 - **Modifiability (low).** No NLR-specific intervention; it falls with resolution of underlying inflammation/illness and improves modestly with exercise and weight loss. — *effect:* Not well quantified; NLR normalizes when an acute or chronic inflammatory driver is treated.; *timeframe:* Days to weeks (acute resolution) to months (lifestyle).; *evidence:* observational. No dedicated RCT targeting NLR as an endpoint; inferred from CBC normalization in observational data.
-- **Outcome evidence.** All-cause mortality HR 1.64 (tier B); CVD HR 1.62 (tier B); Cancer HR 1.27 (tier C)
+- **Outcome evidence.** All-cause mortality HR/SD 1.05 (tier B); CVD native HR 1.62 [categorical, tier B]; Cancer native HR 1.27 [categorical, tier C]; Dementia HR/SD 1.16 (tier B)
 
 ### Fibrinogen
 
@@ -436,7 +433,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** acute infection / inflammation; smoking; pregnancy and estrogen / hormone therapy; obesity; diabetes; assay method (Clauss vs antigen); age
 - **Testing cadence.** baseline + periodic; available within coagulation panels
 - **Modifiability (moderate).** Smoking cessation, weight loss, and regular physical activity lower fibrinogen; no fibrinogen-specific drug therapy in primary prevention. — *effect:* Smoking cessation and exercise reduce fibrinogen modestly (roughly 0.2-0.5 g/L over months); fibrate drugs lower it somewhat but without proven outcome benefit attributable to fibrinogen.; *timeframe:* Months.; *evidence:* observational. Observational and secondary trial data; no RCT demonstrates outcome benefit from fibrinogen lowering per se.
-- **Outcome evidence.** All-cause mortality HR 2.03 (tier A); CVD HR 2.42 (tier A); Dementia HR 1.30 (tier B)
+- **Outcome evidence.** All-cause mortality HR/SD 1.70 (tier A); CVD HR/SD 1.94 (tier A); Dementia HR/SD 1.30 (tier B); Frailty HR/SD 1.31 (tier C)
 
 ### Homocysteine
 
@@ -448,7 +445,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** folate / vitamin B12 / B6 status; renal impairment (major determinant); MTHFR C677T genotype; age and male sex; hypothyroidism; delayed sample processing; certain drugs (methotrexate, antiepileptics)
 - **Testing cadence.** baseline; recheck after B-vitamin repletion if elevated
 - **Modifiability (high).** Folic acid plus vitamin B12 (and B6) supplementation reliably lowers plasma homocysteine. — *effect:* B-vitamin supplementation lowers homocysteine by roughly 25-30%; however this lowering did NOT translate into reduced cardiovascular events or mortality in large RCTs.; *timeframe:* Weeks for the biochemical change.; *evidence:* RCT meta-analysis. Marti-Carvajal AJ et al. Cochrane Database Syst Rev. 2017;8:CD006612. JAMA Intern Med 2010 meta-analysis of 8 RCTs.
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR 0.98 (tier A); Dementia HR 1.15 (tier B)
+- **Outcome evidence.** All-cause mortality HR/SD 1.26 (tier B); CVD native HR 0.98 [categorical, tier A]; Dementia HR/SD 1.12 (tier B)
 
 ### Ferritin (as inflammation marker)
 
@@ -460,7 +457,7 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** iron stores / iron overload (primary determinant); acute-phase response / inflammation; liver disease and alcohol; malignancy; metabolic syndrome and fatty liver; recent transfusion; age and sex
 - **Testing cadence.** baseline; interpret alongside CRP and transferrin saturation
 - **Modifiability (low).** Phlebotomy / venesection for genuine iron overload; treatment of the underlying inflammatory or hepatic condition when ferritin elevation is reactive. — *effect:* Phlebotomy reliably lowers ferritin when iron-driven; reactive (inflammatory) hyperferritinemia falls only when the inflammatory cause resolves.; *timeframe:* Weeks to months.; *evidence:* mechanistic. No outcome RCT shows mortality benefit from lowering ferritin per se in the general population; iron-reduction trials (e.g., VA cooperative trial in PAD) were largely null.
-- **Outcome evidence.** All-cause mortality HR 1.13 (tier B); CVD (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality HR/SD 1.05 (tier B); CVD (documented, no pooled HR); Cancer (documented, no pooled HR)
 
 ### suPAR
 
@@ -472,5 +469,5 @@ Domains 2-4 of 14 are complete; remaining domains follow in subsequent passes.
 - **Major confounders.** renal function (suPAR rises as GFR falls); smoking; age; obesity; HIV and chronic infection; chronic inflammatory disease
 - **Testing cadence.** baseline; specialist / research use, not yet routine
 - **Modifiability (low).** No suPAR-specific therapy; levels fall with smoking cessation and treatment of underlying chronic inflammation/infection. Experimental anti-uPAR strategies exist for chronic kidney disease. — *effect:* Smoking cessation lowers suPAR modestly; no intervention has demonstrated outcome benefit via suPAR lowering.; *timeframe:* Months.; *evidence:* mechanistic. No RCT targets suPAR as a modifiable endpoint in the general population; modifiability inferred from observational determinants.
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR 1.35 (tier B); Cancer (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality HR/SD 1.43 (tier B); CVD HR/SD 1.35 (tier B); Cancer (documented, no pooled HR)
 

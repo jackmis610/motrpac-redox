@@ -23,16 +23,19 @@ review. Remaining domains are populated in subsequent passes.
 ```
 metabolic-research/
 ├── data/
-│   ├── biomarkers.json   the data layer — biomarkers, evidence cells, modifiability
-│   └── SCHEMA.md         field-by-field schema documentation
+│   ├── biomarkers.json        the data layer — biomarkers, evidence cells, modifiability
+│   ├── SCHEMA.md              field-by-field schema documentation
+│   └── HR_STANDARDIZATION.md  how hazard ratios are converted to a common per-SD scale
+├── tools/
+│   └── standardize.js         deterministic HR → per-SD converter (idempotent)
 ├── heatmap/
-│   ├── index.html        interactive 3-view heat map
+│   ├── index.html             interactive 3-view heat map
 │   ├── styles.css
-│   └── app.js            vanilla JS, no framework, no build step
+│   └── app.js                 vanilla JS, no framework, no build step
 ├── profiles/
-│   └── biomarker-profiles.md   Deliverable 1 — per-biomarker profiles
+│   └── biomarker-profiles.md  Deliverable 1 — per-biomarker profiles
 └── writeup/
-    └── summary.md        Deliverable 5 — synthesis writeup
+    └── summary.md             Deliverable 5 — synthesis writeup
 ```
 
 The data layer (`data/biomarkers.json`) is deliberately separate from the
@@ -64,10 +67,18 @@ Then open <http://localhost:8000/heatmap/>.
 
 - Hazard ratios prioritize meta-analyses, Mendelian randomization, and large
   prospective cohorts (UK Biobank, ARIC, Framingham, MESA, Whitehall II, etc.).
-- HR units differ across source studies (per SD, per quartile, per fixed unit);
-  the exact metric is recorded per cell and shown in every tooltip.
+- HR units differ across source studies; every continuous marker is standardized
+  to HR per +1 SD by `tools/standardize.js` (method in `HR_STANDARDIZATION.md`).
+  Native HR and the conversion basis are retained per cell. Categorical exposures
+  are flagged and kept off the comparable scale.
 - Each evidence cell carries a `verification_status` flag. **Verify all figures
   against primary sources before clinical use.**
+
+To recompute the standardized values after editing native HRs:
+
+```sh
+node tools/standardize.js
+```
 
 ## Moving this to its own repository
 
