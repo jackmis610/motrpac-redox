@@ -66,6 +66,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Analytically reliable, but biologically a poor causal target; HDL-C reflects metabolic, inflammatory and lifestyle status rather than a modifiable causal pathway.
 - **Major confounders.** alcohol intake; smoking; inflammation/acute illness; metabolic syndrome; estrogen status; genetic variants (CETP)
 - **Testing cadence.** baseline + periodic with standard lipid panel
+- **Standardization (U-shaped).** HDL-C has a U-shaped association with mortality and dementia — both low and very high levels raise risk — so no single per-SD slope represents it; the off-scale cells use an extreme-vs-reference contrast.
 - **Modifiability (low).** Exercise, smoking cessation, weight loss, moderate alcohol modestly raise HDL-C; however raising HDL-C has not been shown to reduce events. — *effect:* Lifestyle changes raise HDL-C ~5-10%; CETP inhibitors raise it >50% but without clinical benefit.; *timeframe:* 3-6 months for lifestyle change; *evidence:* RCT. AIM-HIGH, HPS2-THRIVE (niacin); dal-OUTCOMES, ACCELERATE (CETP inhibitors) - all neutral for events.
 - **Outcome evidence.** All-cause mortality native HR 1.68 [categorical, tier B]; CVD HR/SD 0.78 (tier A); Dementia native HR 1.66 [categorical, tier B]
 
@@ -162,6 +163,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** clean — Highly reproducible imaging measure with low scan-to-scan variability; directly visualizes disease burden rather than a circulating proxy. Main limitation: detects only calcified plaque, can miss early non-calcified plaque.
 - **Major confounders.** age (calcium accumulates with age); chronic kidney disease (vascular calcification); scanner/protocol differences; statin use can increase plaque calcification density
 - **Testing cadence.** one-time for risk stratification in intermediate-risk adults; repeat scanning generally not recommended at short intervals
+- **Standardization (Non-normal).** Coronary artery calcium has a large point mass at zero and a long skewed tail, and risk rises across graded clinical strata rather than along a smooth slope — it is reported by CAC category, not per SD.
 - **Modifiability (fixed).** CAC reflects established calcified plaque and does not regress; the score itself cannot be lowered. Statins paradoxically increase calcified plaque density while stabilizing plaque. The actionable response is aggressive risk-factor and lipid management triggered by an elevated score. — *effect:* CAC score is essentially fixed/non-regressing; clinical value is in guiding intensity of preventive therapy.; *timeframe:* not applicable (score does not decrease); *evidence:* observational. Statin-CAC progression studies; guideline use of CAC to guide therapy intensity.
 - **Outcome evidence.** All-cause mortality native HR 2.60 [categorical, tier A]; CVD native HR 6.84 [categorical, tier A]; Cancer native HR 2.00 [categorical, tier C]; Dementia native HR 1.71 [categorical, tier B]
 
@@ -186,6 +188,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** clean — Genotype is fixed and measured with essentially no biological or analytic variability; the test is definitive once performed.
 - **Major confounders.** none for the genotype itself (fixed); phenotypic expression modified by environment, sex, ancestry
 - **Testing cadence.** once in a lifetime (genotype is fixed)
+- **Standardization (Genotype).** ApoE is a genotype (e2/e3/e4 allele status), not a continuous measurement — there is no standard deviation to standardize against; HRs are e4-carrier group contrasts.
 - **Modifiability (fixed).** Genotype is fixed and cannot be changed. e4 carriers benefit from earlier and more intensive management of modifiable risk factors (LDL-C lowering, blood pressure, exercise, sleep) for both cardiovascular and dementia risk. — *effect:* Not applicable - genotype is immutable; downstream lipid and cognitive risk is partially modifiable.; *timeframe:* not applicable; *evidence:* mechanistic. APOE biology; risk-factor modification trials in e4 carriers.
 - **Outcome evidence.** All-cause mortality native HR 1.16 [categorical, tier A]; CVD native HR 1.09 [categorical, tier B]; Dementia native HR 3.20 [categorical, tier A]
 
@@ -285,6 +288,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Laboratory dynamometry is reproducible; field power estimates from chair-rise are practical but introduce estimation error and depend on technique and motivation.
 - **Major confounders.** body mass; joint pain / orthopedic limitation; test technique; motivation / effort; age; sex
 - **Testing cadence.** baseline + annual
+- **Standardization (Clinical cutpoint).** The available HRs contrast a clinically-defined low-strength group against normal — a threshold split of unknown SD width, neither a quantile nor a per-unit estimate, so it cannot be standardized.
 - **Modifiability (high).** Progressive resistance training, especially high-velocity / power-oriented training and explosive sit-to-stand exercise. — *effect:* Lower-body strength improves 25-100%+ and muscle power improves substantially in older adults with 8-12 weeks of resistance/power training; power-oriented training is more effective than slow heavy training for power gains.; *timeframe:* 8-12 weeks.; *evidence:* RCT meta-analysis. Power- and resistance-training RCT meta-analyses in older adults.
 - **Outcome evidence.** All-cause mortality native HR 1.57 [categorical, tier B]; CVD native HR 0.86 [categorical, tier B]; Frailty (documented, no pooled HR)
 
@@ -297,6 +301,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — DEXA lean mass is reproducible (CV ~1-2%), but hydration status affects readings and lean mass includes non-muscle tissue; muscle quality/strength is not captured.
 - **Major confounders.** body size / height normalization; hydration status; fat mass (obesity); DEXA vs BIA method; age; sex; ethnicity
 - **Testing cadence.** baseline + every 1-2 years
+- **Standardization (Cutpoint / rank).** Muscle-mass HRs here use a sarcopenia diagnostic cutoff (CVD) and a percentile-rank exposure (cancer); neither carries the population SD needed to convert to a per-SD basis.
 - **Modifiability (moderate).** Progressive resistance training, with adequate dietary protein; combined with anabolic stimulus in deficient states. — *effect:* Resistance training increases appendicular lean mass by roughly 0.5-2 kg over 3-6 months in older adults; gains are modest in magnitude relative to strength gains.; *timeframe:* 12-24 weeks.; *evidence:* RCT meta-analysis. Resistance-training RCT meta-analyses (e.g., Peterson 2011 Ageing Res Rev) show significant lean-mass gains in older adults.
 - **Outcome evidence.** All-cause mortality HR/SD 0.50 (tier B); CVD native HR 1.43 [categorical, tier B]; Cancer native HR 0.87 [unconvertible, tier C]; Dementia HR/SD 1.33 (tier B); Frailty (documented, no pooled HR)
 
@@ -444,6 +449,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Analytically reliable but strongly determined by modifiable nutritional status (folate, B12, B6) and renal function; pre-analytic handling matters (levels rise if red cells are not separated quickly). Genetically influenced (MTHFR). Less labile day-to-day than cytokines.
 - **Major confounders.** folate / vitamin B12 / B6 status; renal impairment (major determinant); MTHFR C677T genotype; age and male sex; hypothyroidism; delayed sample processing; certain drugs (methotrexate, antiepileptics)
 - **Testing cadence.** baseline; recheck after B-vitamin repletion if elevated
+- **Standardization (Cutpoint (frailty)).** Homocysteine standardizes normally for mortality, CVD and dementia; only the frailty cell is off-scale, because that study reported a clinical >=15 micromol/L cutpoint contrast rather than a continuous estimate.
 - **Modifiability (high).** Folic acid plus vitamin B12 (and B6) supplementation reliably lowers plasma homocysteine. — *effect:* B-vitamin supplementation lowers homocysteine by roughly 25-30%; however this lowering did NOT translate into reduced cardiovascular events or mortality in large RCTs.; *timeframe:* Weeks for the biochemical change.; *evidence:* RCT meta-analysis. Marti-Carvajal AJ et al. Cochrane Database Syst Rev. 2017;8:CD006612. JAMA Intern Med 2010 meta-analysis of 8 RCTs.
 - **Outcome evidence.** All-cause mortality HR/SD 1.26 (tier B); CVD HR/SD 1.14 (tier B); Cancer (documented, no pooled HR); Dementia HR/SD 1.12 (tier B); Frailty native HR 1.25 [categorical, tier C]
 

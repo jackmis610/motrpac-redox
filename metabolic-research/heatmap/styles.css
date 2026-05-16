@@ -323,8 +323,20 @@ td.cell {
   border: 1px solid rgba(0,0,0,0.25);
 }
 
-/* View A bucket emphasis */
-.bucket-empty { background: repeating-linear-gradient(0deg,transparent,transparent); }
+/* Standardization column — short tag for off-scale biomarkers */
+.std-flagged { cursor: help; }
+.std-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--ink-soft);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.std-cell { border-left: 1px solid var(--rule-strong); }
 
 /* ---- Legend ------------------------------------------------------------ */
 .legend {

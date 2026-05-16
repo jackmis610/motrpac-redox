@@ -227,6 +227,25 @@ function modCell(bm) {
   return td;
 }
 
+function stdCell(bm) {
+  const td = el('td', 'cell std-cell');
+  if (!bm.comparability_tag) {
+    td.appendChild(el('div', 'cell__inner std-empty'));
+    return td;
+  }
+  const inner = el('div', 'cell__inner has-data std-flagged');
+  inner.innerHTML = `<span class="std-tag">${escapeHtml(bm.comparability_tag)}</span>`;
+  attachTip(inner, () => tipForStd(bm));
+  td.appendChild(inner);
+  return td;
+}
+
+function tipForStd(bm) {
+  return `<h5>${escapeHtml(bm.name)} &mdash; Standardization</h5>` +
+    `<div class="tt-cite" style="border-top:0;padding-top:0">` +
+    `${escapeHtml(bm.comparability_note || bm.comparability_tag || '')}</div>`;
+}
+
 function render() {
   const table = el('table', 'hmtable');
   const head = el('tr');
@@ -237,10 +256,11 @@ function render() {
     head.appendChild(th);
   });
   head.appendChild(el('th', 'col-head', 'Modifiability'));
+  head.appendChild(el('th', 'col-head', 'Standardization'));
   const thead = el('thead'); thead.appendChild(head); table.appendChild(thead);
 
   const tbody = el('tbody');
-  const span = OUTCOMES.length + 2;
+  const span = OUTCOMES.length + 3;
   domainList().forEach(domain => {
     const bms = biomarkersForDomain(domain.id);
     if (!bms.length) return;
@@ -256,6 +276,7 @@ function render() {
         tr.appendChild(td);
       });
       tr.appendChild(modCell(bm));
+      tr.appendChild(stdCell(bm));
       tbody.appendChild(tr);
     });
   });
@@ -363,6 +384,11 @@ function openModal(bm) {
     html += `<section><h3>Major confounders</h3><div class="modal__chips">` +
       p.confounders.map(c => `<span class="modal__chip">${escapeHtml(c)}</span>`).join('') +
       `</div></section>`;
+  }
+
+  if (bm.comparability_note) {
+    html += section('Standardization',
+      `<p>${escapeHtml(bm.comparability_note)}</p>`);
   }
 
   html += `<section><h3>Modifiability</h3><dl class="modal__grid">

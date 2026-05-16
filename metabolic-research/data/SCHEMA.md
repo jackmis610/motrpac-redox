@@ -41,6 +41,8 @@ Each biomarker is one object:
   "name": "ApoB",                     // display name
   "domain": "lipids_cv",              // matches meta.domains[].id
   "aliases": ["apolipoprotein B"],
+  "comparability_tag": "Genotype",    // optional — see below
+  "comparability_note": "...",        // optional — see below
   "profile": {
     "mechanism": "Why it matters for aging/mortality (1-3 sentences).",
     "measurement": {
@@ -73,6 +75,14 @@ Each biomarker is one object:
 
 `null` for an outcome means no usable evidence was found — the heat map renders
 it as an explicit "no data" cell rather than implying a null effect.
+
+### `comparability_tag` / `comparability_note` (optional)
+Set these only on biomarkers that have one or more `categorical` or
+`unconvertible` cells. `comparability_tag` is a short label (≤ ~18 chars, e.g.
+`Genotype`, `U-shaped`, `Non-normal`, `Clinical cutpoint`) shown in the heat
+map's Standardization column; `comparability_note` is a one-sentence
+explanation, shown on hover and in the biomarker profile. Biomarkers whose
+cells are all comparable omit both fields.
 
 ## `<cell>` — one biomarker × one outcome
 

@@ -534,7 +534,9 @@
         "evidence_type": "RCT",
         "citation": "AIM-HIGH, HPS2-THRIVE (niacin); dal-OUTCOMES, ACCELERATE (CETP inhibitors) - all neutral for events.",
         "rating": "low"
-      }
+      },
+      "comparability_tag": "U-shaped",
+      "comparability_note": "HDL-C has a U-shaped association with mortality and dementia — both low and very high levels raise risk — so no single per-SD slope represents it; the off-scale cells use an extreme-vs-reference contrast."
     },
     {
       "id": "hdl_efflux",
@@ -1327,7 +1329,9 @@
         "evidence_type": "observational",
         "citation": "Statin-CAC progression studies; guideline use of CAC to guide therapy intensity.",
         "rating": "fixed"
-      }
+      },
+      "comparability_tag": "Non-normal",
+      "comparability_note": "Coronary artery calcium has a large point mass at zero and a long skewed tail, and risk rises across graded clinical strata rather than along a smooth slope — it is reported by CAC category, not per SD."
     },
     {
       "id": "cimt",
@@ -1537,7 +1541,9 @@
         "evidence_type": "mechanistic",
         "citation": "APOE biology; risk-factor modification trials in e4 carriers.",
         "rating": "fixed"
-      }
+      },
+      "comparability_tag": "Genotype",
+      "comparability_note": "ApoE is a genotype (e2/e3/e4 allele status), not a continuous measurement — there is no standard deviation to standardize against; HRs are e4-carrier group contrasts."
     },
     {
       "id": "vo2max",
@@ -2288,7 +2294,9 @@
         "evidence_type": "RCT meta-analysis",
         "citation": "Power- and resistance-training RCT meta-analyses in older adults.",
         "rating": "high"
-      }
+      },
+      "comparability_tag": "Clinical cutpoint",
+      "comparability_note": "The available HRs contrast a clinically-defined low-strength group against normal — a threshold split of unknown SD width, neither a quantile nor a per-unit estimate, so it cannot be standardized."
     },
     {
       "id": "muscle_mass_almi",
@@ -2443,7 +2451,9 @@
         "evidence_type": "RCT meta-analysis",
         "citation": "Resistance-training RCT meta-analyses (e.g., Peterson 2011 Ageing Res Rev) show significant lean-mass gains in older adults.",
         "rating": "moderate"
-      }
+      },
+      "comparability_tag": "Cutpoint / rank",
+      "comparability_note": "Muscle-mass HRs here use a sarcopenia diagnostic cutoff (CVD) and a percentile-rank exposure (cancer); neither carries the population SD needed to convert to a per-SD basis."
     },
     {
       "id": "gait_speed",
@@ -4212,7 +4222,9 @@
         "evidence_type": "RCT meta-analysis",
         "citation": "Marti-Carvajal AJ et al. Cochrane Database Syst Rev. 2017;8:CD006612. JAMA Intern Med 2010 meta-analysis of 8 RCTs.",
         "rating": "high"
-      }
+      },
+      "comparability_tag": "Cutpoint (frailty)",
+      "comparability_note": "Homocysteine standardizes normally for mortality, CVD and dementia; only the frailty cell is off-scale, because that study reported a clinical >=15 micromol/L cutpoint contrast rather than a continuous estimate."
     },
     {
       "id": "ferritin",
