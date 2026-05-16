@@ -27,11 +27,14 @@ metabolic-research/
 │   ├── SCHEMA.md              field-by-field schema documentation
 │   └── HR_STANDARDIZATION.md  how hazard ratios are converted to a common per-SD scale
 ├── tools/
-│   └── standardize.js         deterministic HR → per-SD converter (idempotent)
+│   ├── standardize.js         deterministic HR → per-SD converter (idempotent)
+│   └── build-standalone.js    bundles the heat map into one portable HTML file
 ├── heatmap/
 │   ├── index.html             interactive 3-view heat map
 │   ├── styles.css
-│   └── app.js                 vanilla JS, no framework, no build step
+│   ├── app.js                 vanilla JS, no framework, no build step
+│   ├── data.bundle.js         generated — data layer mirrored for file:// use
+│   └── heatmap-standalone.html generated — single self-contained file
 ├── profiles/
 │   └── biomarker-profiles.md  Deliverable 1 — per-biomarker profiles
 └── writeup/
@@ -44,14 +47,18 @@ heat map code. See `data/SCHEMA.md` for the contract.
 
 ## Running the heat map
 
-Open `heatmap/index.html` directly in any browser — no web server needed. The
-data layer is bundled into `heatmap/data.bundle.js` so it loads from `file://`.
+Two options, both server-free — just open the file in any browser:
+
+- `heatmap/index.html` — the multi-file version (loads `data.bundle.js`).
+- `heatmap/heatmap-standalone.html` — a single self-contained file (stylesheet,
+  data, and script all inlined). The most portable; good for sharing.
 
 `data/biomarkers.json` remains the editable source of truth. After changing it,
-regenerate the bundle and the per-SD standardized values:
+regenerate everything downstream:
 
 ```sh
-node tools/standardize.js
+node tools/standardize.js        # per-SD values + heatmap/data.bundle.js
+node tools/build-standalone.js   # heatmap/heatmap-standalone.html
 ```
 
 ## The three views
