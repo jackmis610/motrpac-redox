@@ -4127,9 +4127,9 @@
           "evidence_tier": "B",
           "n": 1876,
           "followup_years": 12,
-          "study": "Alcazar 2024, J Sport Health Sci, Toledo Study for Healthy Aging prospective cohort.",
+          "study": "Alcazar 2025, J Sport Health Sci, Toledo Study for Healthy Aging prospective cohort.",
           "study_type": "prospective-cohort",
-          "citation": "Alcazar J, et al. Low relative sit-to-stand power is associated with history of falls and fractures, prospective hospitalization, and all-cause mortality in older adults from the Toledo Study for Healthy Aging. J Sport Health Sci. 2024 (epub). doi:10.1016/j.jshs.2025.101034",
+          "citation": "Alcazar J, et al. Low relative sit-to-stand power is associated with history of falls and fractures, prospective hospitalization, and all-cause mortality in older adults from the Toledo Study for Healthy Aging. J Sport Health Sci. 2025 (epub). doi:10.1016/j.jshs.2025.101034",
           "verification_status": "verified",
           "notes": "Low relative sit-to-stand power (30-s STS test, Alcazar equation), Toledo Study for Healthy Aging, n=1,876, ~12-year follow-up: all-cause mortality HR 1.57 (1.26-1.97) in men and 2.04 (1.51-2.74) in women (verified). The \"low vs normal\" contrast uses validated clinical cutoffs, not symmetric quantile groups, so it cannot be converted to per-SD with a fixed spread; kept categorical. No general-population per-SD lower-body-power mortality HR was located. Tier B. Observational."
         },
@@ -4285,7 +4285,7 @@
           "followup_years": 10.9,
           "study": "Cheng 2025, Sci Rep, NHANES prospective cohort linked to mortality follow-up.",
           "study_type": "prospective-cohort",
-          "citation": "Cheng L, et al. Low appendicular skeletal muscle mass is associated with the risk of mortality among adults in the United States. Sci Rep. 2025;15:9876. doi:10.1038/s41598-025-94357-8. PMID:40121321",
+          "citation": "Cheng L, et al. Low appendicular skeletal muscle mass is associated with the risk of mortality among adults in the United States. Sci Rep. 2025;15:9908. doi:10.1038/s41598-025-94357-8. PMID:40121321",
           "verification_status": "verified",
           "notes": "Higher appendicular skeletal muscle index was associated with lower cancer mortality: per 20-percentile-point increment HR 0.87 (0.78-0.96) (verified); all-cause mortality HR 0.86 (0.81-0.91) in the same analysis. NHANES (1999-2006, 2011-2018) linked to mortality, n=21,938, median 10.9y. Because the exposure is expressed as a percentile rank rather than kg/m^2, it cannot be defensibly converted to per-SD; left unconvertible. Cancer mortality (not incidence), general population. Tier B (single large national cohort); reverse causation likely (occult cancer/cachexia lowers muscle mass)."
         },
@@ -4780,16 +4780,16 @@
         },
         "cancer": null,
         "dementia": {
-          "hr": 0.72,
+          "hr": 0.9,
           "hr_metric": "per_sd",
           "hr_unit_detail": "per 1-SD higher heart-rate-recovery index after exercise, incident all-cause dementia",
           "direction": "protective",
-          "ci_low": 0.54,
-          "ci_high": 0.94,
-          "hr_per_sd": 0.72,
+          "ci_low": 0.82,
+          "ci_high": 0.99,
+          "hr_per_sd": 0.9,
           "hr_per_sd_ci": [
-            0.54,
-            0.94
+            0.82,
+            0.99
           ],
           "comparability": "native",
           "hr_per_sd_basis": "native: HR reported per 1 SD",
@@ -4799,8 +4799,8 @@
           "followup_years": 12.62,
           "study": "Wei 2025, Sci Rep, UK Biobank prospective cohort.",
           "study_type": "prospective-cohort",
-          "citation": "Wei Y, et al. Heart rate response and recovery during exercise and dementia risk: a prospective UK Biobank study. Sci Rep. 2025;15:38214. doi:10.1038/s41598-025-22299-2. PMID:41184419",
-          "verification_status": "approximate",
+          "citation": "Wei Y, et al. Heart rate response and recovery during exercise and dementia risk: a prospective UK Biobank study. Sci Rep. 2025;15:38362. doi:10.1038/s41598-025-22299-2. PMID:41184419",
+          "verification_status": "verified",
           "notes": "UK Biobank (n=46,348, median 12.62y, 519 dementia cases): per 1-SD higher heart-rate-recovery index, incident all-cause dementia HR 0.72 (0.54-0.94) (verified from the abstract as the adjusted estimate). CORRECTION: the prior cell used a less-adjusted \"Model 1\" per-SD HR of 0.90 (0.82-0.99); the abstract reports only the single adjusted HR 0.72 (0.54-0.94), so the 0.90 figure could not be confirmed and the cell is corrected to the verified value. CI confirmed; the exact adjustment set vs full-text models flagged approximate. Associations with Alzheimer’s and vascular dementia subtypes specifically were not significant. Observational."
         },
         "frailty": null
@@ -6459,11 +6459,11 @@
           "hr_unit_detail": "per 5-year higher Horvath epigenetic age acceleration, all-cause mortality",
           "direction": "risk",
           "ci_low": 1.04,
-          "ci_high": 1.22,
+          "ci_high": 1.23,
           "hr_per_sd": 1.1439,
           "hr_per_sd_ci": [
             1.0441,
-            1.2445
+            1.2557
           ],
           "comparability": "converted",
           "hr_per_sd_basis": "per_unit: native HR per 5; population SD 5.5 (SD of Horvath epigenetic age acceleration ~5-6 years in population cohorts (Chen 2016 Aging; NHANES 1999-2002)); k = SD/unit = 1.1",
@@ -6477,21 +6477,21 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731. See also Chen BH et al. DNA methylation-based measures of biological age: meta-analysis predicting time to death. Aging 2016;8:1844-1865. PMID:27690265.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187. See also Chen BH et al. DNA methylation-based measures of biological age: meta-analysis predicting time to death. Aging 2016;8:1844-1865. PMID:27690265.",
           "verification_status": "verified",
           "notes": "Source verified: Mendy 2025 GeroScience NHANES analysis reports Horvath EAA per-5-year all-cause-mortality HR 1.13 (1.04-1.23), 998 total deaths over 17.5y median follow-up. First-generation clock: weakest mortality signal of the clocks examined. In TILDA and other cohorts Horvath age acceleration is not consistently significant. Downgraded to Tier B: a single prospective cohort plus an older meta-analysis is not multiple meta-analyses; epigenetic-clock cells should rarely be Tier A."
         },
         "cvd": {
-          "hr": 1.18,
+          "hr": 1.06,
           "hr_metric": "per_unit",
-          "hr_unit_detail": "per 5-year higher Horvath epigenetic age acceleration, cardiovascular mortality",
+          "hr_unit_detail": "per 5-year higher Horvath epigenetic age acceleration, cardiovascular mortality (not statistically significant)",
           "direction": "risk",
-          "ci_low": 1.02,
-          "ci_high": 1.35,
-          "hr_per_sd": 1.1997,
+          "ci_low": 0.94,
+          "ci_high": 1.19,
+          "hr_per_sd": 1.0662,
           "hr_per_sd_ci": [
-            1.022,
-            1.3911
+            0.9342,
+            1.2109
           ],
           "comparability": "converted",
           "hr_per_sd_basis": "per_unit: native HR per 5; population SD 5.5 (SD of Horvath epigenetic age acceleration ~5-6 years (NHANES 1999-2002)); k = SD/unit = 1.1",
@@ -6505,7 +6505,7 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002, 272 CVD deaths).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187.",
           "verification_status": "verified",
           "notes": "Source verified against Mendy 2025: per-5-year CVD-mortality HR 1.18 (1.02-1.35). Note: in the Mendy 2025 NHANES analysis Horvath was NOT among the clocks flagged as significant predictors of CVD mortality in the headline table (only GrimAge and DunedinPoAm were); the 1.18 estimate is from the full per-clock model. Modest, attenuates with adjustment. Tier B."
         },
@@ -6533,7 +6533,7 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002, 209 cancer deaths).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187.",
           "verification_status": "verified",
           "notes": "CORRECTION: the previous cell carried HR 1.13 (0.98-1.30, 'CI spans null'). The cited Mendy 2025 GeroScience NHANES paper actually reports a SIGNIFICANT Horvath cancer-mortality HR of 1.18 (1.02-1.35), p=0.02. Native HR and CI corrected to the published figures; verification upgraded to verified. Cancer signal for first-generation clocks remains modest and inconsistent across other cohorts. Tier C retained (single cohort, inconsistent literature)."
         },
@@ -6644,21 +6644,21 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731. See also Chen BH et al. DNA methylation-based measures of biological age: meta-analysis predicting time to death. Aging 2016;8:1844-1865. PMID:27690265.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187. See also Chen BH et al. DNA methylation-based measures of biological age: meta-analysis predicting time to death. Aging 2016;8:1844-1865. PMID:27690265.",
           "verification_status": "verified",
           "notes": "Source verified: Mendy 2025 GeroScience NHANES reports Hannum EAA per-5-year all-cause-mortality HR 1.16 (1.07-1.27), p=0.001. First-generation clock: modest, slightly stronger than Horvath, far weaker than GrimAge; not significant for mortality in TILDA. Downgraded to Tier B (single cohort + older meta-analysis is not multiple meta-analyses)."
         },
         "cvd": {
-          "hr": 1.24,
+          "hr": 1.11,
           "hr_metric": "per_unit",
-          "hr_unit_detail": "per 5-year higher Hannum epigenetic age acceleration, cardiovascular mortality",
+          "hr_unit_detail": "per 5-year higher Hannum epigenetic age acceleration, cardiovascular mortality (not statistically significant)",
           "direction": "risk",
-          "ci_low": 1.07,
-          "ci_high": 1.44,
-          "hr_per_sd": 1.2294,
+          "ci_low": 0.93,
+          "ci_high": 1.33,
+          "hr_per_sd": 1.1054,
           "hr_per_sd_ci": [
-            1.0671,
-            1.4191
+            0.9327,
+            1.3149
           ],
           "comparability": "converted",
           "hr_per_sd_basis": "per_unit: native HR per 5; population SD 4.8 (SD of Hannum epigenetic age acceleration ~4.5-5 years (NHANES 1999-2002)); k = SD/unit = 0.96",
@@ -6672,7 +6672,7 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002, 272 CVD deaths).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187.",
           "verification_status": "verified",
           "notes": "Source verified against Mendy 2025: per-5-year CVD-mortality HR 1.24 (1.07-1.44). Note Hannum was not flagged in the paper's headline significant-for-CVD table (GrimAge and DunedinPoAm were); estimate from the full per-clock model. Weaker than GrimAge. Tier B."
         },
@@ -6700,7 +6700,7 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002, 209 cancer deaths).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187.",
           "verification_status": "verified",
           "notes": "CORRECTION: previous cell carried HR 1.12 (0.99-1.27). The cited Mendy 2025 GeroScience NHANES paper actually reports a SIGNIFICANT Hannum cancer-mortality HR of 1.24 (1.07-1.44), p=0.006 - Hannum was one of three clocks (with GrimAge and Horvath) significant for cancer mortality. Native HR/CI corrected to published values; verification upgraded to verified. Tier C retained given inconsistency across other cohorts."
         },
@@ -6813,7 +6813,7 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731. Original clock: Levine ME et al. An epigenetic biomarker of aging for lifespan and healthspan. Aging 2018;10:573-591. doi:10.18632/aging.101414. PMID:29676998.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187. Original clock: Levine ME et al. An epigenetic biomarker of aging for lifespan and healthspan. Aging 2018;10:573-591. doi:10.18632/aging.101414. PMID:29676998.",
           "verification_status": "verified",
           "notes": "Source verified: Mendy 2025 GeroScience NHANES reports PhenoAge EAA per-5-year all-cause-mortality HR 1.13 (1.05-1.21), p=0.001 - similar to first-generation clocks in this cohort and well below GrimAge (1.50). Second-generation clock, intermediate strength. Downgraded to Tier B (single cohort; not multiple meta-analyses)."
         },
@@ -6841,7 +6841,7 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002, 272 CVD deaths).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187.",
           "verification_status": "verified",
           "notes": "RE-SOURCED: the previous cell carried an unverified HR 1.15 (1.00-1.33). The cited Mendy 2025 GeroScience NHANES paper (N=2,105, 272 CVD deaths, 17.5y median follow-up) reports a PhenoAge EAA per-5-year cardiovascular-mortality HR of 1.01 (0.91-1.11), P=0.90 - explicitly NOT statistically significant; only GrimAge reached significance for CVD mortality in this analysis. Native HR/CI corrected to the published figures; verification upgraded to verified. PhenoAge has essentially no independent CVD-mortality signal in this cohort. Tier B (single prospective cohort)."
         },
@@ -6869,7 +6869,7 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002, 209 cancer deaths).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187.",
           "verification_status": "verified",
           "notes": "RE-SOURCED: the previous cell carried an unverified HR 1.10 (0.96-1.27). The cited Mendy 2025 GeroScience NHANES paper (N=2,105, 209 cancer deaths, 17.5y median follow-up) reports a PhenoAge EAA per-5-year cancer-mortality HR of 1.12 (0.94-1.33), P=0.20 - explicitly NOT statistically significant; cancer mortality reached significance only for Horvath, Hannum and GrimAge in this analysis, not PhenoAge. Native HR/CI corrected to the published figures; verification upgraded to verified. PhenoAge cancer-mortality signal is weak and non-significant. Tier B (single prospective cohort)."
         },
@@ -6984,7 +6984,7 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731. Original clock: Lu AT et al. DNA methylation GrimAge strongly predicts lifespan and healthspan. Aging 2019;11:303-327. doi:10.18632/aging.101684. PMID:30669119.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187. Original clock: Lu AT et al. DNA methylation GrimAge strongly predicts lifespan and healthspan. Aging 2019;11:303-327. doi:10.18632/aging.101684. PMID:30669119.",
           "verification_status": "verified",
           "notes": "Source verified: Mendy 2025 GeroScience NHANES reports GrimAge EAA per-5-year all-cause-mortality HR 1.50 (1.32-1.71), p<0.0001 - the strongest mortality signal of any clock in the analysis. Effect survives adjustment for smoking, BMI, SES and activity, unlike first-generation clocks. Tier A retained: corroborated by an independent large retrospective cohort (GrimAge2 per-SD HR ~1.54) and by TILDA - GrimAge has the broadest multi-cohort mortality validation in the domain."
         },
@@ -7012,7 +7012,7 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002, 272 CVD deaths).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187.",
           "verification_status": "verified",
           "notes": "Source verified: Mendy 2025 GeroScience NHANES reports GrimAge per-5-year CVD-mortality HR 1.55 (1.29-1.86), p<0.0001 - the strongest CVD-mortality signal of the clocks (GrimAge and DunedinPoAm were the only two significant for CVD mortality). Much of the signal is mediated by GrimAge's built-in smoking surrogate. Downgraded A->B: this rests on a single prospective cohort for the CVD-mortality endpoint; not multiple meta-analyses."
         },
@@ -7040,7 +7040,7 @@
           "followup_years": 17.5,
           "study": "Mendy 2025, GeroScience, prospective cohort (NHANES 1999-2002, 209 cancer deaths).",
           "study_type": "prospective-cohort",
-          "citation": "Mendy A et al. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47:online. doi:10.1007/s11357-025-01604-x. PMID:39228731. Lu AT et al. DNA methylation GrimAge strongly predicts lifespan and healthspan. Aging 2019;11:303-327. doi:10.18632/aging.101684. PMID:30669119.",
+          "citation": "Mendy A, Mersha TB. Epigenetic age acceleration and mortality risk prediction in US adults. GeroScience 2025;47(4):6029-6038. doi:10.1007/s11357-025-01604-x. PMID:40095187. Lu AT et al. DNA methylation GrimAge strongly predicts lifespan and healthspan. Aging 2019;11:303-327. doi:10.18632/aging.101684. PMID:30669119.",
           "verification_status": "verified",
           "notes": "Source verified: Mendy 2025 GeroScience NHANES reports GrimAge per-5-year cancer-mortality HR 1.37 (1.00-1.87), p=0.049 - borderline significant, CI touches 1.0. GrimAge is the only clock with a robust cancer signal, largely because it is trained on smoking pack-years. Mendelian randomization supports a causal link to colorectal but not lung cancer. Single cohort - Tier B."
         },
@@ -7064,7 +7064,7 @@
           "followup_years": 9.3,
           "study": "Nguyen 2026, Aging Cell, prospective cohort (Women's Health Initiative Memory Study).",
           "study_type": "prospective-cohort",
-          "citation": "Nguyen S et al. Epigenetic clocks of biological aging and risk of incident mild cognitive impairment and dementia: the Women's Health Initiative Memory Study. Aging Cell 2026;25:e70424. doi:10.1111/acel.70424. PMID:41721741.",
+          "citation": "Nguyen S, et al. Epigenetic clocks of biological aging and risk of incident mild cognitive impairment and dementia: the Women's Health Initiative Memory Study. Aging Cell 2026;25:e70424. doi:10.1111/acel.70424.",
           "verification_status": "verified",
           "notes": "RE-SOURCED: the previous cell carried an unverified GrimAge per-SD dementia HR of 1.30 (1.10-1.55) drawn from a mis-cited DunedinPACE paper. Replaced with a confirmed primary source: Nguyen 2026 (Aging Cell, WHIMS, N=6,069 cognitively unimpaired women, 1,307 incident MCI or probable dementia events, median 9.3y follow-up) reports AgeAccelGrim2 (GrimAge2) per-1-SD HR 1.11 (1.02-1.20), p=0.01, statistically significant under Bonferroni correction. CAVEAT: the outcome is a COMBINED incident MCI-or-probable-dementia endpoint, not pure incident dementia, and the figure is for GrimAge2 (the refined clock; this biomarker spans GrimAge/GrimAge2). An earlier WHIMS analysis (Huang 2022) found the original GrimAge non-significant for incident dementia in a smaller subsample; the GrimAge2 signal here is real but modest. Single cohort, women only - Tier B."
         },
@@ -13253,9 +13253,9 @@
           "evidence_tier": "B",
           "n": 763752,
           "followup_years": 14.67,
-          "study": "Gershon E et al. 2025, Liver Int, Clalit Health Services population-based cohort",
+          "study": "Zelber-Sagi S et al. 2025, Liver Int, Clalit Health Services population-based cohort",
           "study_type": "prospective-cohort",
-          "citation": "Gershon E, Issachar A, Shibolet O, et al. Liver fibrosis marker FIB-4 is associated with hepatic and extrahepatic malignancy risk in a population-based cohort study. Liver Int. 2025;45(6):e70139. doi:10.1111/liv.70139. PMID:40358032",
+          "citation": "Zelber-Sagi S, Schonmann Y, Weinstein G, Yeshua H, et al. Liver fibrosis marker FIB-4 is associated with hepatic and extrahepatic malignancy risk in a population-based cohort study. Liver Int. 2025;45(6):e70139. doi:10.1111/liv.70139. PMID:40358032",
           "verification_status": "approximate",
           "notes": "Source located: Clalit Health Services population-based cohort, 763,752 adults without pre-existing liver disease or malignancy, mean 14.67y follow-up. Presumed advanced fibrosis (FIB-4 >=2.67) was associated with overall incident malignancy HR 1.16 (95% CI 1.10-1.22); the association strengthened with age-specific cut-points (HR 1.40, 1.34-1.46) and in baseline MASLD (HR 1.43). Much stronger for liver/bile-duct cancer (HR 5.66) and present for extrahepatic cancer (HR ~1.33). Author list/article identifiers approximate (PMID 40358032 confirmed; full author list not verified), hence verification_status approximate. Categorical contrast; the cancer signal is dominated by hepatocellular carcinoma."
         },
@@ -14031,27 +14031,27 @@
           "qualitative": true
         },
         "dementia": {
-          "hr": 1.76,
+          "hr": 3.17,
           "hr_metric": "per_log_sd",
           "hr_unit_detail": "per 1-SD higher (log-transformed) plasma pTau-217, progression to Alzheimer dementia in cognitively unimpaired / MCI participants",
           "direction": "risk",
-          "ci_low": 1.45,
-          "ci_high": 2.14,
-          "hr_per_sd": 1.76,
+          "ci_low": 2.79,
+          "ci_high": 3.61,
+          "hr_per_sd": 3.17,
           "hr_per_sd_ci": [
-            1.45,
-            2.14
+            2.79,
+            3.61
           ],
           "comparability": "native",
           "hr_per_sd_basis": "native: HR per 1 SD of log-transformed marker",
           "conversion": null,
           "evidence_tier": "B",
-          "n": "~2700 (WHIMS) plus supporting cohorts",
-          "followup_years": 10,
-          "study": "Shadyab 2025, medRxiv preprint, prospective cohort (Women's Health Initiative Memory Study); plus supporting BioFINDER/memory-clinic cohorts",
+          "n": 2766,
+          "followup_years": 14.1,
+          "study": "Shadyab 2026, JAMA Network Open, prospective cohort (Women's Health Initiative Memory Study)",
           "study_type": "prospective-cohort",
-          "citation": "Shadyab AH, Zhang B, LaCroix AZ, et al. Plasma p-tau217 and incident mild cognitive impairment and dementia in older women: 25-year prospective study in The Women's Health Initiative Memory Study. medRxiv preprint. 2025. doi:10.1101/2025.10.30.25339146. PMID:41282951. Cross-sectional accuracy: Palmqvist S, et al. Discriminative accuracy of plasma phospho-tau217 for Alzheimer disease. JAMA. 2020;324(8):772-781. doi:10.1001/jama.2020.12134. PMID:32722745",
-          "verification_status": "approximate",
+          "citation": "Shadyab AH, Zhang B, LaCroix AZ, et al. Plasma phosphorylated tau 217 and incident mild cognitive impairment and dementia in older women. JAMA Netw Open. 2026 (online March). Preprint: medRxiv 2025. doi:10.1101/2025.10.30.25339146. PMID:41282951. Cross-sectional accuracy: Palmqvist S, et al. Discriminative accuracy of plasma phospho-tau217 for Alzheimer disease. JAMA. 2020;324(8):772-781. doi:10.1001/jama.2020.12134. PMID:32722745",
+          "verification_status": "verified",
           "notes": "pTau-217 strongly predicts progression to Alzheimer dementia. Per-SD HRs vary widely by baseline cognitive stage and follow-up: WHIMS (Shadyab 2025, n~2700 cognitively unimpaired women, 25-yr follow-up) reports HR 3.17 (2.79-3.61) per SD for incident dementia and 1.94 (1.72-2.20) for incident MCI; A4/LEARN cognitively unimpaired reports ~1.56 per SD; a pooled medRxiv analysis reports ~1.38 per SD. The cell's 1.76 (1.45-2.14) is a representative mid-range per-log-SD estimate across stages, NOT a single confirmed cohort figure - hence approximate. WHIMS is a non-peer-reviewed preprint. Marker is young; evidence base growing rapidly."
         },
         "frailty": {
@@ -14979,7 +14979,7 @@
           "followup_years": null,
           "study": "Tan/Cheong 2022, J Clin Sleep Med, systematic review and meta-analysis of OSA and nocturnal hypoxemia with all-cancer incidence and mortality.",
           "study_type": "meta-analysis",
-          "citation": "Cheong AJY, Tan BKJ, Teo YH, et al. Obstructive sleep apnea and nocturnal hypoxemia with all-cancer incidence and mortality: a systematic review and meta-analysis. J Clin Sleep Med. 2022;18(8):2015-2026. doi:10.5664/jcsm.9772. PMID:34755597",
+          "citation": "Cheong AJY, Tan BKJ, Teo YH, et al. Obstructive sleep apnea and nocturnal hypoxemia with all-cancer incidence and mortality: a systematic review and meta-analysis. J Clin Sleep Med. 2022;18(5):1427-1440. doi:10.5664/jcsm.9772. PMID:34755597",
           "verification_status": "verified",
           "notes": "VERIFIED to a primary source. Cheong 2022 (JCSM meta-analysis) found severe OSA (AHI >=30) carried a pooled HR 1.18 (1.03-1.35) for all-cancer incidence (8 studies, n=62,630) vs no OSA; mild and moderate OSA were not associated. Severe nocturnal hypoxemia (T90 >12%) was a stronger predictor, HR 1.43 (1.16-1.76, 6 studies). The earlier 1.4 (1.1-1.8) representative range has been replaced with the AHI-based severe-OSA incidence estimate that matches this cell's contrast. AHI analysed in clinical strata, highly skewed; flagged categorical. Confounding by obesity and smoking remains; tier B (single meta-analysis)."
         },

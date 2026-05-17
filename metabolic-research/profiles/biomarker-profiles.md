@@ -552,7 +552,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** cool-down protocol (active vs passive); body position during recovery; beta-blockers and rate-limiting drugs; fitness level; peak effort achieved; age
 - **Testing cadence.** baseline + annual (with exercise testing)
 - **Modifiability (moderate).** Aerobic / endurance exercise training, which enhances vagal tone. — *effect:* Heart rate recovery improves by several bpm with regular aerobic training; trained individuals show faster recovery.; *timeframe:* 8-12 weeks.; *evidence:* RCT. Exercise-training trials demonstrate improved heart rate recovery with aerobic training.
-- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier A, verified); CVD HR/SD 1.16 (tier B, verified); Dementia HR/SD 0.72 (tier B, approximate)
+- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier A, verified); CVD HR/SD 1.16 (tier B, verified); Dementia HR/SD 0.90 (tier B, verified)
 
 ### Heart rate variability (HRV)
 
@@ -693,7 +693,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** blood cell type composition; array batch effects; smoking; DNA extraction method; tissue source
 - **Testing cadence.** research use; if tracked, every 1-2 years (within-person change is slow relative to measurement noise)
 - **Modifiability (low).** First-generation clock age acceleration is only weakly responsive to intervention; modest reductions reported with caloric restriction (CALERIE) and lifestyle programs, but Horvath specifically shows smaller and less consistent change than DunedinPACE. — *effect:* Small: most RCTs show no significant change in Horvath age acceleration; a few report shifts of well under 1 year.; *timeframe:* Months to years; change is slow and hard to distinguish from measurement noise.; *evidence:* RCT. CALERIE caloric restriction trial (Waziry 2023, Nat Aging); lifestyle and diet RCTs with epigenetic clock substudies.
-- **Outcome evidence.** All-cause mortality HR/SD 1.14 (tier B, verified); CVD HR/SD 1.20 (tier B, verified); Cancer HR/SD 1.20 (tier C, verified); Dementia (documented, no pooled HR); Frailty HR/SD 1.00 (tier B, approximate)
+- **Outcome evidence.** All-cause mortality HR/SD 1.14 (tier B, verified); CVD HR/SD 1.07 (tier B, verified); Cancer HR/SD 1.20 (tier C, verified); Dementia (documented, no pooled HR); Frailty HR/SD 1.00 (tier B, approximate)
 
 ### Hannum clock
 
@@ -705,7 +705,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** blood cell type composition; array batch effects; smoking; DNA extraction method
 - **Testing cadence.** research use; if tracked, every 1-2 years
 - **Modifiability (low).** First-generation clock age acceleration shows little consistent response to intervention; small reductions reported in some caloric-restriction and lifestyle trials. — *effect:* Small and inconsistent across RCTs; typically not statistically significant.; *timeframe:* Months to years.; *evidence:* RCT. CALERIE caloric restriction trial; lifestyle/diet RCTs with epigenetic clock substudies.
-- **Outcome evidence.** All-cause mortality HR/SD 1.15 (tier B, verified); CVD HR/SD 1.23 (tier B, verified); Cancer HR/SD 1.23 (tier C, verified); Dementia (documented, no pooled HR); Frailty HR/SD 1.00 (tier B, approximate)
+- **Outcome evidence.** All-cause mortality HR/SD 1.15 (tier B, verified); CVD HR/SD 1.11 (tier B, verified); Cancer HR/SD 1.23 (tier C, verified); Dementia (documented, no pooled HR); Frailty HR/SD 1.00 (tier B, approximate)
 
 ### PhenoAge
 
@@ -1372,7 +1372,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** chronic kidney disease (raises levels); BMI (dilutional, lowers levels); assay platform differences; age; APOE genotype; acute illness
 - **Testing cadence.** baseline; repeat at 1-2 years if monitoring
 - **Modifiability (low).** Anti-amyloid monoclonal antibodies (lecanemab, donanemab) lower plasma pTau-217 as a treatment-response biomarker; no lifestyle intervention has an established effect on pTau-217. — *effect:* Anti-amyloid therapy reduces plasma pTau-217 by roughly 20-40% over 12-18 months, paralleling amyloid-PET clearance; lifestyle effects unproven.; *timeframe:* 6-18 months with anti-amyloid therapy.; *evidence:* RCT. Sims JR, et al. Donanemab in early symptomatic Alzheimer disease: the TRAILBLAZER-ALZ 2 randomized clinical trial. JAMA. 2023;330(6):512-527. doi:10.1001/jama.2023.13239. PMID:37459141; and van Dyck CH, et al. Lecanemab in early Alzheimer's disease. N Engl J Med. 2023;388(1):9-21. doi:10.1056/NEJMoa2212948. PMID:36449413 (both report plasma pTau-217 reductions with treatment).
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD (documented, no pooled HR); Cancer (documented, no pooled HR); Dementia HR/SD 1.76 (tier B, approximate); Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD (documented, no pooled HR); Cancer (documented, no pooled HR); Dementia HR/SD 3.17 (tier B, verified); Frailty (documented, no pooled HR)
 
 ### Neurofilament light chain (NfL)
 
