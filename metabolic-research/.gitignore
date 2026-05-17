@@ -1,5 +1,5 @@
-# Temporary per-domain research files (merged into data/biomarkers.json)
-data/_research_*.json
+# Temporary per-domain research / verification files (merged into data/biomarkers.json)
+data/_*.json
 
 # OS / editor
 .DS_Store
