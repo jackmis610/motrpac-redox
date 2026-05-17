@@ -8,11 +8,12 @@ assessment protocol.
 ## Status
 
 **Complete and verified — all 14 domains.** 135 biomarkers, 519 evidence cells
-(416 quantified, 103 documented-but-unquantified); 321 cells standardized to a
+(356 quantified, 163 documented-but-unquantified); 241 cells standardized to a
 comparable HR-per-SD scale. Every quantified cell has been checked against
-primary sources (186 verified, 95 approximate, 135 unverified — see
-`writeup/summary.md`). The data structure, the interactive heat map, the
-per-biomarker profiles, and the synthesis writeup are all in place.
+primary sources across two passes — **257 verified, 99 approximate, 0
+unverified**; cells that could not be anchored to a real source were nulled, not
+retained. The data structure, the interactive heat map, the per-biomarker
+profiles, and the synthesis writeup are all in place.
 
 | # | Domain | Biomarkers |
 |---|---|---|

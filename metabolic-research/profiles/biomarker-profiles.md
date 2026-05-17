@@ -1,7 +1,7 @@
 # Biomarker Profiles
 
 Deliverable 1 (profiles) and Deliverable 3 (modifiability layer), generated from `data/biomarkers.json` by `tools/`.
-All 14 domains; data verified against primary sources.
+All 14 domains; every quantified cell verified against primary sources.
 
 Hazard ratios in the outcome line are standardized to **HR per +1 SD** where the
 exposure is continuous; categorical exposures show the native HR (see `data/HR_STANDARDIZATION.md`).
@@ -18,9 +18,8 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Single fasting measurements have meaningful day-to-day biological variability (~5-8% CV) and are sensitive to recent diet, stress, illness and sample handling (glycolysis in uncentrifuged tubes).
 - **Major confounders.** acute illness/stress hyperglycaemia; recent carbohydrate intake or incomplete fast; delayed sample processing (glycolysis lowers values); glucocorticoids and other hyperglycaemic drugs; reverse causation: weight loss/frailty lowers glucose
 - **Testing cadence.** baseline + annual; more frequent in prediabetes
-- **Standardization (J-shaped).** Fasting glucose has a J/U-shaped relation with all-cause mortality — both hypoglycaemic and hyperglycaemic ranges raise risk — so no single per-SD slope represents the mortality cell, which uses a non-monotonic flag.
 - **Modifiability (high).** Caloric restriction/weight loss, increased physical activity, low-glycaemic diet; metformin and SGLT2/GLP-1 agents pharmacologically. — *effect:* Intensive lifestyle change lowers fasting glucose ~0.3-0.8 mmol/L and cuts progression to diabetes ~58%; metformin lowers fasting glucose ~1-2 mmol/L in dysglycaemia.; *timeframe:* Weeks to a few months; *evidence:* RCT meta-analysis. Diabetes Prevention Program (Knowler 2002) and Finnish DPS; lifestyle and metformin RCTs.
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.11 (tier A, approximate); Cancer HR/SD 1.04 (tier B, verified); Dementia HR/SD 1.20 (tier B, verified); Frailty native HR 1.25 [categorical, tier C]
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.11 (tier A, approximate); Cancer HR/SD 1.04 (tier B, verified); Dementia HR/SD 1.20 (tier B, verified); Frailty HR/SD 1.32 (tier B, verified)
 
 ### Fasting insulin
 
@@ -32,7 +31,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** assay/platform differences (no global standardization); recent food intake or incomplete fast; hepatic insulin clearance variation; acute stress and physical activity; exogenous insulin or insulin secretagogues
 - **Testing cadence.** baseline + annual if metabolic risk present
 - **Modifiability (high).** Weight loss, aerobic plus resistance exercise, carbohydrate restriction; metformin and GLP-1/SGLT2 agents reduce hyperinsulinaemia indirectly. — *effect:* Lifestyle weight loss can lower fasting insulin 25-40%; exercise training reduces it independent of weight; effect is large and rapid.; *timeframe:* Days to weeks; *evidence:* RCT meta-analysis. Exercise and caloric-restriction RCT meta-analyses of insulin sensitivity.
-- **Outcome evidence.** All-cause mortality HR/SD 1.05 (tier C, approximate); CVD (documented, no pooled HR); Cancer HR/SD 1.21 (tier C, approximate); Dementia HR/SD 1.23 (tier C, verified); Frailty HR/SD 1.13 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.05 (tier C, approximate); CVD (documented, no pooled HR); Cancer HR/SD 1.21 (tier C, approximate); Dementia HR/SD 1.23 (tier C, verified); Frailty HR/SD 1.15 (tier B, verified)
 
 ### HOMA-IR
 
@@ -44,7 +43,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** insulin assay/platform differences; incomplete fast; hepatic vs peripheral insulin resistance not distinguished; beta-cell failure invalidates the model; acute illness and stress
 - **Testing cadence.** baseline + annual if metabolic risk present
 - **Modifiability (high).** Weight loss, aerobic + resistance exercise, low-glycaemic/Mediterranean diet; metformin, pioglitazone and GLP-1 agents pharmacologically. — *effect:* Intensive lifestyle change improves HOMA-IR 25-50%; exercise improves it independent of weight loss.; *timeframe:* Weeks to a few months; *evidence:* RCT meta-analysis. Lifestyle and exercise RCT meta-analyses of insulin resistance; Diabetes Prevention Program.
-- **Outcome evidence.** All-cause mortality HR/SD 1.16 (tier B, approximate); CVD HR/SD 1.19 (tier A, verified); Cancer HR/SD 1.11 (tier C, unverified); Dementia HR/SD 1.12 (tier C, unverified); Frailty HR/SD 1.14 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.16 (tier B, approximate); CVD HR/SD 1.19 (tier A, verified); Cancer HR/SD 1.10 (tier B, verified); Dementia (documented, no pooled HR); Frailty HR/SD 1.15 (tier B, verified)
 
 ### HbA1c
 
@@ -56,7 +55,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** anaemia and iron deficiency (can raise HbA1c); haemolysis/haemoglobinopathies (lower HbA1c); chronic kidney or liver disease; recent blood transfusion or erythropoietin; ethnic differences in glycation
 - **Testing cadence.** baseline + annual; every 3-6 months if dysglycaemic or treated
 - **Modifiability (high).** Weight loss, low-glycaemic diet, physical activity; metformin, GLP-1 agonists, SGLT2 inhibitors and insulin in diabetes. — *effect:* Lifestyle change lowers HbA1c ~0.3-0.5 percentage points in prediabetes; glucose-lowering drugs lower it 0.5-1.5 points in diabetes.; *timeframe:* 3 months (one HbA1c turnover) for a meaningful change; *evidence:* RCT meta-analysis. Diabetes Prevention Program; glucose-lowering RCT meta-analyses (UKPDS, etc.).
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.10 (tier B, approximate); Cancer HR/SD 1.04 (tier C, approximate); Dementia (documented, no pooled HR); Frailty HR/SD 1.14 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.10 (tier B, approximate); Cancer HR/SD 1.04 (tier C, approximate); Dementia (documented, no pooled HR); Frailty (documented, no pooled HR)
 
 ### OGTT 2-hour glucose
 
@@ -69,7 +68,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** as indicated for dysglycaemia screening; not routine
 - **Standardization (Clinical strata).** 2-hour OGTT glucose HRs are reported across diagnostic strata (normal, impaired glucose tolerance, diabetic range), not as a continuous per-SD slope.
 - **Modifiability (high).** Weight loss, physical activity (especially post-meal activity), low-glycaemic diet; acarbose and GLP-1 agents blunt postload glucose. — *effect:* Lifestyle intervention substantially lowers 2-h glucose and reverts impaired glucose tolerance in a large fraction of participants.; *timeframe:* Weeks to months; *evidence:* RCT meta-analysis. Diabetes Prevention Program and Finnish DPS (2-h glucose endpoints); STOP-NIDDM (acarbose).
-- **Outcome evidence.** All-cause mortality native HR 2.02 [categorical, tier A]; CVD native HR 1.51 [categorical, tier A]; Cancer native HR 1.26 [categorical, tier C]; Dementia native HR 1.30 [categorical, tier C]
+- **Outcome evidence.** All-cause mortality native HR 2.02 [categorical, tier A]; CVD native HR 1.51 [categorical, tier A]; Cancer native HR 1.52 [categorical, tier B]; Dementia native HR 1.74 [categorical, tier B]
 
 ### OGTT 2-hour insulin
 
@@ -81,7 +80,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** insulin assay/platform differences; OGTT protocol and prior diet/activity; concurrent glucose level needed for interpretation; hepatic insulin clearance variation; gastric emptying rate
 - **Testing cadence.** research/specialist use; not routine
 - **Modifiability (high).** Weight loss, exercise training, carbohydrate restriction lower the postload insulin response. — *effect:* Lifestyle change can substantially reduce postload insulin secretion as insulin sensitivity improves.; *timeframe:* Weeks to months; *evidence:* observational. Exercise and weight-loss studies reporting OGTT insulin responses.
-- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier C, unverified); CVD HR/SD 1.14 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.12 (tier C, verified); CVD HR/SD 1.10 (tier C, verified)
 
 ### CGM mean glucose
 
@@ -104,8 +103,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Sensitive to sensor noise and to the wear window; CV is more standardized than SD but both depend on adequate wear time and are affected by sensor MARD and compression artefacts.
 - **Major confounders.** sensor noise inflates apparent variability; short or low-wear monitoring window; meal timing and composition during wear; physical activity and alcohol; limited population reference ranges in non-diabetic adults
 - **Testing cadence.** intermittent 2-week wears
+- **Standardization (Categorical strata).** The CGM glucose-variability mortality cell uses a high-vs-low coefficient-of-variation category contrast, not a continuous per-SD estimate.
 - **Modifiability (moderate).** Smoothing of meal carbohydrate load, post-meal activity, meal sequencing; in diabetes, agents that reduce excursions (GLP-1 agonists, DPP-4 inhibitors). — *effect:* Dietary restructuring can reduce CGM CV by several percentage points within weeks.; *timeframe:* Days to weeks; *evidence:* RCT. CGM-guided dietary intervention trials reporting variability endpoints.
-- **Outcome evidence.** All-cause mortality HR/SD 1.20 (tier C, unverified); CVD HR/SD 1.25 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality native HR 2.26 [categorical, tier C]; CVD (documented, no pooled HR)
 
 ### CGM time-in-range
 
@@ -153,7 +153,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** low serum albumin or altered protein turnover (nephrotic syndrome, liver disease); thyroid dysfunction; acute inflammation; shorter integration window than HbA1c; no fasting requirement but assay-method differences
 - **Testing cadence.** as indicated when HbA1c is unreliable
 - **Modifiability (high).** Same glycaemia-lowering levers as HbA1c: weight loss, low-glycaemic diet, activity, glucose-lowering drugs. — *effect:* Responds to glycaemic change faster than HbA1c (2-3 week window); magnitude tracks glucose control.; *timeframe:* 2-3 weeks; *evidence:* observational. Studies of fructosamine response to glucose-lowering therapy.
-- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier B, verified); CVD HR/SD 1.12 (tier C, verified); Dementia HR/SD 1.10 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier B, verified); CVD HR/SD 1.12 (tier C, verified); Dementia (documented, no pooled HR)
 
 ### C-peptide
 
@@ -177,7 +177,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** right-skewed distribution; reverse causation: cachexia, heart failure, renal disease raise adiponectin; natriuretic peptides raise adiponectin; sex differences (higher in women); assay/isoform differences
 - **Testing cadence.** baseline + as indicated
 - **Modifiability (moderate).** Weight loss, exercise, omega-3 and certain drugs (pioglitazone strongly raises adiponectin); smoking cessation. — *effect:* Pioglitazone can double adiponectin; weight loss and exercise raise it 10-30%.; *timeframe:* Weeks to months; *evidence:* RCT meta-analysis. Thiazolidinedione RCTs and weight-loss/exercise meta-analyses of adiponectin.
-- **Outcome evidence.** All-cause mortality HR/SD 1.24 (tier B, verified); CVD HR/SD 1.14 (tier B, approximate); Dementia HR/SD 1.29 (tier C, verified); Frailty HR/SD 1.13 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.24 (tier B, verified); CVD HR/SD 1.14 (tier B, approximate); Dementia HR/SD 1.29 (tier C, verified); Frailty HR/SD 1.32 (tier C, verified)
 
 ### Leptin
 
@@ -188,8 +188,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Stable analyte but values are dominated by fat mass and sex, strongly right-skewed, and the outcome association is U-shaped and heavily confounded by adiposity.
 - **Major confounders.** fat mass dominates the signal; strong sex difference (higher in women); right-skewed distribution; reverse causation: weight loss/cachexia lowers leptin; acute energy balance and sleep
 - **Testing cadence.** baseline + as indicated
+- **Standardization (Categorical contrast).** The leptin cardiovascular cell is a categorical high-vs-low contrast (a pooled odds ratio), not a per-SD estimate.
 - **Modifiability (high).** Weight loss is the dominant lever; leptin falls roughly in proportion to fat-mass loss. — *effect:* Substantial weight loss can lower leptin 40-60%; exercise contributes independently.; *timeframe:* Weeks to months; *evidence:* RCT meta-analysis. Weight-loss RCT meta-analyses reporting leptin change.
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.20 (tier C, unverified); Cancer HR/SD 1.08 (tier C, unverified); Dementia HR/SD 0.68 (tier C, verified); Frailty HR/SD 1.11 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD native HR 1.16 [categorical, tier B]; Cancer (documented, no pooled HR); Dementia HR/SD 0.68 (tier C, verified); Frailty HR/SD 1.27 (tier B, verified)
 
 ### Leptin:adiponectin ratio
 
@@ -201,7 +202,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** strong sex difference; right-skewed distribution; fat mass dominates leptin component; reverse causation via the adiponectin paradox; no harmonized assays or cutpoints
 - **Testing cadence.** baseline + as indicated
 - **Modifiability (high).** Weight loss and exercise lower leptin and raise adiponectin, moving the ratio favourably; pioglitazone raises adiponectin. — *effect:* Weight loss can lower the ratio substantially as leptin falls and adiponectin rises.; *timeframe:* Weeks to months; *evidence:* observational. Weight-loss and exercise studies reporting leptin:adiponectin ratio change.
-- **Outcome evidence.** All-cause mortality HR/SD 1.13 (tier C, unverified); CVD HR/SD 1.19 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.40 (tier C, verified)
 
 
 ## Lipids / Cardiovascular Risk
@@ -216,7 +217,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** acute illness/inflammation; pregnancy; recent very high-fat meal (modest); lipid-lowering medication
 - **Testing cadence.** baseline + annual; more frequent during lipid-lowering titration
 - **Modifiability (high).** Statins, ezetimibe, and PCSK9 inhibitors lower apoB; PCSK9 inhibitors and high-intensity statins produce the largest reductions. — *effect:* High-intensity statin lowers apoB ~35-45%; adding ezetimibe +15-20%; PCSK9 inhibitors lower apoB 45-55%.; *timeframe:* 4-6 weeks to steady state; *evidence:* RCT meta-analysis. CTT Collaboration statin meta-analyses; FOURIER (Sabatine 2017) and ODYSSEY OUTCOMES (Schwartz 2018) PCSK9 RCTs.
-- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier B, verified); CVD HR/SD 1.43 (tier A, verified); Cancer HR/SD 1.10 (tier C, unverified); Dementia HR/SD 1.05 (tier B, verified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier B, verified); CVD HR/SD 1.43 (tier A, verified); Cancer (documented, no pooled HR); Dementia HR/SD 1.05 (tier B, verified)
 
 ### LDL-C
 
@@ -716,7 +717,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** blood cell type composition; array batch effects; acute inflammation/illness; smoking; DNA extraction method
 - **Testing cadence.** research/consumer use; if tracked, every 1-2 years. Commercially available via TruDiagnostic TruAge and myDNAge.
 - **Modifiability (moderate).** PhenoAge acceleration is modestly responsive to lifestyle intervention; caloric restriction (CALERIE) and some diet/exercise programs slow it, and methylation-PhenoAge change tracks improvements in the underlying clinical-chemistry phenotype. — *effect:* Modest: RCTs report reductions on the order of ~1 year of age acceleration, though not always statistically robust.; *timeframe:* Months to a few years.; *evidence:* RCT. Waziry R et al. Effect of caloric restriction on epigenetic aging (CALERIE). Nat Aging 2023;3:248-257; diet/lifestyle RCTs with PhenoAge substudies.
-- **Outcome evidence.** All-cause mortality HR/SD 1.14 (tier B, verified); CVD HR/SD 1.17 (tier C, unverified); Cancer HR/SD 1.11 (tier C, unverified); Dementia HR/SD 1.05 (tier B, verified); Frailty HR/SD 1.00 (tier B, approximate)
+- **Outcome evidence.** All-cause mortality HR/SD 1.14 (tier B, verified); CVD HR/SD 1.01 (tier B, verified); Cancer HR/SD 1.13 (tier B, verified); Dementia HR/SD 1.05 (tier B, verified); Frailty HR/SD 1.00 (tier B, approximate)
 
 ### GrimAge / GrimAge2
 
@@ -728,7 +729,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** smoking (built into the clock); blood cell type composition; array batch effects; DNA extraction method
 - **Testing cadence.** research/consumer use; if tracked, every 1-2 years. Commercially available via TruDiagnostic TruAge (GrimAge2) and other providers.
 - **Modifiability (moderate).** GrimAge acceleration responds to smoking cessation (its biggest lever, by design) and modestly to lifestyle and weight-loss interventions; some supplement and multi-component trials report small reductions. — *effect:* Smoking cessation produces meaningful reductions over years; lifestyle interventions yield small effects (under ~1 year of age acceleration) in RCTs.; *timeframe:* Months to years; smoking-driven component changes slowly after cessation.; *evidence:* RCT. CALERIE (Waziry 2023, Nat Aging); lifestyle/diet RCTs with GrimAge substudies; observational smoking-cessation data.
-- **Outcome evidence.** All-cause mortality HR/SD 1.50 (tier A, verified); CVD HR/SD 1.55 (tier B, verified); Cancer HR/SD 1.37 (tier B, verified); Dementia HR/SD 1.30 (tier C, unverified); Frailty HR/SD 1.43 (tier B, approximate)
+- **Outcome evidence.** All-cause mortality HR/SD 1.50 (tier A, verified); CVD HR/SD 1.55 (tier B, verified); Cancer HR/SD 1.37 (tier B, verified); Dementia HR/SD 1.11 (tier B, verified); Frailty HR/SD 1.43 (tier B, approximate)
 
 ### DunedinPACE
 
@@ -751,8 +752,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** noisy — qPCR telomere measurement has substantial within-method coefficient of variation and poor agreement across labs and platforms; a large fraction of measured between-person variance is technical. This noise attenuates HRs and is the central epistemic caveat for this biomarker.
 - **Major confounders.** measurement platform / lab (major); blood cell composition; age; sex; smoking; obesity; chronic inflammation; reverse causation from prevalent disease
 - **Testing cadence.** research/consumer use; not recommended for repeat clinical tracking given measurement noise. Commercially offered by some longevity testing companies.
+- **Standardization (No usable SD).** The telomere-length frailty cell is reported per kilobase with no population SD available to convert to a per-SD basis.
 - **Modifiability (low).** Telomere length is only modestly and inconsistently modifiable; some lifestyle programs (exercise, diet, stress reduction) and weight loss report attenuated shortening or small lengthening, but results are mixed and prone to measurement-noise artifacts. — *effect:* Small and uncertain; many RCTs show no significant change. Apparent 'lengthening' is often within measurement error.; *timeframe:* Years; telomere attrition is slow and hard to detect against assay noise.; *evidence:* RCT. Lifestyle-intervention RCTs with telomere substudies (e.g. Ornish 2013 Lancet Oncol pilot); generally low-quality or underpowered evidence.
-- **Outcome evidence.** All-cause mortality HR/SD 1.09 (tier A, verified); CVD HR/SD 1.22 (tier A, verified); Cancer HR/SD 1.03 (tier C, unverified); Dementia HR/SD 0.93 (tier B, verified); Frailty HR/SD 1.00 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.09 (tier A, verified); CVD HR/SD 1.22 (tier A, verified); Cancer HR/SD 1.03 (tier B, verified); Dementia HR/SD 0.93 (tier B, verified); Frailty native HR 1.04 [unconvertible, tier B]
 
 ### GlycanAge
 
@@ -792,7 +794,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** time of sampling; acute psychological/physical stress; exogenous glucocorticoids; oral estrogen/pregnancy (raises CBG); shift work; depression; critical illness
 - **Testing cadence.** baseline; repeat only if HPA pathology suspected
 - **Modifiability (moderate).** Stress-reduction (mindfulness/MBSR, CBT), improved sleep, regular moderate exercise; treatment of overt Cushing's or adrenal insufficiency where present. — *effect:* Mindfulness/relaxation programs lower cortisol output modestly (~10-25% in elevated groups); aerobic training normalizes diurnal slope.; *timeframe:* 8-12 weeks for measurable change; *evidence:* RCT meta-analysis. Koncz A et al. and Pascoe MC et al. meta-analyses of mindfulness/relaxation interventions on cortisol.
-- **Outcome evidence.** All-cause mortality HR/SD 1.31 (tier C, unverified); CVD HR/SD 1.18 (tier C, unverified); Cancer (documented, no pooled HR); Dementia HR/SD 1.20 (tier C, unverified); Frailty HR/SD 1.27 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.18 (tier B, verified); Cancer (documented, no pooled HR); Dementia HR/SD 1.31 (tier C, verified); Frailty (documented, no pooled HR)
 
 ### Cortisol diurnal slope (salivary)
 
@@ -803,9 +805,8 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Captures rhythm rather than a single level, but depends on adherence to sampling times and is variable day-to-day; multi-day sampling improves reliability.
 - **Major confounders.** sampling-time adherence; wake time/shift work; smoking; acute stress; exogenous glucocorticoids; oral contraceptives
 - **Testing cadence.** baseline; repeat over 2-3 days for reliability
-- **Standardization (Non-standard).** Slope is a rate-of-change metric (units of cortisol per hour); a flatter slope is the risk direction and per-SD estimates vary widely by sampling protocol.
 - **Modifiability (moderate).** Sleep regularization, light exposure timing, stress reduction, aerobic exercise; treating depression where present. — *effect:* Behavioral programs can steepen a blunted slope modestly; effect sizes small and variable.; *timeframe:* 8-12 weeks; *evidence:* observational. Adam EK et al. systematic review of diurnal cortisol slopes and health outcomes, Psychoneuroendocrinology 2017.
-- **Outcome evidence.** All-cause mortality HR/SD 1.30 (tier B, verified); CVD HR/SD 1.87 (tier B, verified); Cancer native HR 2.08 [categorical, tier C]; Frailty HR/SD 1.23 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.30 (tier B, verified); CVD HR/SD 1.87 (tier B, verified); Cancer (documented, no pooled HR); Frailty (documented, no pooled HR)
 
 ### Hair cortisol
 
@@ -818,7 +819,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline; repeat at 3-6 months if monitoring chronic stress
 - **Standardization (Cross-sectional OR).** The hair-cortisol cardiovascular cell is a cross-sectional odds ratio for prevalent disease across cortisol categories, not an incidence hazard ratio, so it is not placed on the per-SD scale.
 - **Modifiability (moderate).** Sustained stress reduction, sleep, exercise; effective only over multi-month horizons given the integrative window. — *effect:* Modest reductions with sustained behavioral change; data limited.; *timeframe:* 3+ months (reflects cumulative exposure); *evidence:* observational. Stalder T et al. Stress-related and basic determinants of hair cortisol in humans: a meta-analysis, Psychoneuroendocrinology 2017.
-- **Outcome evidence.** All-cause mortality HR/SD 1.20 (tier C, unverified); CVD native HR 2.70 [categorical, tier C]; Frailty HR/SD 1.30 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD native HR 2.70 [categorical, tier C]; Frailty (documented, no pooled HR)
 
 ### DHEA-S
 
@@ -829,8 +830,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** clean — Long half-life, minimal diurnal variation and high concentration make DHEA-S a stable, reproducible analyte.
 - **Major confounders.** age (strong); exogenous DHEA/steroids; critical illness; anorexia; smoking
 - **Testing cadence.** baseline + every 1-2 years
+- **Standardization (No usable SD).** The DHEA-S frailty cell is reported per log-unit with no usable population SD for standardization.
 - **Modifiability (low).** DHEA supplementation raises DHEA-S, but RCTs show little benefit on hard outcomes, body composition or cognition in healthy older adults. — *effect:* Supplementation normalizes levels; clinically meaningful outcome benefit not demonstrated.; *timeframe:* Weeks to raise levels; outcome benefit unproven; *evidence:* RCT meta-analysis. Nair KS et al. DHEA in elderly women and men, NEJM 2006;355:1647-1659; Cochrane/meta-analyses of DHEA supplementation.
-- **Outcome evidence.** All-cause mortality HR/SD 1.21 (tier B, approximate); CVD HR/SD 1.15 (tier C, approximate); Cancer HR/SD 1.05 (tier C, unverified); Dementia HR/SD 1.10 (tier C, unverified); Frailty HR/SD 1.30 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.21 (tier B, approximate); CVD HR/SD 1.15 (tier C, approximate); Cancer (documented, no pooled HR); Dementia (documented, no pooled HR); Frailty native HR 0.35 [unconvertible, tier C]
 
 ### Cortisol:DHEA-S ratio
 
@@ -843,7 +845,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline; research-oriented use
 - **Standardization (Composite ratio).** A derived ratio of two hormones with no standard SD; per-SD estimates depend entirely on how each component is scaled.
 - **Modifiability (low).** Lower the ratio indirectly via stress reduction, sleep and exercise (lowering cortisol); DHEA supplementation raises the denominator but without proven outcome benefit. — *effect:* Modest, indirect; no validated intervention targets the ratio itself.; *timeframe:* 8-12 weeks for component changes; *evidence:* observational. Inferred from cortisol and DHEA-S intervention literature.
-- **Outcome evidence.** All-cause mortality native HR 1.25 [categorical, tier C]; CVD native HR 1.20 [categorical, tier C]; Frailty native HR 1.35 [categorical, tier C]
+- **Outcome evidence.** All-cause mortality native HR 1.25 [categorical, tier C]; CVD native HR 1.20 [categorical, tier C]; Frailty (documented, no pooled HR)
 
 ### TSH
 
@@ -856,7 +858,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline + every 1-2 years; sooner if abnormal
 - **Standardization (U-shaped).** Mortality and CVD rise at both low (hyperthyroid) and high (hypothyroid) TSH; the relationship is U/J-shaped and not summarizable as one per-SD slope.
 - **Modifiability (high).** Levothyroxine for hypothyroidism; antithyroid drugs/radioiodine for hyperthyroidism. RCTs (TRUST) show levothyroxine for mild subclinical hypothyroidism does not improve symptoms or outcomes in older adults. — *effect:* TSH fully normalizable with treatment; outcome benefit clear only for overt disease and TSH >10.; *timeframe:* 6-8 weeks to re-equilibrate after dose change; *evidence:* RCT. Stott DJ et al. TRUST trial, NEJM 2017;376:2534-2544; ATA guidelines.
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD native HR 1.89 [categorical, tier A]; Cancer HR/SD 1.10 (tier C, unverified); Dementia (documented, no pooled HR); Frailty native HR 2.48 [categorical, tier C]
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD native HR 1.89 [categorical, tier A]; Cancer native HR 1.43 [categorical, tier B]; Dementia (documented, no pooled HR); Frailty native HR 2.48 [categorical, tier C]
 
 ### Free T4
 
@@ -868,7 +870,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** non-thyroidal illness; binding-protein changes (pregnancy, estrogen); heparin; amiodarone; assay method
 - **Testing cadence.** baseline + with TSH every 1-2 years
 - **Modifiability (low).** Free T4 is treated only in the context of overt thyroid disease (antithyroid drugs lower it; levothyroxine raises it). Within-range variation is not a clinical treatment target. — *effect:* Fully modifiable by thyroid-directed therapy when disease is present; not modified in euthyroid people.; *timeframe:* Weeks after dose change; *evidence:* RCT. ATA thyroid guidelines; TRUST trial context.
-- **Outcome evidence.** All-cause mortality HR/SD 1.16 (tier B, approximate); CVD HR/SD 1.24 (tier B, approximate); Dementia HR/SD 1.04 (tier B, verified); Frailty HR/SD 1.18 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.16 (tier B, approximate); CVD HR/SD 1.24 (tier B, approximate); Dementia HR/SD 1.04 (tier B, verified); Frailty (documented, no pooled HR)
 
 ### Free T3
 
@@ -881,7 +883,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline; interpret with TSH and clinical context
 - **Standardization (U-shaped).** Low free T3 marks non-thyroidal illness ('low-T3 syndrome') and predicts mortality, but very high free T3 is also harmful; the association is non-monotonic and confounded by reverse causation.
 - **Modifiability (low).** No intervention targets free T3 in non-thyroidal illness; T3 replacement in low-T3 syndrome has not improved outcomes in RCTs. Free T3 normalizes when underlying illness resolves. — *effect:* Not a treatment target; reflects underlying health.; *timeframe:* Tracks recovery from illness; *evidence:* RCT. Trials of T3 supplementation in critical illness and heart failure (no consistent benefit).
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD native HR 2.40 [categorical, tier C]; Frailty native HR 1.50 [categorical, tier C]
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD native HR 2.40 [categorical, tier C]; Frailty (documented, no pooled HR)
 
 ### Reverse T3
 
@@ -893,7 +895,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** non-thyroidal illness (major); fasting/caloric restriction; glucocorticoids/amiodarone; critical illness; assay variability
 - **Testing cadence.** not routinely indicated
 - **Modifiability (fixed).** No intervention targets reverse T3; it normalizes when underlying illness or caloric deprivation resolves. — *effect:* Not a treatment target.; *timeframe:* Tracks recovery; *evidence:* mechanistic. Non-thyroidal illness syndrome literature.
-- **Outcome evidence.** All-cause mortality HR/SD 1.13 (tier C, unverified); Frailty HR/SD 1.17 (tier C, approximate)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); Frailty HR/SD 1.17 (tier C, approximate)
 
 ### Thyroid antibodies (TPO/Tg)
 
@@ -906,7 +908,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** once to characterize cause of thyroid dysfunction; not routinely repeated
 - **Standardization (Categorical).** Thyroid antibodies are interpreted as positive vs negative (autoimmune thyroiditis); there is no meaningful per-SD scale.
 - **Modifiability (low).** Antibody titres are not a treatment target; selenium supplementation modestly lowers TPOAb in some trials without proven clinical benefit. Levothyroxine treats the resulting hypothyroidism. — *effect:* Selenium lowers TPOAb titres modestly; no demonstrated outcome benefit.; *timeframe:* 3-6 months for titre change; *evidence:* RCT meta-analysis. Meta-analyses of selenium supplementation in autoimmune thyroiditis.
-- **Outcome evidence.** All-cause mortality native HR 1.02 [categorical, tier C]; CVD native HR 1.15 [categorical, tier C]; Cancer (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality native HR 1.07 [categorical, tier B]; CVD native HR 1.00 [categorical, tier A]; Cancer (documented, no pooled HR)
 
 ### Total testosterone
 
@@ -919,7 +921,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** morning sample, confirm low values on a second draw
 - **Standardization (U-shaped).** In men, mortality is lowest at mid-normal testosterone and rises at both low and very high concentrations; per-SD HRs apply best within the low-to-normal range.
 - **Modifiability (moderate).** Testosterone replacement therapy in confirmed hypogonadism; weight loss and treating sleep apnea raise endogenous levels in obese men. — *effect:* TRT restores levels to mid-normal; ~10-15% weight loss can raise total testosterone substantially in obese men.; *timeframe:* Weeks (TRT); 3-6 months (weight loss); *evidence:* RCT. TRAVERSE trial (Lincoff 2023, NEJM); TTrials (Snyder 2016, NEJM); weight-loss trials.
-- **Outcome evidence.** All-cause mortality HR/SD 1.14 (tier A, approximate); CVD native HR 1.25 [categorical, tier A]; Cancer HR/SD 1.00 (tier B, approximate); Dementia HR/SD 1.10 (tier C, unverified); Frailty HR/SD 1.23 (tier B, verified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.14 (tier A, approximate); CVD native HR 1.25 [categorical, tier A]; Cancer HR/SD 1.00 (tier B, approximate); Dementia HR/SD 1.14 (tier B, verified); Frailty HR/SD 1.23 (tier B, verified)
 
 ### Free testosterone
 
@@ -930,8 +932,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Calculated values depend on SHBG assay accuracy and the chosen equation; equilibrium dialysis is accurate but rarely used.
 - **Major confounders.** time of day; SHBG assay accuracy; obesity; acute illness; calculation method
 - **Testing cadence.** morning sample; confirm low values
+- **Standardization (Categorical contrast).** Free-testosterone mortality and CVD cells are low-vs-higher category contrasts in older men, not per-SD estimates.
 - **Modifiability (moderate).** Testosterone replacement in hypogonadism; weight loss raises free testosterone partly by lowering SHBG-bound fraction. — *effect:* TRT restores free testosterone; weight loss produces modest gains.; *timeframe:* Weeks (TRT); months (weight loss); *evidence:* RCT. TTrials (Snyder 2016, NEJM); TRAVERSE (Lincoff 2023, NEJM).
-- **Outcome evidence.** All-cause mortality HR/SD 1.13 (tier C, unverified); CVD HR/SD 1.15 (tier C, unverified); Dementia HR/SD 1.15 (tier C, approximate); Frailty HR/SD 1.22 (tier B, verified)
+- **Outcome evidence.** All-cause mortality native HR 1.62 [categorical, tier B]; CVD native HR 1.71 [categorical, tier B]; Dementia HR/SD 1.15 (tier C, approximate); Frailty HR/SD 1.22 (tier B, verified)
 
 ### SHBG
 
@@ -944,7 +947,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline; with sex-steroid panels
 - **Standardization (U-shaped).** SHBG shows a U-shaped relationship with mortality - low SHBG marks insulin resistance, very high SHBG marks frailty/illness - so a single per-SD slope is only approximate.
 - **Modifiability (moderate).** Weight loss and improved insulin sensitivity raise low SHBG; reducing hepatic fat is the main lever. — *effect:* Significant weight loss can raise SHBG 20-50% in insulin-resistant individuals.; *timeframe:* 3-6 months; *evidence:* RCT. Weight-loss and lifestyle-intervention trials reporting SHBG change.
-- **Outcome evidence.** All-cause mortality HR/SD 1.15 (tier C, unverified); CVD HR/SD 0.90 (tier B, approximate); Cancer native HR 1.20 [categorical, tier C]; Frailty HR/SD 1.25 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 0.94 (tier A, verified); CVD HR/SD 0.90 (tier B, approximate); Cancer native HR 0.64 [categorical, tier A]; Frailty (documented, no pooled HR)
 
 ### Estradiol
 
@@ -956,7 +959,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** sex and menopausal status; menstrual-cycle phase; exogenous hormones; adiposity (aromatization); assay sensitivity
 - **Testing cadence.** context-dependent; cycle-timed in premenopausal women
 - **Modifiability (high).** Menopausal hormone therapy raises estradiol; aromatase inhibitors lower it. For longevity outcomes, the route, dose and timing dominate the risk-benefit balance. — *effect:* Hormone therapy fully restores premenopausal-range estradiol.; *timeframe:* Days to weeks; *evidence:* RCT. WHI and ELITE/KEEPS hormone-therapy trials.
-- **Outcome evidence.** All-cause mortality HR/SD 1.15 (tier C, unverified); CVD (documented, no pooled HR); Cancer HR/SD 1.16 (tier A, verified)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD (documented, no pooled HR); Cancer HR/SD 1.16 (tier A, verified)
 
 ### Progesterone
 
@@ -968,7 +971,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** menstrual-cycle phase (major); pregnancy; exogenous progestogens; menopausal status
 - **Testing cadence.** cycle-timed (luteal phase) when assessing ovulation
 - **Modifiability (low).** Exogenous progesterone/progestins are used in hormone therapy and contraception; endogenous progesterone is not a longevity treatment target. — *effect:* Exogenous dosing fully controls levels.; *timeframe:* Days; *evidence:* RCT. Hormone-therapy trials (WHI combined arm).
-- **Outcome evidence.** Cancer HR/SD 1.00 (tier C, unverified)
+- **Outcome evidence.** Cancer HR/SD 1.16 (tier B, verified)
 
 ### LH
 
@@ -980,7 +983,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** pulsatile secretion; menstrual-cycle phase; menopausal status; GnRH analogues; pituitary disease
 - **Testing cadence.** context-dependent; not routine for risk stratification
 - **Modifiability (low).** LH is suppressed by sex-steroid replacement or GnRH analogues; it is not an independent longevity treatment target. — *effect:* Fully suppressible pharmacologically.; *timeframe:* Weeks; *evidence:* mechanistic. Endocrine physiology of the HPG axis.
-- **Outcome evidence.** All-cause mortality HR/SD 1.10 (tier C, unverified); Dementia (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); Dementia (documented, no pooled HR)
 
 ### FSH
 
@@ -992,7 +995,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** menopausal status (major); menstrual-cycle phase; GnRH analogues; ovarian reserve; pituitary disease
 - **Testing cadence.** context-dependent; used to confirm menopausal status
 - **Modifiability (low).** FSH is suppressed by estrogen/hormone therapy; experimental FSH-blocking antibodies are preclinical. Not currently a clinical treatment target. — *effect:* Hormone therapy lowers FSH substantially.; *timeframe:* Weeks; *evidence:* mechanistic. Menopause hormone-therapy pharmacology; preclinical anti-FSH studies.
-- **Outcome evidence.** All-cause mortality HR/SD 1.05 (tier C, unverified); CVD HR/SD 1.12 (tier C, unverified); Frailty HR/SD 1.15 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD (documented, no pooled HR); Frailty HR/SD 1.20 (tier B, verified)
 
 ### IGF-1
 
@@ -1016,8 +1019,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Stable and reproducible, but biologically meaningful chiefly in the context of IGF-1; independent interpretation is limited.
 - **Major confounders.** age; nutritional status; GH disorders; liver disease; co-variation with IGF-1
 - **Testing cadence.** baseline; with IGF-1
+- **Standardization (Categorical contrast).** The IGFBP-3 mortality cell is an extreme-group category contrast, not a per-SD estimate.
 - **Modifiability (low).** IGFBP-3 rises with GH therapy and varies with nutrition; it is not an independent treatment target. — *effect:* Modest changes with GH/nutritional manipulation.; *timeframe:* Weeks to months; *evidence:* observational. GH-therapy and nutritional studies reporting IGFBP-3.
-- **Outcome evidence.** All-cause mortality HR/SD 1.10 (tier C, unverified); Cancer HR/SD 0.95 (tier C, unverified); Frailty HR/SD 1.15 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality native HR 1.87 [categorical, tier B]; Cancer (documented, no pooled HR); Frailty (documented, no pooled HR)
 
 ### Growth hormone
 
@@ -1055,8 +1059,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** clean — DXA is a precise, low-variability reference method for body fat with excellent reproducibility; minor between-machine and software-version differences exist but within-person tracking is reliable.
 - **Major confounders.** reverse causation (illness-related fat loss in older adults); hydration status of lean compartment; scanner/software differences; age- and sex-dependent reference ranges; fat distribution not captured by total %
 - **Testing cadence.** baseline + every 1-2 years
+- **Standardization (No usable SD).** Body-fat-percentage HRs are reported per 5 percentage points with no population SD available to convert to a per-SD basis.
 - **Modifiability (high).** Caloric restriction / dietary change plus aerobic and resistance exercise; GLP-1 receptor agonists (semaglutide, tirzepatide) and bariatric surgery for substantial reductions. — *effect:* Lifestyle programs reduce total body fat ~3-8% of body weight; GLP-1/GIP agonists reduce fat mass 10-20%+; bariatric surgery 20-30%+.; *timeframe:* 3-12 months for meaningful change; *evidence:* RCT meta-analysis. Look AHEAD lifestyle trial; STEP (semaglutide) and SURMOUNT (tirzepatide) RCT programs; bariatric surgery cohorts.
-- **Outcome evidence.** All-cause mortality HR/SD 1.00 (tier B, approximate); CVD HR/SD 1.21 (tier B, unverified); Cancer HR/SD 1.10 (tier B, unverified); Dementia HR/SD 1.00 (tier C, unverified); Frailty HR/SD 1.00 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.00 (tier B, approximate); CVD native HR 1.20 [unconvertible, tier B]; Cancer native HR 1.15 [unconvertible, tier B]; Dementia (documented, no pooled HR); Frailty native HR 1.18 [unconvertible, tier C]
 
 ### Visceral adipose tissue (VAT)
 
@@ -1067,8 +1072,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** clean — CT/MRI and DXA visceral algorithms quantify VAT precisely with low measurement error; bioimpedance estimates are noisier. Strong, depot-specific pathophysiologic signal.
 - **Major confounders.** sex (men accumulate more VAT); age; ethnicity (Asian populations higher VAT at given BMI); menopausal status; reverse causation in advanced illness; measurement modality differences
 - **Testing cadence.** baseline + every 1-2 years
+- **Standardization (No usable SD).** VAT standardizes for most outcomes; the frailty cell alone is reported per 100 g of visceral fat with no usable population SD.
 - **Modifiability (high).** Caloric restriction, low-refined-carbohydrate diet, and especially aerobic exercise preferentially mobilize visceral fat; GLP-1/GIP agonists and bariatric surgery produce large VAT reductions. — *effect:* Aerobic exercise without weight loss can reduce VAT ~6-10%; combined lifestyle 15-30%; GLP-1 agonists and bariatric surgery reduce VAT substantially more than subcutaneous fat.; *timeframe:* 3-6 months; *evidence:* RCT meta-analysis. Meta-analyses of exercise and visceral fat (Vissers D et al. PLoS One 2013); STEP/SURMOUNT GLP-1 imaging substudies.
-- **Outcome evidence.** All-cause mortality HR/SD 1.21 (tier B, unverified); CVD HR/SD 1.32 (tier A, approximate); Cancer HR/SD 1.20 (tier C, unverified); Dementia HR/SD 1.15 (tier C, unverified); Frailty HR/SD 1.18 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.08 (tier B, verified); CVD HR/SD 1.32 (tier A, approximate); Cancer HR/SD 1.21 (tier B, verified); Dementia HR/SD 1.14 (tier B, verified); Frailty native HR 1.07 [unconvertible, tier C]
 
 ### Bone mineral density
 
@@ -1091,8 +1097,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Inexpensive and predictive, but measurement site and observer technique vary, and it does not separate visceral from subcutaneous fat; standardized protocols improve reliability.
 - **Major confounders.** measurement site/protocol differences; observer technique; respiratory phase / posture; sex and ethnicity (different risk thresholds); reverse causation in advanced illness
 - **Testing cadence.** baseline + annual
+- **Standardization (Mixed metrics).** Mortality and cancer cells are per-unit HRs converted to the per-SD scale; the frailty cell is a categorical high-vs-normal waist contrast and is shown separately.
 - **Modifiability (high).** Caloric restriction, reduced refined-carbohydrate intake, aerobic and resistance exercise; GLP-1/GIP agonists and bariatric surgery for large reductions. — *effect:* Lifestyle programs reduce waist circumference ~3-7 cm; GLP-1/GIP agonists 7-15+ cm; bariatric surgery substantially more.; *timeframe:* 3-6 months; *evidence:* RCT meta-analysis. Look AHEAD and Diabetes Prevention Program lifestyle trials; STEP/SURMOUNT GLP-1/GIP RCTs.
-- **Outcome evidence.** All-cause mortality HR/SD 1.20 (tier A, verified); CVD HR/SD 1.27 (tier A, verified); Cancer HR/SD 1.14 (tier B, approximate); Dementia HR/SD 1.10 (tier C, approximate); Frailty HR/SD 1.20 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.20 (tier A, verified); CVD HR/SD 1.27 (tier A, verified); Cancer HR/SD 1.14 (tier B, approximate); Dementia HR/SD 1.10 (tier C, approximate); Frailty native HR 1.57 [categorical, tier B]
 
 ### Waist:hip ratio
 
@@ -1103,8 +1110,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Captures fat distribution well and is BMI-independent, but depends on two measurements each with site/observer variability; hip circumference is influenced by both fat and gluteal muscle/bone.
 - **Major confounders.** measurement technique for both waist and hip; sex (different distributions and thresholds); ethnicity; menopausal/hormonal status; muscularity of hip/gluteal region
 - **Testing cadence.** baseline + annual
+- **Standardization (Mixed metrics).** Mortality and CVD cells are per-SD HRs; the cancer cell is a categorical highest-vs-lowest WHR contrast; dementia and frailty are left as no-data because no WHR-specific usable hazard ratio could be sourced.
 - **Modifiability (moderate).** Caloric restriction and aerobic/resistance exercise modestly improve WHR by mobilizing central fat; GLP-1/GIP agonists and bariatric surgery produce larger shifts. WHR is harder to change than waist circumference because hip dimension also shifts. — *effect:* Lifestyle interventions improve WHR modestly (~0.01-0.03 absolute); pharmacologic and surgical weight loss produce larger changes.; *timeframe:* 6-12 months; *evidence:* RCT meta-analysis. Meta-analyses of exercise/diet and body fat distribution; GLP-1/GIP weight-loss RCT programs.
-- **Outcome evidence.** All-cause mortality HR/SD 1.15 (tier A, approximate); CVD HR/SD 1.27 (tier A, approximate); Cancer HR/SD 1.10 (tier C, unverified); Dementia HR/SD 1.12 (tier C, unverified); Frailty HR/SD 1.18 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.15 (tier A, approximate); CVD HR/SD 1.27 (tier A, approximate); Cancer native HR 1.39 [categorical, tier B]; Dementia (documented, no pooled HR); Frailty (documented, no pooled HR)
 
 ### BMI
 
@@ -1128,8 +1136,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — A raw, device-measured BIA parameter (no compartment model assumptions), but values depend on device, electrode placement, frequency, hydration, recent food/exercise and ambient conditions; reference ranges are age- and sex-specific.
 - **Major confounders.** hydration status; device and frequency differences; electrode placement; recent food intake / exercise; age and sex (strong reference effects); body temperature
 - **Testing cadence.** baseline + every 6-12 months
+- **Standardization (No usable SD).** Phase-angle HRs are reported per degree or as percentile-category contrasts, without a population SD for per-SD standardization.
 - **Modifiability (moderate).** Resistance exercise and adequate protein/energy intake raise phase angle by increasing body cell mass and cell-membrane integrity; treatment of underlying inflammation and correction of malnutrition also improve it. — *effect:* Resistance-training and nutritional interventions raise phase angle modestly (~0.2-0.5 degrees) over months in older or clinical populations.; *timeframe:* 3-6 months; *evidence:* RCT. RCTs of resistance training and nutritional supplementation reporting improvements in BIA phase angle in older and clinical populations.
-- **Outcome evidence.** All-cause mortality HR/SD 1.45 (tier B, unverified); CVD HR/SD 1.35 (tier C, unverified); Cancer HR/SD 1.50 (tier C, unverified); Dementia (documented, no pooled HR); Frailty HR/SD 1.55 (tier B, unverified)
+- **Outcome evidence.** All-cause mortality native HR 0.73 [unconvertible, tier B]; CVD native HR 1.33 [categorical, tier B]; Cancer (documented, no pooled HR); Dementia (documented, no pooled HR); Frailty (documented, no pooled HR)
 
 
 ## Cardiovascular & Autonomic Function
@@ -1143,9 +1152,8 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — High within-person visit-to-visit variability, white-coat and masked effects, cuff/technique error and regression dilution attenuate single-occasion measurements; averaging multiple readings improves reliability.
 - **Major confounders.** white-coat / masked hypertension; measurement technique and cuff size; time of day and recent activity/caffeine; antihypertensive medication; acute stress / anxiety; regression dilution from single readings
 - **Testing cadence.** baseline + at least annual; more frequent if elevated or treated
-- **Standardization (U-shaped (frailty)).** Most BP cells convert cleanly per-SD, but the frailty cell reflects a U-shaped, age-dependent relation (low BP marks frailty in the oldest-old) and is kept as a categorical hypertension contrast.
 - **Modifiability (high).** Sodium reduction, weight loss, DASH-style diet, aerobic exercise, alcohol moderation, and antihypertensive medication (the most reliably effective lever). — *effect:* Lifestyle change lowers SBP ~4-11 mmHg; single antihypertensive agents lower SBP ~8-10 mmHg; combination therapy can lower SBP 20+ mmHg.; *timeframe:* Days to weeks for drugs; weeks to months for lifestyle change.; *evidence:* RCT meta-analysis. Blood Pressure Lowering Treatment Trialists' Collaboration meta-analyses; DASH and lifestyle-intervention RCTs.
-- **Outcome evidence.** All-cause mortality HR/SD 1.19 (tier A, approximate); CVD HR/SD 1.87 (tier A, verified); Cancer HR/SD 1.13 (tier C, verified); Dementia HR/SD 1.33 (tier B, verified); Frailty native HR 1.14 [categorical, tier C]
+- **Outcome evidence.** All-cause mortality HR/SD 1.19 (tier A, approximate); CVD HR/SD 1.87 (tier A, verified); Cancer HR/SD 1.13 (tier C, verified); Dementia HR/SD 1.33 (tier B, verified); Frailty (documented, no pooled HR)
 
 ### Ambulatory blood pressure
 
@@ -1158,7 +1166,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** as indicated for diagnosis/treatment monitoring; not routinely repeated
 - **Standardization (Dipping pattern).** Average ambulatory SBP cells convert cleanly per-SD, but the dementia signal rests on a categorical nocturnal-dipping pattern that cannot be placed on a per-SD scale.
 - **Modifiability (high).** Same levers as office BP (sodium reduction, weight loss, exercise, antihypertensives); evening dosing of antihypertensives can specifically lower nighttime BP and improve dipping in some patients. — *effect:* Antihypertensive therapy lowers 24-hour SBP ~10-15 mmHg; lifestyle change ~5-10 mmHg over 24-hour average.; *timeframe:* Weeks for drug effects; weeks to months for lifestyle change.; *evidence:* RCT meta-analysis. Ambulatory-BP substudies of antihypertensive RCTs; BPLTTC meta-analyses.
-- **Outcome evidence.** All-cause mortality HR/SD 1.23 (tier A, verified); CVD HR/SD 1.45 (tier A, verified); Cancer (documented, no pooled HR); Dementia native HR 1.31 [categorical, tier C]; Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality HR/SD 1.23 (tier A, verified); CVD HR/SD 1.45 (tier A, verified); Cancer (documented, no pooled HR); Dementia native HR 1.64 [categorical, tier B]; Frailty (documented, no pooled HR)
 
 ### Pulse wave velocity (arterial stiffness)
 
@@ -1171,7 +1179,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline + every few years; not routinely repeated
 - **Standardization (Mixed metrics).** CVD evidence is native per-SD and mortality is per-unit-convertible, but dementia/frailty cells rest on heterogeneous categorical high-vs-low contrasts from small cohorts.
 - **Modifiability (moderate).** Aerobic exercise, blood-pressure lowering, weight loss, sodium restriction; aerobic training has the most consistent direct destiffening effect. — *effect:* Aerobic exercise lowers cfPWV ~0.5-1.0 m/s in middle-aged/older adults; antihypertensive therapy reduces PWV partly via BP lowering. Stiffness rises ~0.1 m/s per year with aging, so gains are partial.; *timeframe:* 8-12 weeks for exercise effects.; *evidence:* RCT meta-analysis. Exercise-training RCT meta-analyses on arterial stiffness (e.g., aerobic-training PWV meta-analyses).
-- **Outcome evidence.** All-cause mortality HR/SD 1.52 (tier A, verified); CVD HR/SD 1.30 (tier A, verified); Cancer (documented, no pooled HR); Dementia native HR 1.50 [categorical, tier C]; Frailty native HR 1.45 [categorical, tier C]
+- **Outcome evidence.** All-cause mortality HR/SD 1.52 (tier A, verified); CVD HR/SD 1.30 (tier A, verified); Cancer (documented, no pooled HR); Dementia native HR 1.50 [categorical, tier C]; Frailty native HR 1.36 [categorical, tier B]
 
 ### Endothelial function (FMD / peripheral arterial tonometry)
 
@@ -1182,9 +1190,8 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** noisy — FMD is highly operator-dependent with substantial measurement variability; results depend on baseline diameter, cuff position, temperature, fasting and prior exercise/diet. Tonometry indices are more reproducible but measure a related, not identical, construct.
 - **Major confounders.** operator skill and image analysis; baseline arterial diameter; room temperature, fasting state, recent food/exercise/caffeine; menstrual cycle phase; time of day; vasoactive medications
 - **Testing cadence.** research / specialized use; not part of routine screening
-- **Standardization (Noisy / patient pop.).** FMD has high measurement noise and most outcome evidence comes from patient populations; CVD/mortality cells are per-unit-convertible but the per-SD exponent is large, and dementia evidence is categorical and weak.
 - **Modifiability (moderate).** Aerobic exercise, smoking cessation, weight loss, Mediterranean-style diet; statins and antihypertensives also improve endothelial function. — *effect:* Aerobic exercise improves brachial FMD by ~1-3 percentage points in adults with impaired function; effects are larger in those with greater baseline dysfunction.; *timeframe:* 4-12 weeks; some dietary effects within days.; *evidence:* RCT meta-analysis. Exercise-training RCT meta-analyses on flow-mediated dilation.
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 0.73 (tier B, verified); Cancer (documented, no pooled HR); Dementia native HR 0.79 [categorical, tier C]; Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 0.73 (tier B, verified); Cancer (documented, no pooled HR); Dementia HR/SD 0.83 (tier B, verified); Frailty (documented, no pooled HR)
 
 ### Resting heart rate
 
@@ -1197,7 +1204,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline + annual; continuous/frequent if wearable-tracked
 - **Standardization (Marker not causal).** Most cells convert cleanly per-SD, but resting heart rate is largely a marker of fitness/autonomic tone (MR and rate-lowering trials give limited causal support); the dementia cell uses categorical heart-rate bands.
 - **Modifiability (high).** Regular aerobic (endurance) exercise is the primary lever; weight loss, reduced stimulant intake, stress reduction and treatment of conditions raising heart rate also help. Beta-blockers lower heart rate pharmacologically. — *effect:* Endurance training lowers resting heart rate by ~5-12 bpm depending on baseline fitness and training volume.; *timeframe:* Several weeks to a few months of consistent training.; *evidence:* RCT meta-analysis. Endurance-training RCT meta-analyses on resting heart rate (e.g., aerobic-exercise resting-HR meta-analyses).
-- **Outcome evidence.** All-cause mortality HR/SD 1.10 (tier A, verified); CVD HR/SD 1.17 (tier A, verified); Cancer HR/SD 1.16 (tier B, verified); Dementia native HR 1.55 [categorical, tier B]; Frailty HR/SD 1.07 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.10 (tier A, verified); CVD HR/SD 1.17 (tier A, verified); Cancer HR/SD 1.16 (tier B, verified); Dementia native HR 1.55 [categorical, tier B]; Frailty HR/SD 1.31 (tier C, verified)
 
 ### Echocardiographic measures (LV mass / diastolic function)
 
@@ -1210,7 +1217,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** as clinically indicated; not part of routine population screening
 - **Standardization (Mixed; thin late-life).** LV mass cells are native per-SD, but diastolic-function grading is partly categorical and dementia/frailty evidence rests on present-vs-absent contrasts from heterogeneous cohorts.
 - **Modifiability (moderate).** Blood-pressure control is the dominant lever for LV mass regression; weight loss, sodium reduction, treatment of sleep apnea and aerobic exercise also help. Diastolic function is less readily reversible. — *effect:* Effective antihypertensive therapy regresses LV mass by ~10-15% over ~6-12 months (ARB/ACE-inhibitor and CCB regimens most effective); diastolic improvement is more modest.; *timeframe:* 6-12 months for meaningful LV mass regression.; *evidence:* RCT meta-analysis. Antihypertensive RCT meta-analyses of LV mass regression (e.g., Klingbeil 2003 meta-analysis of drug-class effects on LV mass).
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD (documented, no pooled HR); Cancer (documented, no pooled HR); Dementia native HR 1.35 [categorical, tier C]; Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD (documented, no pooled HR); Cancer (documented, no pooled HR); Dementia native HR 1.90 [categorical, tier B]; Frailty (documented, no pooled HR)
 
 
 ## Renal & Hepatic Function
@@ -1224,8 +1231,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** clean — Cystatin C is less affected by muscle mass and diet than creatinine; assays are internationally standardized. Modestly influenced by thyroid status, corticosteroids, and inflammation.
 - **Major confounders.** thyroid dysfunction; corticosteroid / immunosuppressant use; systemic inflammation and adiposity; smoking; acute illness
 - **Testing cadence.** baseline + annual; more frequent in CKD or with nephrotoxic exposures
+- **Standardization (Clinical strata).** eGFR standardizes for mortality and CVD; the frailty cell is reported across clinical eGFR strata rather than per SD.
 - **Modifiability (moderate).** Blood-pressure control (RAS blockade), glycemic control, SGLT2 inhibitors, avoidance of nephrotoxins, and treatment of the underlying disease slow eGFR decline; SGLT2 inhibitors and finerenone reduce eGFR slope decline in trials. — *effect:* SGLT2 inhibitors slow chronic eGFR decline by ~1-2 mL/min/1.73m2 per year and reduce kidney-failure and mortality endpoints; established eGFR loss is largely not reversible.; *timeframe:* Months to years (slope effect); an acute dip then stabilization within weeks of starting SGLT2i/RAS blockade; *evidence:* RCT meta-analysis. Nuffield Department of Population Health SGLT2 inhibitor Meta-Analysis (SMART-C). Lancet 2022;400:1788-1801. doi:10.1016/S0140-6736(22)02074-8
-- **Outcome evidence.** All-cause mortality HR/SD 1.45 (tier A, approximate); CVD HR/SD 1.39 (tier A, approximate); Cancer HR/SD 1.10 (tier C, unverified); Dementia HR/SD 1.16 (tier B, approximate); Frailty HR/SD 1.30 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.45 (tier A, approximate); CVD HR/SD 1.39 (tier A, approximate); Cancer (documented, no pooled HR); Dementia HR/SD 1.16 (tier B, approximate); Frailty native HR 2.28 [categorical, tier B]
 
 ### Cystatin C
 
@@ -1237,7 +1245,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** corticosteroid / immunosuppressant use; thyroid dysfunction; systemic inflammation; obesity; smoking
 - **Testing cadence.** baseline + annual
 - **Modifiability (low).** No direct cystatin C-targeting therapy; the marker improves with control of kidney injury (blood pressure, glycemic control, SGLT2 inhibitors), weight loss, and reduction of corticosteroid exposure and inflammation. — *effect:* Cystatin C tracks the underlying GFR and inflammatory state; meaningful change requires improving kidney function or body composition. Modest reductions seen with weight loss and SGLT2 inhibitors.; *timeframe:* Months; *evidence:* observational. Weight-loss and SGLT2 inhibitor cohort/trial data showing modest cystatin C reduction; no direct cystatin C-lowering therapy exists.
-- **Outcome evidence.** All-cause mortality HR/SD 1.32 (tier A, verified); CVD HR/SD 1.57 (tier A, verified); Cancer HR/SD 1.12 (tier C, unverified); Dementia HR/SD 1.20 (tier C, approximate); Frailty HR/SD 1.28 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.32 (tier A, verified); CVD HR/SD 1.57 (tier A, verified); Cancer HR/SD 1.16 (tier B, verified); Dementia HR/SD 1.20 (tier C, approximate); Frailty HR/SD 1.29 (tier B, verified)
 
 ### Albuminuria (urine albumin:creatinine ratio)
 
@@ -1248,8 +1256,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — High within-person biological variability; affected by exercise, fever, posture, hydration and menstrual contamination. Repeat measurement and first-morning samples improve reliability; the marker is strongly right-skewed and analyzed on a log scale.
 - **Major confounders.** recent vigorous exercise; fever / acute illness / urinary tract infection; uncontrolled hypertension or hyperglycemia; menstrual blood contamination; hydration status and upright posture
 - **Testing cadence.** baseline + annual; more frequent in diabetes, hypertension, or CKD
+- **Standardization (No usable SD).** Albuminuria standardizes for mortality and CVD; the cancer cell is reported per doubling of urinary albumin with no usable log-scale SD.
 - **Modifiability (high).** RAS blockade (ACE inhibitors / ARBs), SGLT2 inhibitors, the nonsteroidal MRA finerenone, GLP-1 receptor agonists, blood-pressure and glycemic control, weight loss and sodium restriction reduce albuminuria. — *effect:* RAS blockade lowers UACR ~30-40%; SGLT2 inhibitors and finerenone add further reductions; substantial albuminuria reduction is achievable and tracks lower kidney and CV risk.; *timeframe:* Weeks to a few months; *evidence:* RCT meta-analysis. FIDELIO-DKD/FIGARO-DKD (finerenone) and CREDENCE/DAPA-CKD (SGLT2 inhibitor) trials; RAS blockade albuminuria meta-analyses.
-- **Outcome evidence.** All-cause mortality HR/SD 1.50 (tier A, approximate); CVD HR/SD 1.59 (tier A, approximate); Cancer HR/SD 1.10 (tier C, unverified); Dementia HR/SD 1.22 (tier B, approximate); Frailty HR/SD 1.25 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.50 (tier A, approximate); CVD HR/SD 1.59 (tier A, approximate); Cancer native HR 1.06 [unconvertible, tier B]; Dementia HR/SD 1.22 (tier B, approximate); Frailty (documented, no pooled HR)
 
 ### ALT
 
@@ -1261,7 +1270,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** muscle mass / sarcopenia (low ALT); vigorous exercise and muscle injury; obesity and insulin resistance; alcohol intake; hepatotoxic medications; sex and age
 - **Testing cadence.** baseline + annual; more frequent with known liver disease or hepatotoxic drugs
 - **Modifiability (moderate).** Weight loss, exercise, reduced alcohol and treatment of MASLD lower elevated ALT; for low ALT in older adults, resistance training and adequate protein to rebuild muscle mass are the relevant interventions. — *effect:* 7-10% weight loss can normalize elevated ALT in MASLD; resistance training raises muscle mass and can modestly raise low ALT.; *timeframe:* 3-6 months; *evidence:* RCT meta-analysis. Lifestyle/weight-loss RCTs in MASLD (e.g. Vilar-Gomez 2015); resistance-training trials for sarcopenia.
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.05 (tier C, unverified); Cancer HR/SD 1.08 (tier C, unverified); Dementia HR/SD 0.92 (tier C, unverified); Frailty HR/SD 0.80 (tier B, approximate)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD (documented, no pooled HR); Cancer (documented, no pooled HR); Dementia HR/SD 0.92 (tier B, approximate); Frailty HR/SD 0.80 (tier B, approximate)
 
 ### AST
 
@@ -1272,8 +1281,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Less liver-specific than ALT; elevated by muscle injury, hemolysis, vigorous exercise and cardiac events. Reference ranges are population-dependent.
 - **Major confounders.** skeletal / cardiac muscle injury; vigorous exercise; hemolysis of the sample; alcohol intake; hepatotoxic medications; muscle mass
 - **Testing cadence.** baseline + annual; more frequent with liver disease or hepatotoxic drugs
+- **Standardization (Clinical cutpoint).** The AST cancer cell contrasts a clinically elevated AST group against normal, not a continuous per-SD exposure.
 - **Modifiability (moderate).** Weight loss, exercise, alcohol reduction and treatment of underlying liver disease lower elevated AST; for low AST in older adults, resistance training and adequate protein are relevant. — *effect:* Lifestyle change normalizes mildly elevated AST in MASLD; muscle-building raises low AST modestly.; *timeframe:* 3-6 months; *evidence:* RCT meta-analysis. Lifestyle/weight-loss RCTs in MASLD; resistance-training trials for sarcopenia.
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.06 (tier C, unverified); Cancer HR/SD 1.10 (tier C, unverified); Dementia HR/SD 0.93 (tier C, unverified); Frailty HR/SD 0.85 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD (documented, no pooled HR); Cancer native HR 3.57 [categorical, tier B]; Dementia HR/SD 1.05 (tier B, approximate); Frailty (documented, no pooled HR)
 
 ### GGT
 
@@ -1285,7 +1295,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** alcohol intake; enzyme-inducing medications (e.g. anticonvulsants); obesity and insulin resistance; biliary obstruction; smoking
 - **Testing cadence.** baseline + annual
 - **Modifiability (high).** Alcohol reduction or abstinence, weight loss, exercise, treatment of MASLD and withdrawal of enzyme-inducing drugs lower GGT. — *effect:* Alcohol cessation can roughly halve an elevated GGT within weeks; weight loss and exercise produce further reductions.; *timeframe:* 2-8 weeks for alcohol-related GGT; 3-6 months for metabolic causes; *evidence:* observational. Alcohol-cessation and lifestyle intervention cohort studies showing rapid GGT decline.
-- **Outcome evidence.** All-cause mortality HR/SD 1.22 (tier A, approximate); CVD HR/SD 1.23 (tier A, verified); Cancer HR/SD 1.18 (tier B, approximate); Dementia HR/SD 1.12 (tier C, unverified); Frailty HR/SD 1.15 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.22 (tier A, approximate); CVD HR/SD 1.23 (tier A, verified); Cancer HR/SD 1.18 (tier B, approximate); Dementia HR/SD 1.33 (tier B, verified); Frailty (documented, no pooled HR)
 
 ### Fibrosis-4 index (FIB-4)
 
@@ -1296,8 +1306,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Derived index; inherits AST/ALT and platelet variability and loses specificity at older ages (the unadjusted low cut-point over-flags people over 65). Strongly right-skewed; best used with validated cut-points.
 - **Major confounders.** age (inflates the score; needs age-specific cut-points); AST/ALT variability (muscle injury, exercise); thrombocytopenia from non-liver causes; acute illness; alcohol intake
 - **Testing cadence.** baseline + every 1-3 years in metabolic-risk patients; more frequent if elevated
+- **Standardization (Clinical strata).** FIB-4 outcome HRs are reported across clinical fibrosis-risk strata (e.g. FIB-4 >=2.67 vs <1.3), not as a continuous per-SD exposure.
 - **Modifiability (moderate).** Weight loss, exercise, alcohol reduction, treatment of MASLD/MASH (including resmetirom and GLP-1 receptor agonists) and control of metabolic risk can stabilize or reduce FIB-4 by improving the underlying fibrosis and its AST/ALT inputs. — *effect:* Significant weight loss and MASH-directed therapy can lower FIB-4 and reverse early fibrosis; established advanced fibrosis (cirrhosis) is largely fixed.; *timeframe:* 6-24 months; *evidence:* RCT meta-analysis. MASH RCTs (e.g. MAESTRO-NASH resmetirom, GLP-1 RA trials) and lifestyle/weight-loss studies showing fibrosis-marker improvement.
-- **Outcome evidence.** All-cause mortality HR/SD 1.45 (tier C, unverified); CVD HR/SD 1.28 (tier B, unverified); Cancer HR/SD 1.35 (tier C, unverified); Dementia HR/SD 1.18 (tier C, unverified); Frailty HR/SD 1.30 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality native HR 1.64 [categorical, tier B]; CVD native HR 2.96 [categorical, tier B]; Cancer native HR 1.16 [categorical, tier B]; Dementia native HR 1.52 [categorical, tier B]; Frailty (documented, no pooled HR)
 
 ### Uric acid
 
@@ -1308,8 +1319,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** moderate — Analytically reliable, but strongly influenced by renal clearance, diuretics, diet, alcohol and sex; the U-shaped outcome relationship complicates interpretation of a single value.
 - **Major confounders.** kidney function / eGFR; diuretic and urate-lowering medication; alcohol and purine-rich diet; sex and menopausal status; obesity and insulin resistance
 - **Testing cadence.** baseline + annual; more frequent during urate-lowering therapy
+- **Standardization (Categorical contrast).** Uric acid has U-shaped associations; the cancer cell shown off-scale is a highest-vs-lowest category contrast, not a per-SD estimate.
 - **Modifiability (high).** Urate-lowering drugs (allopurinol, febuxostat), weight loss, reduced alcohol and purine intake, and avoidance of urate-raising diuretics lower serum uric acid; SGLT2 inhibitors and losartan modestly lower urate. — *effect:* Allopurinol/febuxostat reliably lower urate to target (<6 mg/dL); lifestyle change lowers it modestly. Whether lowering urate improves non-gout outcomes is unproven (neutral cardiovascular trials).; *timeframe:* 2-8 weeks for pharmacologic lowering; *evidence:* RCT meta-analysis. Urate-lowering therapy RCTs (e.g. CARES, FAST for safety; ALL-HEART for cardiovascular outcomes - neutral).
-- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.13 (tier A, approximate); Cancer HR/SD 1.05 (tier C, unverified); Dementia HR/SD 0.94 (tier C, unverified); Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.13 (tier A, approximate); Cancer native HR 1.11 [categorical, tier B]; Dementia (documented, no pooled HR); Frailty (documented, no pooled HR)
 
 
 ## Cognitive & Neurological
@@ -1324,7 +1336,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** age; education / cognitive reserve; depression; vision and motor impairment; medication (sedatives, anticholinergics); practice effects; subclinical cerebrovascular disease (reverse causation)
 - **Testing cadence.** baseline + every 1-2 years
 - **Modifiability (moderate).** Aerobic and combined exercise training, speed-of-processing cognitive training (e.g. ACTIVE-trial Useful Field of View training), and management of vascular risk factors (blood pressure, glycemia). — *effect:* ACTIVE speed-of-processing training produced large immediate gains (effect size ~1.5 SD on trained tasks) with partial 10-year persistence; aerobic exercise yields small-to-moderate gains (~0.2-0.3 SD). Far transfer to function is modest.; *timeframe:* Weeks for trained-task gains; 6-12 months for exercise/vascular effects.; *evidence:* RCT. Rebok GW, et al. Ten-year effects of the advanced cognitive training for independent and vital elderly cognitive training trial on cognition and everyday functioning in older adults. J Am Geriatr Soc. 2014;62(1):16-24. doi:10.1111/jgs.12607. PMID:24417410
-- **Outcome evidence.** All-cause mortality HR/SD 1.25 (tier B, verified); CVD HR/SD 1.36 (tier B, verified); Cancer HR/SD 0.85 (tier C, verified); Dementia HR/SD 1.65 (tier B, approximate); Frailty HR/SD 1.35 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.25 (tier B, verified); CVD HR/SD 1.36 (tier B, verified); Cancer HR/SD 0.85 (tier C, verified); Dementia HR/SD 1.65 (tier B, approximate); Frailty (documented, no pooled HR)
 
 ### Working memory
 
@@ -1336,7 +1348,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** age; education / cognitive reserve; depression and anxiety; attention/effort; practice effects; subclinical neurodegeneration (reverse causation)
 - **Testing cadence.** baseline + every 1-2 years
 - **Modifiability (low).** Working-memory and process-based cognitive training, aerobic and combined exercise, and vascular-risk management. — *effect:* Working-memory training produces reliable near-transfer gains (~0.5-0.7 SD on trained tasks) but limited far transfer to untrained abilities; exercise yields small gains (~0.1-0.2 SD).; *timeframe:* Weeks for trained-task gains; 3-6 months for exercise effects.; *evidence:* RCT meta-analysis. Melby-Lervag M, Hulme C. Is working memory training effective? A meta-analytic review. Dev Psychol. 2013;49(2):270-291. doi:10.1037/a0028228. PMID:22612437 (near transfer reliable, far transfer minimal).
-- **Outcome evidence.** All-cause mortality HR/SD 1.15 (tier C, unverified); CVD HR/SD 1.12 (tier C, unverified); Cancer (documented, no pooled HR); Dementia HR/SD 1.55 (tier C, unverified); Frailty HR/SD 1.25 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD (documented, no pooled HR); Cancer (documented, no pooled HR); Dementia (documented, no pooled HR); Frailty (documented, no pooled HR)
 
 ### Executive function
 
@@ -1348,7 +1360,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** age; education / cognitive reserve; processing-speed contamination of timed tasks; depression; practice effects; subclinical cerebrovascular and neurodegenerative disease (reverse causation)
 - **Testing cadence.** baseline + every 1-2 years
 - **Modifiability (moderate).** Aerobic and combined exercise training, multidomain lifestyle interventions (e.g. FINGER trial), and vascular-risk-factor management. — *effect:* Multidomain intervention (FINGER) improved executive-function composite by ~0.15-0.25 SD versus control over 2 years; aerobic exercise yields small gains (~0.1-0.2 SD).; *timeframe:* 6-24 months for measurable change.; *evidence:* RCT. Ngandu T, et al. A 2 year multidomain intervention of diet, exercise, cognitive training, and vascular risk monitoring versus control to prevent cognitive decline in at-risk elderly people (FINGER): a randomised controlled trial. Lancet. 2015;385(9984):2255-2263. doi:10.1016/S0140-6736(15)60461-5. PMID:25771249
-- **Outcome evidence.** All-cause mortality HR/SD 1.22 (tier C, unverified); CVD HR/SD 1.18 (tier C, unverified); Cancer HR/SD 1.04 (tier C, unverified); Dementia HR/SD 1.60 (tier B, approximate); Frailty HR/SD 1.40 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD HR/SD 1.33 (tier B, verified); Cancer (documented, no pooled HR); Dementia HR/SD 1.60 (tier B, approximate); Frailty (documented, no pooled HR)
 
 ### pTau-217
 
@@ -1372,7 +1384,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** age (strong); chronic kidney disease (raises levels); BMI / blood volume (dilutional); any concurrent neurological injury or comorbidity; cardiovascular disease
 - **Testing cadence.** baseline; repeat at 1-2 years if monitoring
 - **Modifiability (low).** No established intervention reliably lowers plasma NfL in non-disease states; disease-modifying therapies (e.g. in MS, SMA) reduce NfL, and vascular-risk control may slow NfL rise. Lifestyle effects are unproven. — *effect:* Disease-modifying drugs in active neurological disease lower NfL substantially (30-70%); no demonstrated lifestyle-driven reduction in healthy aging.; *timeframe:* Months with effective disease-modifying therapy; no established lifestyle timeframe.; *evidence:* RCT. NfL reductions with disease-modifying therapy are established in multiple sclerosis and spinal muscular atrophy trials; no RCT shows lifestyle modification lowers NfL in healthy older adults.
-- **Outcome evidence.** All-cause mortality HR/SD 1.75 (tier B, approximate); CVD HR/SD 1.30 (tier C, unverified); Cancer (documented, no pooled HR); Dementia HR/SD 1.92 (tier B, verified); Frailty HR/SD 1.35 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 1.75 (tier B, approximate); CVD HR/SD 1.28 (tier B, verified); Cancer (documented, no pooled HR); Dementia HR/SD 1.92 (tier B, verified); Frailty (documented, no pooled HR)
 
 ### GFAP
 
@@ -1384,7 +1396,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** age; chronic kidney disease; BMI (dilutional); traumatic brain injury and other acute CNS insults; assay platform differences
 - **Testing cadence.** baseline; repeat at 1-2 years if monitoring
 - **Modifiability (low).** Anti-amyloid monoclonal antibodies lower plasma GFAP modestly as a downstream response biomarker; no lifestyle intervention has an established effect on GFAP. — *effect:* Anti-amyloid therapy produces modest GFAP reductions over 12-18 months; lifestyle effects unproven.; *timeframe:* 12-18 months with anti-amyloid therapy.; *evidence:* RCT. Anti-amyloid trials (donanemab TRAILBLAZER-ALZ 2; lecanemab Clarity AD) report plasma GFAP reductions as exploratory biomarkers; no RCT shows lifestyle modification lowers GFAP in healthy aging.
-- **Outcome evidence.** All-cause mortality HR/SD 1.35 (tier C, unverified); CVD HR/SD 1.20 (tier C, unverified); Cancer (documented, no pooled HR); Dementia HR/SD 1.72 (tier B, verified); Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD (documented, no pooled HR); Cancer (documented, no pooled HR); Dementia HR/SD 1.72 (tier B, verified); Frailty (documented, no pooled HR)
 
 
 ## Sleep & Recovery
@@ -1413,7 +1425,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline + annual; continuous if wearable-tracked
 - **Standardization (Clinical cutpoint).** Sleep-efficiency HRs are reported as low-vs-adequate category contrasts (e.g. <80% efficiency, or fragmentation quartiles), not a continuous per-SD exposure.
 - **Modifiability (high).** CBT-I (especially sleep-restriction and stimulus-control components, which raise efficiency by design), treatment of pain/nocturia, and treatment of sleep-disordered breathing. — *effect:* CBT-I reliably raises sleep efficiency by ~5-12 percentage points; among the most modifiable sleep parameters.; *timeframe:* 4-8 weeks of CBT-I.; *evidence:* RCT meta-analysis. Trauer JM et al. Cognitive behavioral therapy for chronic insomnia: a systematic review and meta-analysis. Ann Intern Med 2015;163:191-204.
-- **Outcome evidence.** All-cause mortality native HR 1.84 [categorical, tier C]; CVD native HR 1.36 [categorical, tier C]; Dementia native HR 1.22 [categorical, tier C]; Frailty native HR 1.31 [categorical, tier C]
+- **Outcome evidence.** All-cause mortality native HR 1.15 [categorical, tier B]; CVD native HR 1.34 [categorical, tier B]; Dementia native HR 1.22 [categorical, tier C]; Frailty native HR 1.31 [categorical, tier C]
 
 ### Deep (slow-wave) sleep duration
 
@@ -1426,7 +1438,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline + periodic; continuous trend if wearable-tracked
 - **Standardization (No usable SD).** Slow-wave-sleep HRs are reported per percentage point or per year of decline with no population SD available, and one cell is a quartile contrast — none can be standardized to per SD.
 - **Modifiability (low).** Slow-wave sleep is largely age-determined and not robustly modifiable. Regular aerobic exercise, avoidance of alcohol and certain sedatives near bedtime, and treatment of sleep-disordered breathing modestly preserve or increase slow-wave sleep; acoustic/closed-loop slow-oscillation stimulation can enhance delta power experimentally. — *effect:* Lifestyle measures produce small increases in slow-wave sleep (minutes); no intervention reliably restores youthful slow-wave sleep amounts.; *timeframe:* Weeks to months for exercise effects; acute for acoustic stimulation.; *evidence:* RCT. Exercise-and-sleep RCT meta-analyses; closed-loop acoustic stimulation trials (e.g., Ngo 2013, Neuron). No hard-outcome RCTs.
-- **Outcome evidence.** All-cause mortality native HR 1.27 [unconvertible, tier C]; CVD native HR 1.83 [categorical, tier C]; Dementia native HR 1.27 [unconvertible, tier C]
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD native HR 1.83 [categorical, tier C]; Dementia native HR 1.27 [unconvertible, tier C]
 
 ### REM sleep duration
 
@@ -1452,7 +1464,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** diagnostic test then re-test after intervention or major weight change
 - **Standardization (Clinical strata).** Sleep apnea severity is graded into clinical strata (normal/mild/moderate/severe by AHI cut-points) and is highly right-skewed; hard-outcome HRs are reported as severe-vs-none contrasts rather than per-SD slopes.
 - **Modifiability (high).** Continuous positive airway pressure (CPAP) is first-line and reliably normalizes AHI/ODI; weight loss (including bariatric surgery and GLP-1 agonists such as tirzepatide), mandibular advancement devices, positional therapy, and hypoglossal-nerve stimulation are alternatives. — *effect:* CPAP reduces AHI to <5 in most adherent users; ~10% weight loss can roughly halve AHI; tirzepatide reduced AHI by ~25-30 events/h in the SURMOUNT-OSA trial.; *timeframe:* Immediate for CPAP; weeks to months for weight-loss approaches.; *evidence:* RCT meta-analysis. CPAP RCTs and meta-analyses (SAVE 2016; meta-analyses on blood pressure and sleepiness); SURMOUNT-OSA tirzepatide RCT (Malhotra 2024, NEJM).
-- **Outcome evidence.** All-cause mortality native HR 1.60 [categorical, tier A]; CVD native HR 2.04 [categorical, tier A]; Cancer native HR 1.40 [categorical, tier C]; Dementia native HR 1.26 [categorical, tier B]; Frailty native HR 1.50 [categorical, tier C]
+- **Outcome evidence.** All-cause mortality native HR 1.60 [categorical, tier A]; CVD native HR 2.04 [categorical, tier A]; Cancer native HR 1.18 [categorical, tier B]; Dementia native HR 1.26 [categorical, tier B]; Frailty native HR 1.43 [categorical, tier C]
 
 ### Wearable-derived sleep regularity
 
@@ -1494,7 +1506,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline; recheck if symptomatic or on metformin/PPI long-term
 - **Standardization (U-shaped).** Serum B12 has a U-shaped mortality association: both deficiency and high/elevated B12 (often reflecting liver disease, malignancy or renal impairment) carry excess risk, so no linear per-SD HR is defensible.
 - **Modifiability (moderate).** Oral or intramuscular B12 (cobalamin) for deficiency; address malabsorption (pernicious anemia, metformin/PPI effect). — *effect:* Replacement reliably normalizes serum B12 and corrects deficiency-related anemia/neuropathy; high baseline B12 is not a treatment target (it reflects underlying disease).; *timeframe:* Weeks (hematologic response); months for neurologic recovery; *evidence:* RCT meta-analysis. B-Vitamin Treatment Trialists' Collaboration (homocysteine-lowering trials); B12 deficiency correction is effective for the deficiency syndrome, but supplementation in replete people has not reduced cardiovascular events, cancer or dementia.
-- **Outcome evidence.** All-cause mortality native HR 1.00 [categorical, tier B]; CVD (documented, no pooled HR); Cancer native HR 6.27 [categorical, tier B]; Dementia HR/SD 1.00 (tier B, unverified); Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality native HR 1.00 [categorical, tier B]; CVD (documented, no pooled HR); Cancer native HR 6.27 [categorical, tier B]; Dementia (documented, no pooled HR); Frailty (documented, no pooled HR)
 
 ### Folate
 
@@ -1507,7 +1519,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline; recheck if anemic or planning pregnancy
 - **Standardization (Trial contrast).** The folate cancer cell is a supplementation-vs-placebo randomized contrast (folic acid did not significantly change cancer incidence), not a per-SD estimate of circulating folate.
 - **Modifiability (high).** Dietary folate (leafy greens, legumes), folic acid supplements, and population-level grain fortification. — *effect:* Fortification and supplementation reliably raise serum/RBC folate and lower homocysteine ~20-25%; status is highly modifiable.; *timeframe:* 4-8 weeks for serum folate; ~3-4 months for RBC folate; *evidence:* RCT meta-analysis. B-Vitamin Treatment Trialists' Collaboration (Clarke 2010) and Vollset 2013 cancer meta-analysis: folate is highly modifiable but supplementation did not reduce cardiovascular events or cancer; periconceptional benefit (neural tube defects) is the clear exception.
-- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier B, verified); CVD HR/SD 1.00 (tier A, verified); Cancer native HR 1.06 [categorical, tier A]; Dementia HR/SD 1.00 (tier B, unverified); Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier B, verified); CVD HR/SD 1.00 (tier A, verified); Cancer native HR 1.06 [categorical, tier A]; Dementia native HR 0.61 [categorical, tier B]; Frailty (documented, no pooled HR)
 
 ### Methylmalonic acid (MMA)
 
@@ -1532,7 +1544,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** fish and seafood intake; fish-oil supplement use; overall diet quality; genetics of fatty-acid desaturation (FADS locus); assay/lab standardization
 - **Testing cadence.** baseline; recheck ~3-4 months after dietary change
 - **Modifiability (high).** Increased oily-fish intake or EPA/DHA supplementation reliably raises the red-cell omega-3 index. — *effect:* ~1-2 g/day EPA+DHA typically raises the index by 3-5 percentage points (e.g., from ~4% to ~8%); dose-dependent and durable.; *timeframe:* ~3-4 months to a new steady state (RBC membrane turnover); *evidence:* RCT meta-analysis. Dose-response supplementation trials of EPA/DHA and the omega-3 index; outcome trials (VITAL, STRENGTH, REDUCE-IT) show the index is highly modifiable but routine-dose supplementation has mostly NOT reduced hard CVD or mortality endpoints outside high-triglyceride/high-dose contexts.
-- **Outcome evidence.** All-cause mortality HR/SD 0.94 (tier A, verified); CVD HR/SD 0.92 (tier A, verified); Cancer HR/SD 0.95 (tier B, verified); Dementia HR/SD 0.78 (tier B, verified); Frailty HR/SD 0.92 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality HR/SD 0.94 (tier A, verified); CVD HR/SD 0.92 (tier A, verified); Cancer HR/SD 0.95 (tier B, verified); Dementia HR/SD 0.78 (tier B, verified); Frailty (documented, no pooled HR)
 
 ### Magnesium (RBC)
 
@@ -1557,7 +1569,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** acute-phase response / inflammation (lowers zinc); fasting state and time of day; hypoalbuminemia; trace-metal contamination of collection tubes; diet and supplement use
 - **Testing cadence.** baseline; interpret alongside CRP
 - **Modifiability (moderate).** Zinc-rich diet (meat, shellfish, legumes, nuts) and oral zinc supplements; address malabsorption and excess copper/iron competition. — *effect:* Supplementation reliably corrects deficiency; serum zinc is buffered so changes are modest, and excess zinc can cause copper deficiency.; *timeframe:* Weeks to months; *evidence:* observational. Zinc supplementation trials show benefit for deficiency syndromes (immune function, growth) but no large trial demonstrates reduced mortality, CVD or dementia; over-supplementation risks copper depletion.
-- **Outcome evidence.** All-cause mortality HR/SD 1.11 (tier B, unverified); CVD HR/SD 1.09 (tier C, unverified); Cancer (documented, no pooled HR); Dementia (documented, no pooled HR); Frailty HR/SD 1.11 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality (documented, no pooled HR); CVD (documented, no pooled HR); Cancer (documented, no pooled HR); Dementia (documented, no pooled HR); Frailty (documented, no pooled HR)
 
 ### Copper
 
@@ -1582,7 +1594,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Major confounders.** inflammation / acute-phase response; estrogen / oral contraceptives / pregnancy; liver synthetic function; copper status; smoking
 - **Testing cadence.** baseline; mainly used diagnostically (e.g., Wilson disease workup)
 - **Modifiability (low).** Ceruloplasmin is not a stand-alone intervention target; it is used diagnostically (Wilson disease, copper deficiency). Treating an underlying inflammatory state lowers reactive elevation. — *effect:* Reactive elevation falls when the inflammatory cause resolves; there is no rationale for targeting ceruloplasmin per se.; *timeframe:* Weeks to months (with resolution of inflammation); *evidence:* mechanistic. No outcome trial targets ceruloplasmin; its elevation in the general population is an inflammatory epiphenomenon.
-- **Outcome evidence.** All-cause mortality HR/SD 1.17 (tier C, unverified); CVD HR/SD 1.20 (tier B, unverified); Cancer (documented, no pooled HR); Dementia (documented, no pooled HR); Frailty (documented, no pooled HR)
+- **Outcome evidence.** All-cause mortality HR/SD 1.14 (tier B, verified); CVD HR/SD 1.04 (tier B, verified); Cancer (documented, no pooled HR); Dementia (documented, no pooled HR); Frailty (documented, no pooled HR)
 
 ### Transferrin saturation
 
@@ -1595,7 +1607,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline (morning, fasting); part of an iron panel with ferritin and TIBC
 - **Standardization (U-shaped).** Transferrin saturation has a U-shaped mortality relation: both low TSAT (iron deficiency) and high TSAT (iron overload) carry excess risk, so no single linear per-SD HR is defensible.
 - **Modifiability (high).** Low TSAT (iron deficiency): oral or IV iron repletion and treatment of blood loss. High TSAT (iron overload/hemochromatosis): therapeutic phlebotomy; address dietary/supplemental iron excess. — *effect:* Iron repletion reliably raises TSAT and corrects deficiency; phlebotomy reliably lowers iron stores in overload.; *timeframe:* Weeks to months; *evidence:* RCT. IV iron RCTs in heart failure (e.g., FAIR-HF, AFFIRM-AHF) improve symptoms/hospitalization in iron-deficient patients; phlebotomy is standard for hemochromatosis, though a general-population iron-reduction trial (VA PAD trial) was largely null for hard outcomes.
-- **Outcome evidence.** All-cause mortality native HR 1.40 [categorical, tier B]; CVD native HR 1.25 [categorical, tier B]; Cancer native HR 1.20 [categorical, tier C]; Dementia (documented, no pooled HR); Frailty native HR 1.30 [categorical, tier C]
+- **Outcome evidence.** All-cause mortality native HR 1.40 [categorical, tier B]; CVD native HR 1.25 [categorical, tier B]; Cancer native HR 1.50 [categorical, tier B]; Dementia (documented, no pooled HR); Frailty (documented, no pooled HR)
 
 ### TIBC
 
@@ -1620,7 +1632,7 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Testing cadence.** baseline; mainly relevant in low-selenium regions
 - **Standardization (U-shaped).** Selenium has a U-shaped mortality relation: deficiency and excess both carry risk, with benefit largely confined to a narrow range and only in populations with low baseline status; a single linear per-SD HR is not defensible.
 - **Modifiability (moderate).** Dietary selenium (Brazil nuts, seafood, organ meats) and supplements; chiefly relevant in low-selenium regions. Avoid excess (narrow therapeutic window). — *effect:* Supplementation reliably raises serum selenium and saturates selenoproteins; status is highly modifiable, but the safe-and-beneficial range is narrow.; *timeframe:* Weeks to months; *evidence:* RCT meta-analysis. SELECT (Lippman 2009, JAMA), NPC trial, and Cochrane reviews: selenium is highly modifiable but supplementation in replete populations did NOT reduce cancer, CVD or mortality and increased type 2 diabetes risk.
-- **Outcome evidence.** All-cause mortality native HR 0.83 [categorical, tier B]; CVD HR/SD 1.00 (tier A, approximate); Cancer HR/SD 1.00 (tier A, verified); Dementia (documented, no pooled HR); Frailty HR/SD 1.13 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality native HR 0.83 [categorical, tier B]; CVD HR/SD 1.00 (tier A, approximate); Cancer HR/SD 1.00 (tier A, verified); Dementia (documented, no pooled HR); Frailty HR/SD 1.14 (tier C, verified)
 
 ### TMAO (with choline)
 
@@ -1631,8 +1643,9 @@ exposure is continuous; categorical exposures show the native HR (see `data/HR_S
 - **Signal quality.** noisy — TMAO has high intra-individual variability (diet- and microbiome-dependent), is strongly raised by reduced renal clearance, and a single measurement is an unstable index; the causal interpretation versus renal-function confounding is debated.
 - **Major confounders.** renal function / eGFR (major); recent diet (red meat, fish, eggs); gut microbiome composition; FMO3 genotype/activity; fasting state; high intra-individual variability
 - **Testing cadence.** not routine; research/specialty use
+- **Standardization (Categorical contrast).** TMAO outcome HRs are reported as high-vs-low category contrasts; the literature does not provide per-SD estimates.
 - **Modifiability (moderate).** Reduce dietary precursors (red meat, egg yolk, high-dose carnitine/choline supplements); plant-forward diets and microbiome modulation lower TMAO. Renal-function support reduces accumulation. Choline itself remains an essential nutrient and should not be over-restricted. — *effect:* Dietary change can lower plasma TMAO ~20-50% over weeks, and a vegan/vegetarian microbiome produces little TMAO even after a precursor challenge.; *timeframe:* Weeks (diet/microbiome-dependent); *evidence:* observational. Feeding/dietary-intervention studies show TMAO is readily lowered by reducing animal-product intake; however, NO outcome trial has shown that lowering TMAO reduces mortality, CVD or dementia -- modifiability of the marker is established, but hard-outcome benefit is not.
-- **Outcome evidence.** All-cause mortality HR/SD 1.18 (tier A, unverified); CVD HR/SD 1.23 (tier A, unverified); Cancer (documented, no pooled HR); Dementia HR/SD 1.07 (tier C, unverified); Frailty HR/SD 1.13 (tier C, unverified)
+- **Outcome evidence.** All-cause mortality native HR 1.91 [categorical, tier A]; CVD native HR 1.62 [categorical, tier A]; Cancer (documented, no pooled HR); Dementia native HR 1.00 [categorical, tier B]; Frailty (documented, no pooled HR)
 
 
 ## Cancer Screening & Risk
