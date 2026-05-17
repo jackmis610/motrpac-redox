@@ -1,11 +1,16 @@
 # Longevity Biomarker Heat Map — Synthesis
 
 A 14-domain, 135-biomarker map of how testable biomarkers predict aging-related
-outcomes, with an intervention-modifiability layer. 519 evidence cells: 423
-quantified (336 standardized to a comparable HR-per-SD scale, 79 categorical,
-8 unconvertible) and 96 documented-but-unquantified. Conclusions below are drawn
-from the assembled data layer; verify all figures against the cited primary
-sources before clinical use.
+outcomes, with an intervention-modifiability layer. 519 evidence cells: 416
+quantified (321 standardized to a comparable HR-per-SD scale, 87 categorical,
+8 unconvertible) and 103 documented-but-unquantified.
+
+Every quantified cell has been checked against primary sources: 186 are
+**verified** (source located, HR and CI confirmed), 95 **approximate** (study
+identified, exact CI/N not confirmable), and 135 **unverified** (the cited study
+could not be matched to the stated figure — the estimate is retained as
+indicative and flagged, not invented). The per-cell `verification_status` is
+shown in every tooltip; treat unverified cells as provisional.
 
 ---
 
