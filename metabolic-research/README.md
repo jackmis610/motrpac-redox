@@ -1,127 +1,115 @@
 # Longevity Biomarker Heat Map
 
-A rigorous, citation-backed heat map of longevity biomarkers across multiple
-framings, with an intervention-modifiability layer. Built as both a defensible
-academic artifact and a clinical coaching tool for a metabolic longevity
-assessment protocol.
+A rigorous, citation-backed map of how testable biomarkers predict aging-related
+outcomes — across 14 domains, on one comparable scale, with an
+intervention-modifiability layer and a personal scoring dashboard.
 
-## Status
+> ⚠️ **This is a research and educational resource — not medical advice and not
+> a diagnostic tool.** See [`DISCLAIMER.md`](DISCLAIMER.md) before using it.
 
-**Complete and verified — all 14 domains.** 135 biomarkers, 519 evidence cells
-(356 quantified, 163 documented-but-unquantified); 241 cells standardized to a
-comparable HR-per-SD scale. Every quantified cell has been checked against
-primary sources across two passes — **257 verified, 99 approximate, 0
-unverified**; cells that could not be anchored to a real source were nulled, not
-retained. The data structure, the interactive heat map, the per-biomarker
-profiles, and the synthesis writeup are all in place.
+## What this is
 
-| # | Domain | Biomarkers |
-|---|---|---|
-| 1 | Insulin Sensitivity / Glucose Metabolism | 16 |
-| 2 | Lipids / Cardiovascular Risk | 15 |
-| 3 | Mitochondrial / Cardiorespiratory Fitness | 14 |
-| 4 | Inflammation | 9 |
-| 5 | Biological Age Clocks | 8 |
-| 6 | Hormonal Axes | 21 |
-| 7 | Body Composition & Anthropometrics | 7 |
-| 8 | Cardiovascular & Autonomic Function | 6 |
-| 9 | Renal & Hepatic Function | 8 |
-| 10 | Cognitive & Neurological | 6 |
-| 11 | Sleep & Recovery | 6 |
-| 12 | Micronutrient & Metabolic Cofactors | 13 |
-| 13 | Cancer Screening & Risk | 3 |
-| 14 | Genetic & Pharmacogenomic | 3 |
+Most consumer longevity panels report a biomarker against a static "optimal
+range." This project does something different: it ties every biomarker to the
+**published hazard ratios** linking it to aging-related outcomes, puts those
+hazard ratios on **one comparable scale**, and is honest about **evidence
+quality** and **where the field oversells**.
 
-## Layout
+- **135 biomarkers**, 14 domains, **519 evidence cells** across five outcomes
+  (all-cause mortality, cardiovascular disease, cancer, dementia, frailty).
+- Hazard ratios are **standardized to HR per +1 SD** so markers measured in
+  different units are directly comparable — see
+  [`data/HR_STANDARDIZATION.md`](data/HR_STANDARDIZATION.md).
+- Every quantified cell was **checked against primary sources** in two passes:
+  **259 verified, 97 approximate, 0 unverified**. Cells that could not be
+  anchored to a real source were left blank, not guessed.
+- Each cell carries an **A/B/C evidence tier** and a modifiability rating.
+
+## The two tools
+
+Both are server-free — open the HTML file in any browser.
+
+**The heat map** — `heatmap/index.html` (or the single-file
+`heatmap/heatmap-standalone.html`). The population evidence map: 135 biomarkers
+× 5 outcomes, coloured by standardized effect size, with the all-cause-mortality
+column highlighted and a modifiability column. Hover any cell for the source;
+click a biomarker for its profile.
+
+**The personal dashboard** — `client/dashboard.html`. Scores *your own*
+measurements against the map. Put your biomarker panels into
+`client/measurements.js`; each value is placed on the population SD scale,
+translated through the verified per-SD hazard ratios into modeled risk, and
+triaged by predictive weight × modifiability × your distance from optimal. A
+second panel adds a risk trajectory. There is deliberately **no single
+composite score** — correlated hazard ratios cannot be multiplied together.
+
+## Repository layout
 
 ```
-metabolic-research/
 ├── data/
-│   ├── biomarkers.json        the data layer — biomarkers, evidence cells, modifiability
+│   ├── biomarkers.json        the evidence layer — biomarkers, cells, modifiability
 │   ├── reference_ranges.json  population distribution + risk-optimal range per biomarker
-│   ├── SCHEMA.md              field-by-field schema documentation
-│   └── HR_STANDARDIZATION.md  how hazard ratios are converted to a common per-SD scale
+│   ├── SCHEMA.md              data-layer schema
+│   └── HR_STANDARDIZATION.md  how hazard ratios are converted to one per-SD scale
 ├── tools/
 │   ├── standardize.js         deterministic HR → per-SD converter (idempotent)
 │   ├── audit.js               internal QA audit of the data layer
 │   ├── build-standalone.js    bundles the heat map into one portable HTML file
 │   └── build-client.js        bundles data + reference ranges for the dashboard
-├── heatmap/                   the population evidence map (all 135 biomarkers)
-│   ├── index.html · styles.css · app.js
-│   ├── data.bundle.js         generated
-│   └── heatmap-standalone.html generated — single self-contained file
-├── client/                    personal coaching dashboard
-│   ├── dashboard.html · dashboard.css · dashboard.js
-│   ├── measurements.js        YOUR biomarker panels over time (the file you edit)
-│   └── refdata.js             generated — data + reference layer bundled
-├── profiles/
-│   └── biomarker-profiles.md  Deliverable 1 — per-biomarker profiles
-└── writeup/
-    └── summary.md             Deliverable 5 — synthesis writeup
+├── heatmap/                   the population evidence map
+├── client/                    the personal coaching dashboard
+├── profiles/biomarker-profiles.md   per-biomarker profiles + modifiability
+├── writeup/summary.md         14-domain synthesis
+├── DISCLAIMER.md   ·   LICENSE   ·   LICENSE-DATA
 ```
 
-The data layer (`data/biomarkers.json`) is deliberately separate from the
-visualization so biomarkers can be added or re-cited without touching the
-heat map code. See `data/SCHEMA.md` for the contract.
+The data layer is kept separate from the visualizations so biomarkers can be
+added or re-cited without touching code.
 
-## Personal dashboard
+## Regenerating
 
-`client/dashboard.html` scores your own measurements against the evidence map.
-Open it in any browser (server-free). Add your biomarker panels — as many or
-few markers as you have — to `client/measurements.js`; each value is placed on
-the population SD scale, translated through the verified per-SD hazard ratios
-into modeled risk, and triaged by predictive weight × modifiability × your
-distance from optimal. A second panel adds a risk trajectory. After editing the
-data layer or reference ranges, run `node tools/build-client.js`.
-
-## Running the heat map
-
-Two options, both server-free — just open the file in any browser:
-
-- `heatmap/index.html` — the multi-file version (loads `data.bundle.js`).
-- `heatmap/heatmap-standalone.html` — a single self-contained file (stylesheet,
-  data, and script all inlined). The most portable; good for sharing.
-
-`data/biomarkers.json` remains the editable source of truth. After changing it,
-regenerate everything downstream:
+After editing `data/biomarkers.json` or `data/reference_ranges.json`:
 
 ```sh
-node tools/standardize.js        # per-SD values + heatmap/data.bundle.js
-node tools/build-standalone.js   # heatmap/heatmap-standalone.html
+node tools/standardize.js       # per-SD values + heatmap/data.bundle.js
+node tools/build-standalone.js  # heatmap/heatmap-standalone.html
+node tools/build-client.js      # client/refdata.js
+node tools/audit.js             # QA check (expect 0 errors)
 ```
-
-## The three views
-
-- **View A — All-Cause Mortality.** Biomarkers placed in effect-size columns;
-  cell fill encodes evidence tier. The cleanest defensible academic view.
-- **View B — Domain-Stratified Outcomes.** HR magnitude across all-cause
-  mortality, CVD, cancer, dementia, and frailty; cell border = evidence tier.
-- **View C — Outcomes + Modifiability.** View B plus an intervention-
-  modifiability column; high-predictive / high-modifiable markers flagged as
-  priority targets. The coaching view.
 
 ## Evidence standards
 
 - Hazard ratios prioritize meta-analyses, Mendelian randomization, and large
   prospective cohorts (UK Biobank, ARIC, Framingham, MESA, Whitehall II, etc.).
-- HR units differ across source studies; every continuous marker is standardized
-  to HR per +1 SD by `tools/standardize.js` (method in `HR_STANDARDIZATION.md`).
-  Native HR and the conversion basis are retained per cell. Categorical exposures
-  are flagged and kept off the comparable scale.
-- Each evidence cell carries a `verification_status` flag. **Verify all figures
-  against primary sources before clinical use.**
+- The native HR and the conversion basis are retained per cell; categorical
+  exposures (genotypes, U-shaped markers, clinical strata) are flagged and kept
+  off the comparable scale rather than forced onto it.
+- `verification_status` is honest. `approximate` and `unverified` figures — and
+  the `approximate`/`unverified` reference ranges — are provisional; verify
+  against the cited primary sources before any serious use.
 
-To recompute the standardized values after editing native HRs:
+## Corrections welcome
 
-```sh
-node tools/standardize.js
-```
+This is an evidence base, and evidence bases improve by being checked. If you
+find a wrong hazard ratio, a misattributed citation, or a better source, please
+open an issue or a pull request — cite the primary source.
 
-## Moving this to its own repository
+## Licensing
 
-This folder is self-contained:
+- **Source code** (`tools/`, and the scripts/markup in `heatmap/` and
+  `client/`): MIT — see [`LICENSE`](LICENSE).
+- **Dataset and written content** (`data/`, `profiles/`, `writeup/`): Creative
+  Commons Attribution 4.0 (CC BY 4.0) — see [`LICENSE-DATA`](LICENSE-DATA).
 
-```sh
-cp -r metabolic-research ~/longevity-heatmap
-cd ~/longevity-heatmap && git init && git add . && git commit -m "Initial commit"
-```
+Re-use is welcome, including commercially; please attribute.
+
+## Citing
+
+> Longevity Biomarker Heat Map: a citation-backed, per-SD-standardized map of
+> biomarker–outcome hazard ratios across 14 domains. 2026.
+
+---
+
+*Built as both a defensible academic artifact and the evidence engine for a
+metabolic longevity assessment practice. Not medical advice — see
+[`DISCLAIMER.md`](DISCLAIMER.md).*
