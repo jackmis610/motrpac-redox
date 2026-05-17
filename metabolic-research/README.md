@@ -7,16 +7,27 @@ assessment protocol.
 
 ## Status
 
-**Framework-first build.** The data structure, the full 3-view interactive
-visualization, and three fully-researched domains are complete and under
-review. Remaining domains are populated in subsequent passes.
+**Complete — all 14 domains.** 135 biomarkers, 519 evidence cells (423
+quantified, 96 documented-but-unquantified); 336 cells standardized to a
+comparable HR-per-SD scale. The data structure, the interactive heat map, the
+per-biomarker profiles, and the synthesis writeup are all in place.
 
-| Domain | Status |
-|---|---|
-| 2 · Lipids / Cardiovascular Risk | researched |
-| 3 · Mitochondrial / Cardiorespiratory Fitness | researched |
-| 4 · Inflammation | researched |
-| 1, 5–14 (glucose, clocks, hormones, body comp, etc.) | pending |
+| # | Domain | Biomarkers |
+|---|---|---|
+| 1 | Insulin Sensitivity / Glucose Metabolism | 16 |
+| 2 | Lipids / Cardiovascular Risk | 15 |
+| 3 | Mitochondrial / Cardiorespiratory Fitness | 14 |
+| 4 | Inflammation | 9 |
+| 5 | Biological Age Clocks | 8 |
+| 6 | Hormonal Axes | 21 |
+| 7 | Body Composition & Anthropometrics | 7 |
+| 8 | Cardiovascular & Autonomic Function | 6 |
+| 9 | Renal & Hepatic Function | 8 |
+| 10 | Cognitive & Neurological | 6 |
+| 11 | Sleep & Recovery | 6 |
+| 12 | Micronutrient & Metabolic Cofactors | 13 |
+| 13 | Cancer Screening & Risk | 3 |
+| 14 | Genetic & Pharmacogenomic | 3 |
 
 ## Layout
 
