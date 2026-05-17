@@ -105,8 +105,9 @@ Re-use is welcome, including commercially; please attribute.
 
 ## Citing
 
-> Longevity Biomarker Heat Map: a citation-backed, per-SD-standardized map of
-> biomarker–outcome hazard ratios across 14 domains. 2026.
+> Mislinski, J. Longevity Biomarker Heat Map: a citation-backed,
+> per-SD-standardized map of biomarker–outcome hazard ratios across 14 domains.
+> 2026.
 
 ---
 
