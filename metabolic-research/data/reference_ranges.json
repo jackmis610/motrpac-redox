@@ -1,0 +1,2338 @@
+{
+  "meta": {
+    "title": "Reference ranges — population distributions + risk-optimal anchors",
+    "version": "1.0.0",
+    "last_updated": "2026-05-17",
+    "note": "population_mean/sd are on the scale given (linear or natural-log); optimal.low/high are always in raw measurement units (matching units)."
+  },
+  "ranges": {
+    "fasting_glucose": {
+      "units": "mg/dL",
+      "scale": "linear",
+      "population_mean": 103,
+      "population_sd": 24,
+      "population_source": "NHANES 2017-2020 fasting subsample, US adults >=20y; mean fasting plasma glucose ~103 mg/dL. CDC NHANES laboratory data; consistent with Wang et al. 2021 JAMA prevalence analyses (PMID 34962530).",
+      "optimal": {
+        "low": 75,
+        "high": 90,
+        "rationale": "Lowest all-cause and CVD mortality observed in the ~80-90 mg/dL range in large cohorts; risk rises steadily above 90-100 and there is a modest J-shaped uptick below ~70-75 mg/dL.",
+        "source": "Emerging Risk Factors Collaboration, Lancet 2010 (PMID 20609967); Selvin et al. 2010 NEJM (PMID 20335584)"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Diagnostic cut-points: prediabetes 100-125, diabetes >=126 mg/dL. Population SD is whole-population including diabetics; in normoglycemic adults SD is narrower (~8-10 mg/dL)."
+    },
+    "fasting_insulin": {
+      "units": "uIU/mL",
+      "scale": "log",
+      "population_mean": 2.2,
+      "population_sd": 0.6,
+      "population_source": "NHANES 2007-2010 non-diabetic adults; geometric mean fasting insulin ~8-9 uIU/mL (ln ~2.2), SD of ln ~0.6. Derived from Reaven-type distributions and NHANES insulin data (Li et al. 2013, Diabetes Care, PMID 23testimate); approximate.",
+      "optimal": {
+        "low": 3.0042,
+        "high": 6.0496,
+        "rationale": "Linear-scale ~3-6 uIU/mL corresponds to high insulin sensitivity and lowest cardiometabolic risk; risk rises monotonically with higher insulin (per_log_sd HR for CVD).",
+        "source": "Conventional insulin-sensitivity literature; HOMA-IR optimum (Gast et al. 2012 meta-analysis, PMID 23226556)"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Assayed log-transformed (per_log_sd). Fasting insulin assays are poorly standardized across labs/RIA vs immunoassay; population_mean/SD on natural-log scale are approximate. Linear geometric mean ~9 uIU/mL."
+    },
+    "homa_ir": {
+      "units": "index ((glucose mg/dL x insulin uIU/mL)/405)",
+      "scale": "linear",
+      "population_mean": 2.3,
+      "population_sd": 1.8,
+      "population_source": "NHANES 1999-2010 adults without diabetes; mean HOMA-IR ~2.2-2.5 with right-skewed distribution. Sumner & Cowie 2008 (PMID 18804279) and NHANES-derived estimates.",
+      "optimal": {
+        "low": 0.5,
+        "high": 1.5,
+        "rationale": "HOMA-IR < ~1.5-2.0 indicates preserved insulin sensitivity; cardiometabolic and frailty risk rises across tertiles/quartiles above this. No meaningful lower-bound risk.",
+        "source": "Gast et al. 2012 meta-analysis of HOMA-IR and CHD (PMID 23226556)"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Composite index (glucose x insulin). Heat map uses per_sd on the raw index so reported on linear scale, but distribution is strongly right-skewed; SD is approximate and many analyses log-transform HOMA-IR. Threshold for insulin resistance varies 1.9-2.9 by population."
+    },
+    "hba1c": {
+      "units": "%",
+      "scale": "linear",
+      "population_mean": 5.6,
+      "population_sd": 0.7,
+      "population_source": "NHANES 2017-2020 US adults >=20y; mean HbA1c ~5.6%. CDC NHANES; consistent with Selvin et al. NHANES analyses (PMID 19299318).",
+      "optimal": {
+        "low": 5,
+        "high": 5.4,
+        "rationale": "Lowest all-cause/CVD mortality and dementia risk in the ~5.0-5.4% range; risk rises above 5.5-5.7 (prediabetes) and a J-shaped uptick appears below ~5.0% (partly reverse causation, anemia, frailty).",
+        "source": "Selvin et al. 2010 NEJM (PMID 20335584); Emerging Risk Factors Collaboration"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Diagnostic: prediabetes 5.7-6.4%, diabetes >=6.5%. Confounded by hemoglobinopathies, anemia, RBC turnover. Population SD includes diabetics; normoglycemic SD ~0.3-0.4%."
+    },
+    "ogtt_2h_glucose": {
+      "units": "mg/dL",
+      "scale": "linear",
+      "population_mean": 110,
+      "population_sd": 35,
+      "population_source": "DECODE study and NHANES OGTT subsamples; mean 2-h post-load glucose ~105-115 mg/dL in general adult populations. DECODE Study Group 2001 (PMID 11679443).",
+      "optimal": {
+        "low": 80,
+        "high": 120,
+        "rationale": "Normal glucose tolerance is 2-h glucose < 140 mg/dL; lowest mortality observed below ~120 mg/dL. Conventional reference interval used as optimal anchor since outcome data are categorical (NGT vs IGT vs diabetes).",
+        "source": "DECODE Study Group, Lancet 1999 / Arch Intern Med 2001 (PMID 11679443); ADA diagnostic criteria"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Heat-map HRs are categorical only (NGT/IGT/diabetes), so no per-SD outcome basis. Population SD approximate; OGTT 2-h glucose is highly variable and procedure-dependent (75 g load)."
+    },
+    "ogtt_2h_insulin": {
+      "units": "uIU/mL",
+      "scale": "linear",
+      "population_mean": 55,
+      "population_sd": 50,
+      "population_source": "Hyperinsulinemia literature; 2-h post-load insulin in non-diabetic adults median ~40-60 uIU/mL, strongly right-skewed. No single standardized large-cohort source. Approximate from Hayashi et al. 2013 and assorted OGTT cohorts.",
+      "optimal": {
+        "low": 5,
+        "high": 45,
+        "rationale": "Lower 2-h insulin indicates better insulin sensitivity; highest mortality in top quintile of post-load insulin. Conventional 'normal' upper bound ~50-60 uIU/mL used as anchor.",
+        "source": "Hayashi et al. 2013 (post-load insulin and incident diabetes); outcome data quintile-based only"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "unverified",
+      "note": "No well-standardized large general-population mean/SD exists; assay-dependent and highly right-skewed. Mean/SD are best-estimate placeholders flagged unverified."
+    },
+    "cgm_mean_glucose": {
+      "units": "mg/dL",
+      "scale": "linear",
+      "population_mean": 99,
+      "population_sd": 11,
+      "population_source": "Shah et al. 2019, JCEM, CGM in non-diabetic adults: mean glucose ~98-100 mg/dL, SD ~10-12 mg/dL (PMID 31237275).",
+      "optimal": {
+        "low": 85,
+        "high": 100,
+        "rationale": "Non-diabetic CGM mean glucose centers ~90-100 mg/dL; lower mean within the normoglycemic range associated with lower CVD risk (per_sd HR). Values 70-85 are physiologic in lean fit individuals.",
+        "source": "Shah et al. 2019 JCEM (PMID 31237275); CGM consensus reference ranges"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Population reference is non-diabetic adults wearing CGM; sensor calibration differs from venous plasma. SD here is between-person SD of the mean, not within-person glycemic variability."
+    },
+    "cgm_glucose_variability": {
+      "units": "% (coefficient of variation)",
+      "scale": "linear",
+      "population_mean": 17,
+      "population_sd": 3,
+      "population_source": "Shah et al. 2019 JCEM CGM in non-diabetic adults: glucose CV ~15-18%, SD-of-glucose ~17-20 mg/dL (PMID 31237275).",
+      "optimal": {
+        "low": 10,
+        "high": 18,
+        "rationale": "Consensus stability target is CV < 36% for diabetes; non-diabetic adults sit at CV ~15-18%, and lower variability is associated with better outcomes. Conventional/observed normoglycemic range used.",
+        "source": "Battelino et al. 2019 CGM consensus (PMID 31177185); Shah et al. 2019"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Outcome HRs are categorical only. Reported as CV%; if expressed as SD of glucose (mg/dL) the population mean is ~18, SD ~5. Confirm which metric the dashboard uses."
+    },
+    "cgm_time_in_range": {
+      "units": "% of time 70-140 mg/dL (TIR, non-diabetic range)",
+      "scale": "linear",
+      "population_mean": 94,
+      "population_sd": 6,
+      "population_source": "Shah et al. 2019 JCEM: non-diabetic adults spend ~94-96% of time in 70-140 mg/dL (PMID 31237275).",
+      "optimal": {
+        "low": 96,
+        "high": 100,
+        "rationale": "Higher time-in-range is protective (per_unit HR, protective direction). Healthy non-diabetic adults achieve >=95% TIR in the tight 70-140 range; >=70% in 70-180 is the diabetes consensus target.",
+        "source": "Battelino et al. 2019 CGM consensus (PMID 31177185)"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "TIR definition depends on the chosen range (70-140 for non-diabetic vs 70-180 diabetes consensus). Mean/SD here assume the non-diabetic 70-140 mg/dL window; ceiling effect makes the distribution left-skewed."
+    },
+    "cgm_postprandial_auc": {
+      "units": "mg/dL x min (incremental AUC, standardized meal)",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": null,
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "No standardized population distribution; incremental postprandial AUC depends entirely on meal composition, size and measurement window, which are not standardized across studies.",
+        "source": null
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "unverified",
+      "note": "Although the heat map uses per_sd, there is no single general-population mean/SD because postprandial glucose AUC is meal- and protocol-dependent. Cannot source without specifying the standardized meal challenge; mean/SD left null."
+    },
+    "cgm_dawn_phenomenon": {
+      "units": "mg/dL (overnight-nadir to pre-breakfast glucose rise)",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": null,
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "No outcome data (empty outcomes block) and no standardized general-population distribution for dawn-phenomenon magnitude.",
+        "source": null
+      },
+      "direction": "lower_better",
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "Not applicable: derived CGM feature with no outcome hazard ratios and no published population mean/SD. Magnitude is highly dependent on definition of nadir window and waking time."
+    },
+    "fructosamine": {
+      "units": "umol/L",
+      "scale": "linear",
+      "population_mean": 240,
+      "population_sd": 35,
+      "population_source": "Selvin et al. 2014, Lancet Diabetes Endocrinol, ARIC study non-diabetic adults: fructosamine mean ~230-250 umol/L (PMID 24622671).",
+      "optimal": {
+        "low": 200,
+        "high": 260,
+        "rationale": "Conventional non-diabetic reference interval ~205-285 umol/L; lower values within range track lower glycemia. Outcome data are quartile-based, so the reference interval is used as the optimal anchor.",
+        "source": "Selvin et al. 2014 (PMID 24622671); standard laboratory reference intervals"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Reflects ~2-3 week glycemia. Confounded by serum albumin and protein turnover; assay reference ranges vary by lab. Population SD approximate."
+    },
+    "c_peptide": {
+      "units": "ng/mL",
+      "scale": "linear",
+      "population_mean": 2.3,
+      "population_sd": 1.2,
+      "population_source": "NHANES 1999-2004 fasting C-peptide, non-diabetic US adults: mean ~2.0-2.5 ng/mL, right-skewed. Derived from NHANES; consistent with Pikkemaat et al. and Patel et al. analyses.",
+      "optimal": {
+        "low": 0.8,
+        "high": 2,
+        "rationale": "Lower fasting C-peptide within the normal range reflects lower endogenous insulin secretion and better insulin sensitivity; mortality/CVD risk rises across upper quartiles. Standard fasting reference ~0.8-3.1 ng/mL.",
+        "source": "Patel et al. 2012 (fasting C-peptide and mortality, PMID 22210570); outcome HRs quartile-based"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Right-skewed; assay-dependent. Population mean/SD approximate. Interpretation differs in renal impairment (reduced clearance raises C-peptide)."
+    },
+    "adiponectin": {
+      "units": "ug/mL",
+      "scale": "log",
+      "population_mean": 2.1,
+      "population_sd": 0.55,
+      "population_source": "General-population adiponectin distributions (e.g., MESA, Framingham): geometric mean ~8-9 ug/mL (ln ~2.1), SD of ln ~0.5-0.6. Approximate from pooled cohort data (Kizer et al. 2013, PMID 23446174).",
+      "optimal": {
+        "low": 9.9742,
+        "high": 20.0855,
+        "rationale": "Higher adiponectin is generally cardioprotective and associated with insulin sensitivity (linear ~10-20 ug/mL); however very high adiponectin shows a paradoxical positive association with all-cause mortality and frailty in the elderly, so an upper bound is given.",
+        "source": "Kizer et al. 2013 (adiponectin paradox, PMID 23446174); Wannamethee et al. 2013"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Assayed log-transformed (per_log_sd). Population_mean/SD on natural-log scale; linear geometric mean ~8-9 ug/mL. The 'adiponectin paradox' (high levels predict mortality/frailty in elderly) means direction is u_shaped/context-dependent rather than simply higher-better."
+    },
+    "leptin": {
+      "units": "ng/mL",
+      "scale": "log",
+      "population_mean": 2.4,
+      "population_sd": 0.9,
+      "population_source": "NHANES and general-population leptin data: strongly sex-dependent, geometric mean ~7 ng/mL men, ~20 ng/mL women, pooled ln ~2.3-2.5 with SD of ln ~0.8-1.0. Approximate (Ruhl & Everhart NHANES analyses).",
+      "optimal": {
+        "low": 2.7183,
+        "high": 9.9742,
+        "rationale": "Lower leptin (linear ~3-10 ng/mL) reflects lower adiposity and lower CVD/cancer risk; however very low leptin in elderly relates to frailty/wasting and a protective association exists for dementia, so the trough is intermediate.",
+        "source": "Outcome HRs categorical/tertile (CVD/cancer risk) and per_log_sd (dementia, protective); leptin tracks adiposity"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Assayed log-transformed (per_log_sd for dementia). Strongly sex- and adiposity-dependent; a single pooled mean/SD is a coarse approximation - ideally stratify by sex. Population_mean/SD on natural-log scale."
+    },
+    "leptin_adiponectin_ratio": {
+      "units": "ratio (ng/mL leptin per ug/mL adiponectin)",
+      "scale": "linear",
+      "population_mean": 2.5,
+      "population_sd": 3,
+      "population_source": "Derived composite; general-population leptin:adiponectin ratio median ~1-3, strongly right-skewed and sex-dependent. No single standardized large-cohort mean/SD; approximate from cohort studies (Fruhbeck et al. 2018 review).",
+      "optimal": {
+        "low": 0.2,
+        "high": 1,
+        "rationale": "Lower ratio indicates favorable adipose function and insulin sensitivity; CVD risk rises with higher ratio (per_sd HR). Ratio < ~1 commonly cited as insulin-sensitive.",
+        "source": "Fruhbeck et al. 2018 (leptin:adiponectin ratio as insulin-resistance marker, PMID 30441846)"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "unverified",
+      "note": "Composite ratio of two markers; no standardized general-population SD exists and the distribution is heavily right-skewed and sex-dependent. Heat map uses per_sd, but mean/SD here are best-estimate and flagged unverified - many analyses log-transform this ratio."
+    },
+    "apob": {
+      "units": "mg/dL",
+      "scale": "linear",
+      "population_mean": 95,
+      "population_sd": 25,
+      "population_source": "NHANES 2005-2016 / Framingham ApoB distributions, US adults: mean ~90-100 mg/dL, SD ~25 mg/dL. Consistent with Wilkins et al. and NHANES apolipoprotein data.",
+      "optimal": {
+        "low": 40,
+        "high": 65,
+        "rationale": "ApoB is causal for ASCVD with monotonic risk; no lower-bound harm. Optimal/low-risk ApoB is < ~65 mg/dL, with primary-prevention targets ~60-80 and very-high-risk targets < 65; population trough risk is at the lowest attainable levels.",
+        "source": "Sniderman et al. 2019 (ApoB and ASCVD, PMID 30694319); Mendelian randomization (Ference et al. 2019, PMID 31504418)"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Population SD includes treated/untreated adults. ApoB counts atherogenic particle number; preferred over LDL-C when discordant."
+    },
+    "ldl_c": {
+      "units": "mg/dL",
+      "scale": "linear",
+      "population_mean": 111,
+      "population_sd": 33,
+      "population_source": "NHANES 2017-2020 US adults >=20y: mean LDL-C ~110-113 mg/dL, SD ~33-35 mg/dL. CDC NHANES lipid data.",
+      "optimal": {
+        "low": 20,
+        "high": 70,
+        "rationale": "LDL-C is causally atherogenic with log-linear risk and no demonstrated lower threshold of harm; lowest CVD risk at the lowest attainable LDL-C. Outcome/MR data support optimal < ~70 mg/dL, with physiologic 'native' LDL-C ~20-40 mg/dL.",
+        "source": "Ference et al. 2017 (LDL-C causal MR, PMID 28444290); CTT Collaboration 2010 (PMID 21067804)"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Friedewald-estimated LDL-C is inaccurate at high TG / low LDL; direct or Martin-Hopkins estimation preferred. Population SD includes statin-treated adults."
+    },
+    "ldl_p": {
+      "units": "nmol/L",
+      "scale": "linear",
+      "population_mean": 1350,
+      "population_sd": 400,
+      "population_source": "MESA cohort NMR LDL particle number, general adults: mean ~1300-1400 nmol/L, SD ~400 nmol/L (Otvos et al. / MESA, PMID 21392724).",
+      "optimal": {
+        "low": 400,
+        "high": 1000,
+        "rationale": "LDL-P reflects atherogenic particle number; lower is better with monotonic CVD risk (per_sd HR). Low-risk/optimal LDL-P is < ~1000 nmol/L (roughly 20th percentile), analogous to optimal ApoB.",
+        "source": "Cromwell et al. 2007 Framingham Offspring (LDL-P and CVD, PMID 17719681); MESA"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "NMR LipoProfile assay-specific; values not interchangeable with ion-mobility particle counts. Population mean/SD approximate, MESA-derived."
+    },
+    "ldl_size": {
+      "units": "nm (peak/mean LDL particle diameter)",
+      "scale": "linear",
+      "population_mean": 21,
+      "population_sd": 0.7,
+      "population_source": "Framingham Offspring and MESA NMR LDL size: mean ~20.8-21.2 nm, SD ~0.6-0.8 nm (Kuller et al. / MESA NMR data).",
+      "optimal": {
+        "low": 21.2,
+        "high": 22.5,
+        "rationale": "Larger LDL particle size (pattern A) is associated with lower CVD risk than small dense LDL (pattern B); higher quartiles of size are lower-risk. Larger size is favorable but largely a marker of low TG / good metabolic health.",
+        "source": "Outcome HRs quartile-based; small dense LDL phenotype literature (Austin et al. 1988; St-Pierre et al. 2005, PMID 15528474)"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "LDL size is largely a correlate of triglycerides/insulin resistance and adds little beyond LDL-P/ApoB once particle number is known. Assay-dependent (NMR vs gradient gel). Population mean/SD approximate."
+    },
+    "hdl_c": {
+      "units": "mg/dL",
+      "scale": "linear",
+      "population_mean": 53,
+      "population_sd": 16,
+      "population_source": "NHANES 2017-2020 US adults >=20y: mean HDL-C ~53 mg/dL (men ~48, women ~58), SD ~15-16 mg/dL. CDC NHANES lipid data.",
+      "optimal": {
+        "low": 55,
+        "high": 80,
+        "rationale": "U-shaped: lowest mortality at HDL-C ~55-80 mg/dL; both low HDL-C and very high HDL-C (>~90-100 mg/dL) are associated with increased all-cause and CVD mortality. HDL-C is not causally protective per Mendelian randomization.",
+        "source": "Madsen et al. 2017 Eur Heart J (extreme HDL and mortality, PMID 28637263); Voight et al. 2012 MR (PMID 22607825)"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Strongly sex-dependent (women run ~10 mg/dL higher). Heat map lists CVD direction as protective (per_sd) but very high HDL-C is harmful, hence u_shaped overall."
+    },
+    "hdl_efflux": {
+      "units": "normalized efflux capacity (unitless, assay-relative)",
+      "scale": "linear",
+      "population_mean": 1,
+      "population_sd": 0.2,
+      "population_source": "Rohatgi et al. 2014 NEJM (Dallas Heart Study) and Saleheen et al. 2015: cholesterol efflux capacity normalized to a pooled reference, mean ~1.0, SD ~0.2 (PMID 25404125).",
+      "optimal": {
+        "low": 1.1,
+        "high": 1.5,
+        "rationale": "Higher cholesterol efflux capacity is inversely associated with incident CVD independent of HDL-C (per_sd, protective). Higher quartiles are lower-risk; optimal is the upper part of the distribution.",
+        "source": "Rohatgi et al. 2014 NEJM (PMID 25404125); Saleheen et al. 2015 (PMID 26025389)"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Functional assay with no standardized absolute units; values are normalized to a lab-specific pooled serum reference, so the mean is ~1.0 by construction and SD is assay-dependent. Not interchangeable across laboratories."
+    },
+    "triglycerides": {
+      "units": "mg/dL",
+      "scale": "log",
+      "population_mean": 4.7,
+      "population_sd": 0.55,
+      "population_source": "NHANES 2017-2020 fasting US adults: geometric mean triglycerides ~105-115 mg/dL (ln ~4.65-4.75), SD of ln ~0.5-0.6. CDC NHANES lipid data; TG distribution is strongly right-skewed and routinely log-analyzed.",
+      "optimal": {
+        "low": 29.9641,
+        "high": 73.6998,
+        "rationale": "Linear ~30-75 mg/dL. Lower fasting TG associated with lower remnant cholesterol and CVD risk (per_log_sd HR); optimal is well below the conventional <150 mg/dL cut. Causality via remnant particles supported by MR.",
+        "source": "Nordestgaard & Varbo 2014 Lancet (triglycerides and CVD, PMID 24993914); ADA/AHA TG guidance"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Assayed log-transformed (per_log_sd for CVD). Population_mean/SD on natural-log scale; linear geometric mean ~110 mg/dL. Highly sensitive to recent food intake and alcohol; requires 8-12 h fast."
+    },
+    "tg_hdl_ratio": {
+      "units": "ratio, mg/dL TG per mg/dL HDL-C",
+      "scale": "log",
+      "population_mean": 0.75,
+      "population_sd": 0.65,
+      "population_source": "Derived from NHANES fasting TG and HDL-C distributions: linear TG/HDL ratio geometric mean ~2.0-2.2 (ln ~0.7-0.8), SD of ln ~0.6-0.7. Approximate; ratio is right-skewed and routinely log-analyzed.",
+      "optimal": {
+        "low": 0.6703,
+        "high": 1.4918,
+        "rationale": "Linear ratio ~0.7-1.5. Low TG/HDL ratio is a strong surrogate for insulin sensitivity and low small-dense-LDL; ratio < ~2 (mg/dL units) indicates low cardiometabolic risk. Risk rises monotonically with higher ratio.",
+        "source": "McLaughlin et al. 2005 (TG/HDL and insulin resistance, PMID 15738451)"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Composite ratio assayed log-transformed (per_log_sd for CVD). UNITS MATTER: in mg/dL the optimal cut is ~2; in mmol/L it is ~0.9. Population_mean/SD on natural-log scale of the mg/dL ratio and are approximate (derived, not a single published cohort statistic)."
+    },
+    "lp_a": {
+      "units": "nmol/L",
+      "scale": "log",
+      "population_mean": 3,
+      "population_sd": 1.5,
+      "population_source": "UK Biobank and general-population Lp(a): highly right-skewed, median ~20-30 nmol/L, with broad spread; ln-scale mean ~3.0, SD ~1.3-1.6. Patel et al. 2021 UK Biobank (PMID 33591808).",
+      "optimal": {
+        "low": 1,
+        "high": 29.9641,
+        "rationale": "Linear < ~30 nmol/L (~<14 mg/dL). Lp(a) is causally atherogenic with risk rising above ~75 nmol/L; lower is better with no lower-bound harm. Optimal is the lowest decile.",
+        "source": "Patel et al. 2021 UK Biobank (PMID 33591808); Burgess et al. 2018 MR (PMID 30002386)"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Assayed log-transformed (per_log_sd). Extremely right-skewed and largely genetically determined; population_mean/SD on natural-log scale and approximate. nmol/L (molar) and mg/dL (mass) units are NOT interconvertible by a fixed factor - confirm assay units."
+    },
+    "non_hdl_c": {
+      "units": "mg/dL",
+      "scale": "linear",
+      "population_mean": 142,
+      "population_sd": 38,
+      "population_source": "NHANES 2017-2020 US adults >=20y: non-HDL-C (total cholesterol minus HDL-C) mean ~140-145 mg/dL, SD ~37-40 mg/dL. CDC NHANES lipid data.",
+      "optimal": {
+        "low": 60,
+        "high": 100,
+        "rationale": "Non-HDL-C captures all atherogenic (apoB-containing) lipoproteins; monotonic CVD risk with no lower-bound harm. Optimal/low-risk is < ~100 mg/dL (very-high-risk guideline target), with population trough at the lowest attainable.",
+        "source": "Emerging Risk Factors Collaboration 2009 JAMA (PMID 19903920); ESC/EAS 2019 dyslipidaemia guidelines"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Non-HDL-C ~= LDL-C + ~30 mg/dL when TG normal; tracks ApoB closely. Population SD includes treated adults."
+    },
+    "remnant_cholesterol": {
+      "units": "mg/dL",
+      "scale": "linear",
+      "population_mean": 22,
+      "population_sd": 13,
+      "population_source": "Copenhagen General Population Study and NHANES-derived remnant cholesterol (total - LDL-C - HDL-C): mean ~20-25 mg/dL, right-skewed. Varbo et al. 2013 (PMID 23083789).",
+      "optimal": {
+        "low": 5,
+        "high": 15,
+        "rationale": "Remnant cholesterol is causally atherogenic (MR-supported) with monotonic risk; lower is better. Optimal/low-risk < ~15-20 mg/dL; population trough at the lowest attainable.",
+        "source": "Varbo et al. 2013 JACC (remnant cholesterol causal in IHD, PMID 23083789)"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Calculated (total cholesterol - LDL-C - HDL-C); accuracy depends on the LDL-C estimation method and is poor at high TG. Right-skewed; population mean/SD approximate."
+    },
+    "oxidized_ldl": {
+      "units": "U/L",
+      "scale": "linear",
+      "population_mean": 50,
+      "population_sd": 16,
+      "population_source": "Holvoet et al. and MESA using the Mercodia 4E6 oxidized-LDL ELISA: general-population mean ~45-55 U/L, SD ~15-18 U/L (PMID 18757281).",
+      "optimal": {
+        "low": 20,
+        "high": 45,
+        "rationale": "Higher oxidized LDL is associated with incident CVD (median-split HR); lower is better. Optimal is the lower part of the distribution. No outcome-defined lower threshold of harm.",
+        "source": "Holvoet et al. 2008 (oxidized LDL and metabolic syndrome/CVD, PMID 18757281)"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Heat-map HR is median-split only (no per-SD outcome basis). Strongly assay-dependent (4E6 monoclonal antibody ELISA); absolute values not comparable across kits. Population mean/SD approximate."
+    },
+    "cac_score": {
+      "units": "Agatston units",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": null,
+      "optimal": {
+        "low": 0,
+        "high": 0,
+        "rationale": "Optimal/lowest-risk CAC is 0 (no detectable coronary calcium). Risk rises stepwise across categories (1-99, 100-399, >=400 Agatston).",
+        "source": "MESA CAC reference (Budoff et al. 2007; McClelland et al. 2006, PMID 16401776)"
+      },
+      "direction": "lower_better",
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "Not a normally distributed quantitative measure: CAC has a large zero-inflated spike (most adults <55y score 0) and an extreme right tail, so a population mean/SD is not meaningful and cannot be placed on a per-SD scale. Interpreted by categories or age/sex percentiles (MESA calculator). Heat-map HRs are categorical."
+    },
+    "cimt": {
+      "units": "mm (mean common carotid intima-media thickness)",
+      "scale": "linear",
+      "population_mean": 0.7,
+      "population_sd": 0.16,
+      "population_source": "MESA and Carotid Atherosclerosis Progression Study reference data: mean common-carotid IMT in middle-aged adults ~0.65-0.75 mm, SD ~0.15-0.17 mm; strongly age-dependent (PMID 17242284).",
+      "optimal": {
+        "low": 0.4,
+        "high": 0.6,
+        "rationale": "Lower cIMT indicates less subclinical atherosclerosis; CVD/dementia risk rises with higher cIMT (per_sd HR). Optimal is the lower part of the age-adjusted distribution (roughly < 25th percentile).",
+        "source": "Lorenz et al. 2007 meta-analysis (cIMT and CVD, PMID 17242284)"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Strongly age-dependent - a single all-age mean/SD is coarse; ideally use age/sex-specific percentiles. Highly protocol- and sonographer-dependent (which carotid segment, near vs far wall). Mean/SD approximate, middle-aged-adult anchored."
+    },
+    "apoe_genotype": {
+      "units": "genotype (e2/e3/e4 allele combination)",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": null,
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "Categorical genotype, not a measurable continuous quantity. Lowest-risk genotype is e3/e3 (or e2 carriage for CVD/dementia, though e2 raises type III hyperlipoproteinemia risk); e4/e4 is highest risk.",
+        "source": "Lambert et al. / IGAP and Bennet et al. 2007 JAMA (ApoE and CHD, PMID 17848651)"
+      },
+      "direction": "u_shaped",
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "Not a quantitative biomarker: ApoE is a discrete genotype with no population mean/SD and cannot be placed on a per-SD scale. Risk is conferred categorically (e4 dose for dementia/CVD risk; e2 protective for dementia but raises some dyslipidemia risk)."
+    },
+    "vo2max": {
+      "units": "mL/kg/min",
+      "scale": "linear",
+      "population_mean": 33,
+      "population_sd": 8,
+      "population_source": "Kaminsky LA et al. 2022, FRIEND registry treadmill normative data, ~13,000 US adults; representative value for ages 40-49 (men ~37, women ~30, midlife midpoint ~33). PMID: 34543650 (Mayo Clin Proc 2022;97:285-293)",
+      "optimal": {
+        "low": 42,
+        "high": 60,
+        "rationale": "Mortality declines monotonically with fitness; risk plateaus around the top tertile. ~42 mL/kg/min approximates >=1 SD above the midlife mean and the high-fit category beyond which incremental mortality benefit flattens.",
+        "source": "Mandsager K et al. 2018, JAMA Netw Open, 122,007 patients, treadmill CRF and mortality. PMID: 30646252; Kaminsky 2022 percentiles"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Strongly age- and sex-dependent: men run ~7 mL/kg/min higher than women; mean falls ~8-10% per decade. Mean/SD shown is a midlife (40-49) both-sex midpoint; use age/sex-specific FRIEND percentiles for individual placement."
+    },
+    "ventilatory_thresholds": {
+      "units": "% of VO2max at VT1",
+      "scale": "linear",
+      "population_mean": 55,
+      "population_sd": 10,
+      "population_source": "Approximate: VT1 typically occurs at ~50-60% of VO2max in untrained adults; no single large general-population normative registry equivalent to FRIEND exists for ventilatory thresholds. Wasserman/CPET reference literature.",
+      "optimal": {
+        "low": 65,
+        "high": 85,
+        "rationale": "Higher VT1/VT2 as a fraction of VO2max indicates greater sustainable aerobic capacity; trained individuals reach VT1 at 65-85% VO2max. Conventional performance reference, not outcome-derived.",
+        "source": "ATS/ACCP Statement on Cardiopulmonary Exercise Testing 2003, Am J Respir Crit Care Med. PMID: 12524257"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Reported as VT1/VT2 (absolute mL/kg/min or %VO2max or workload). No large general-population mean/SD registry; values are approximate from CPET reference texts. Outcome data are categorical only (low vs high anaerobic threshold in HF/preoperative populations)."
+    },
+    "resting_metabolic_rate": {
+      "units": "kcal/day",
+      "scale": "linear",
+      "population_mean": 1500,
+      "population_sd": 250,
+      "population_source": "Representative midlife adult value derived from indirect-calorimetry reference data; both-sex midpoint (men ~1650-1700, women ~1300-1400 kcal/day). Johnstone AM et al. 2005, Am J Clin Nutr 82:941-948 (factors affecting RMR). PMID: 16280423",
+      "optimal": {
+        "low": 1200,
+        "high": 1700,
+        "rationale": "U-shaped/risk direction: higher mass-independent RMR predicts increased mortality (accelerated metabolic aging), but very low RMR reflects low lean mass/frailty. Conventional mid-range; not a clean trough.",
+        "source": "Ruggiero C et al. 2008, J Clin Endocrinol Metab, BLSA cohort, higher RMR predicts mortality. PMID: 18029471"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "RMR is strongly driven by lean mass, body size, age and sex; absolute kcal/day is not meaningfully interpretable without adjusting for fat-free mass. The mortality signal is for mass-adjusted RMR. Treat as approximate."
+    },
+    "substrate_utilization": {
+      "units": "g/min (maximal fat oxidation) or RER (unitless)",
+      "scale": "linear",
+      "population_mean": 0.5,
+      "population_sd": 0.16,
+      "population_source": "Maximal fat oxidation (MFO) ~0.4-0.6 g/min in general adults. Maunder E et al. 2018, Sports Med review of MFO determinants; Randell RK et al. 2017, Med Sci Sports Exerc, MFO in 1121 adults. PMID: 27580152",
+      "optimal": {
+        "low": 0.6,
+        "high": 1,
+        "rationale": "Higher maximal fat oxidation reflects greater metabolic flexibility and mitochondrial capacity; trained/insulin-sensitive individuals reach 0.6-1.0 g/min. Conventional metabolic-flexibility reference, not outcome-derived.",
+        "source": "Maunder E et al. 2018, Sports Med 48:2003-2014. PMID: 29873044"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "No outcome HRs in the heat map for this marker. RER and MFO are distinct measures; MFO mean/SD shown. Highly dependent on exercise intensity, diet and training status. Approximate."
+    },
+    "exercise_economy": {
+      "units": "mL O2/kg/km (oxygen cost of walking)",
+      "scale": "linear",
+      "population_mean": 230,
+      "population_sd": 45,
+      "population_source": "Energy cost of usual-pace walking ~0.20-0.26 mL O2/kg/m in healthy older adults. Schrack JA et al. 2012, J Am Geriatr Soc, Baltimore Longitudinal Study of Aging, energy cost of walking. PMID: 23078218",
+      "optimal": {
+        "low": 150,
+        "high": 210,
+        "rationale": "Lower oxygen cost of walking indicates better movement economy and lower mobility-decline risk; trained/efficient walkers fall well below 230. Risk direction: higher cost predicts mobility decline.",
+        "source": "Schrack JA et al. 2012, J Am Geriatr Soc 60:1811-1816. PMID: 23078218"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Walking economy rises (worsens) with age. Mean/SD is a representative older-adult value; running economy uses different units. Treat as approximate; methods and standardized speeds vary across studies."
+    },
+    "lactate_threshold": {
+      "units": "% of VO2max at lactate threshold",
+      "scale": "linear",
+      "population_mean": 55,
+      "population_sd": 12,
+      "population_source": "Lactate threshold occurs at ~50-60% VO2max in untrained adults. Faude O et al. 2009, Sports Med, review of lactate threshold concepts. PMID: 19453205",
+      "optimal": {
+        "low": 70,
+        "high": 90,
+        "rationale": "Higher lactate threshold as a fraction of VO2max indicates greater aerobic endurance; well-trained individuals reach 70-90%. Conventional performance reference, not outcome-derived.",
+        "source": "Faude O et al. 2009, Sports Med 39:469-490. PMID: 19453205"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "No outcome HRs in the heat map. No large general-population normative registry for lactate threshold; multiple non-interchangeable threshold definitions exist. Approximate."
+    },
+    "grip_strength": {
+      "units": "kg",
+      "scale": "linear",
+      "population_mean": 39,
+      "population_sd": 12,
+      "population_source": "Dodds RM et al. 2014, PLoS ONE, pooled British normative data (12 studies, ~49,964 individuals); both-sex midlife midpoint (men peak ~51 kg, women ~31 kg). PMID: 25474696",
+      "optimal": {
+        "low": 40,
+        "high": 70,
+        "rationale": "Mortality risk rises continuously with lower grip strength (HR ~1.27 per 5 kg lower); risk is minimized in the upper part of the distribution. Sex-specific sarcopenia cutpoints: <27 kg men, <16 kg women define low strength.",
+        "source": "Leong DP et al. 2015 (PURE study, grip strength and mortality, PMID: 25982160); EWGSOP2 sarcopenia cutpoints, Cruz-Jentoft AJ et al. 2019, Age Ageing. PMID: 30312372"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Strongly sex-dependent (men ~20 kg higher) and declines from ~age 50. Mean/SD shown is a both-sex midlife midpoint; use sex-specific norms for individual placement. Body-size adjustment also matters."
+    },
+    "lower_body_strength": {
+      "units": "W/kg (relative sit-to-stand power) or kg (leg-press 1-RM)",
+      "scale": "linear",
+      "population_mean": 3,
+      "population_sd": 1,
+      "population_source": "Relative sit-to-stand power ~2.5-3.5 W/kg in midlife adults. Alcazar J et al. 2018, Exp Gerontol, sit-to-stand power normative values; Alcazar J et al. 2020, J Cachexia Sarcopenia Muscle. PMID: 29452185",
+      "optimal": {
+        "low": 3.5,
+        "high": 6,
+        "rationale": "Higher relative lower-body power predicts lower mortality and fall/fracture risk; low relative power (below sex-specific cutpoints) is the risk category. Risk-direction reference from Alcazar normative thresholds.",
+        "source": "Alcazar J et al. 2021, J Cachexia Sarcopenia Muscle, relative STS power and mortality. PMID: 33991414"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Measured by varied methods (leg-press 1-RM, isokinetic, sit-to-stand power) with non-interchangeable units; sit-to-stand power (W/kg) used here. Strongly age/sex-dependent. Outcome HRs are categorical only. Approximate."
+    },
+    "muscle_mass_almi": {
+      "units": "kg/m^2 (appendicular lean mass index)",
+      "scale": "linear",
+      "population_mean": 7.5,
+      "population_sd": 1.2,
+      "population_source": "ALMI both-sex midlife midpoint (men ~8.5, women ~6.4 kg/m^2). NHANES DXA reference data, Kelly TL et al. 2009, PLoS ONE, US appendicular lean mass reference ranges. PMID: 19568432",
+      "optimal": {
+        "low": 7.5,
+        "high": 11,
+        "rationale": "Higher appendicular lean mass is protective (HR ~0.5 per 1-SD higher for mortality in prefrail/frail older adults). Sarcopenia cutpoints define the low-risk floor: <7.0 kg/m^2 men, <5.5 kg/m^2 women (EWGSOP2/DXA).",
+        "source": "EWGSOP2, Cruz-Jentoft AJ et al. 2019, Age Ageing (PMID: 30312372); FNIH sarcopenia project, Studenski SA et al. 2014, J Gerontol. PMID: 24737557"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Strongly sex-dependent (men ~2 kg/m^2 higher); mean/SD is a both-sex midlife midpoint, use sex-specific cutpoints for placement. BIA is a lower-accuracy surrogate for DXA."
+    },
+    "gait_speed": {
+      "units": "m/s",
+      "scale": "linear",
+      "population_mean": 1.2,
+      "population_sd": 0.2,
+      "population_source": "Bohannon RW & Williams Andrews A 2011, Physiotherapy, meta-analysis of comfortable gait speed normative values across the lifespan; midlife adults ~1.3-1.4 m/s, ~1.2 representative for 60s. PMID: 21820535",
+      "optimal": {
+        "low": 1.2,
+        "high": 1.6,
+        "rationale": "Mortality falls with higher gait speed (HR ~0.71 per 0.1 m/s higher); risk minimized at >=1.2-1.4 m/s. ~0.8 m/s is a widely used disability/mortality risk threshold floor.",
+        "source": "Studenski S et al. 2011, JAMA, pooled analysis of 34,485 adults, gait speed and survival. PMID: 21205966"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Declines with age; mean/SD shown is a representative early-older-adult value. Use age/sex-specific norms for individual placement. Per-SD dementia HR uses 0.204 m/s as 1 SD."
+    },
+    "sit_to_stand": {
+      "units": "score 0-10 (sitting-rising test) or seconds (5x sit-to-stand)",
+      "scale": "linear",
+      "population_mean": 8,
+      "population_sd": 2,
+      "population_source": "Sitting-rising test (SRT) score distribution in adults 51-80: most score 8-10, mean ~8. Brito LB et al. 2014, Eur J Prev Cardiol, 2002 adults. PMID: 23242910",
+      "optimal": {
+        "low": 8,
+        "high": 10,
+        "rationale": "Lowest SRT score group (0-4) has markedly higher all-cause and cardiovascular mortality vs perfect score (10); risk minimized at scores 8-10.",
+        "source": "Brito LB et al. 2014, Eur J Prev Cardiol 21:892-898, SRT score and mortality. PMID: 23242910; de Araujo CG et al. 2025 SRT mortality follow-up"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Two distinct instruments with opposite directionality: SRT score (0-10, higher better, shown here) vs 5x sit-to-stand time in seconds (lower better). Outcome HRs are categorical only. Approximate."
+    },
+    "vo2_kinetics": {
+      "units": "seconds (mean response time / tau)",
+      "scale": "linear",
+      "population_mean": 35,
+      "population_sd": 12,
+      "population_source": "Phase II VO2 tau ~25-35 s in healthy middle-aged adults, slower (40-60+ s) in older/impaired adults. Murias JM et al. 2010-2014 work on VO2 kinetics and aging; representative value. DOI: 10.1249/MSS.0b013e3181c31f85",
+      "optimal": {
+        "low": 15,
+        "high": 30,
+        "rationale": "Faster VO2 kinetics (lower tau/MRT) reflect better muscle oxidative capacity and O2 delivery; trained/young individuals reach 15-25 s. Risk direction: slower kinetics predict poorer functional mobility.",
+        "source": "Murias JM et al. 2010, J Appl Physiol, VO2 kinetics and training/age. DOI: 10.1152/japplphysiol.01040.2010"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "No large general-population normative registry; mean/SD is a representative midlife value from kinetics literature. Outcome evidence (frailty) is associational only. Approximate."
+    },
+    "heart_rate_recovery": {
+      "units": "bpm (1-minute HR recovery)",
+      "scale": "linear",
+      "population_mean": 28,
+      "population_sd": 12,
+      "population_source": "1-minute HRR after graded exercise ~25-30 bpm in general adults; abnormal defined as <=12 bpm (with active cool-down) or <=18 bpm. Cole CR et al. 1999, NEJM, 2428 adults. PMID: 10536127",
+      "optimal": {
+        "low": 25,
+        "high": 60,
+        "rationale": "Mortality risk rises with lower HRR (HR ~1.11 per 10 bpm lower); risk minimized with HRR well above the abnormal threshold. <=12-18 bpm marks the high-risk floor.",
+        "source": "Cole CR et al. 1999, NEJM 341:1351-1357, abnormal HRR and mortality. PMID: 10536127"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Depends on protocol (1- vs 2-minute, active vs passive cool-down); the 1-minute active-recovery value is shown. Influenced by peak HR achieved and fitness."
+    },
+    "heart_rate_variability": {
+      "units": "ms (RMSSD, short-term recording)",
+      "scale": "linear",
+      "population_mean": 35,
+      "population_sd": 20,
+      "population_source": "Short-term (5-min) RMSSD normative values; median ~30-40 ms in midlife adults, right-skewed. Nunan D et al. 2010, Pacing Clin Electrophysiol, normative HRV review; Sammito S & Bockelmann I 2016, normative HRV reference values. PMID: 20663071",
+      "optimal": {
+        "low": 40,
+        "high": 100,
+        "rationale": "Mortality and CVD risk are concentrated in the lowest RMSSD/SDNN quartile (HR ~1.19-1.21); risk minimized in the upper half of the distribution. Higher vagally-mediated HRV is protective.",
+        "source": "Jarczok MN et al. 2022, Neurosci Biobehav Rev, meta-analysis of HRV and all-cause mortality. PMID: 35870662"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "RMSSD distribution is right-skewed and often analyzed log-transformed in research; heat-map HRs are quartile/median-split (per_sd basis listed but categorical), so a linear raw-ms scale is used here. Strongly age-dependent (falls with age), device- and posture-sensitive. Approximate."
+    },
+    "resting_bp": {
+      "units": "mmHg (systolic)",
+      "scale": "linear",
+      "population_mean": 125,
+      "population_sd": 16,
+      "population_source": "NHANES 2017-2020 US adult mean systolic BP ~122-128 mmHg, SD ~16. Ostchega Y et al. / NHANES blood pressure normative data; NCHS Data Brief on hypertension prevalence. DOI: 10.15620/cdc:122044",
+      "optimal": {
+        "low": 105,
+        "high": 120,
+        "rationale": "Cardiovascular and all-cause mortality rise log-linearly from ~115 mmHg systolic with no clear lower threshold above ~90; SPRINT showed benefit targeting <120. Trough is the low-normal range.",
+        "source": "Lewington S et al. 2002, Lancet, Prospective Studies Collaboration, 1 million adults, BP and vascular mortality (PMID: 12493255); SPRINT Research Group 2015, NEJM. PMID: 26551272"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Systolic BP shown (most prognostic single component in midlife/older adults). Mildly U-shaped in frail older adults. Mean rises with age."
+    },
+    "ambulatory_bp": {
+      "units": "mmHg (24-hour systolic)",
+      "scale": "linear",
+      "population_mean": 119,
+      "population_sd": 13,
+      "population_source": "IDACO (International Database on Ambulatory BP) population reference; 24-hour systolic mean ~118-121 mmHg. Thijs L et al. / Kikuya M et al. 2007, Hypertension, IDACO ambulatory BP reference values. PMID: 17576863",
+      "optimal": {
+        "low": 105,
+        "high": 120,
+        "rationale": "Mortality/CVD risk rises continuously with higher 24-h and nighttime systolic BP (HR ~1.23-1.45 per ~16 mmHg SD), independent of office BP; risk minimized in the low-normal range. ESH normalcy: 24-h <115-125 mmHg.",
+        "source": "Yang WY et al. 2019, JAMA, IDACO, ambulatory BP and outcomes (PMID: 31479136); ESH 2023 ambulatory BP thresholds"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "24-hour systolic average shown; daytime, nighttime and dipping status are separate prognostic derivatives. Per-SD HRs use ~16 mmHg as 1 SD."
+    },
+    "pulse_wave_velocity": {
+      "units": "m/s (carotid-femoral PWV)",
+      "scale": "linear",
+      "population_mean": 8,
+      "population_sd": 2,
+      "population_source": "Reference Values for Arterial Stiffness Collaboration 2010, Eur Heart J, 16,867 subjects; cf-PWV ~7-9 m/s in midlife adults, rising steeply with age and BP. PMID: 20631092",
+      "optimal": {
+        "low": 5,
+        "high": 8,
+        "rationale": "All-cause mortality and CVD risk rise continuously with higher cf-PWV (HR ~1.52 per 1 m/s; ~1.3 per SD log-PWV); >10 m/s is the established high-risk threshold. Lower stiffness is risk-minimizing.",
+        "source": "Vlachopoulos C et al. 2010, J Am Coll Cardiol, meta-analysis of PWV and outcomes (PMID: 20338492); ESC/ESH 10 m/s threshold"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "cf-PWV rises steeply with age and blood pressure; mean/SD shown is a representative midlife value (use age-stratified reference table for placement). One CVD outcome uses log-transformed PWV per SD, but the marker is conventionally reported and interpreted on the linear m/s scale."
+    },
+    "endothelial_function": {
+      "units": "% (brachial flow-mediated dilation)",
+      "scale": "linear",
+      "population_mean": 6,
+      "population_sd": 3,
+      "population_source": "Brachial FMD ~5-8% in healthy midlife adults, declining with age. Skaug EA et al. 2013, Eur Heart J, HUNT3 study, FMD reference values in 4739 adults. PMID: 23381959",
+      "optimal": {
+        "low": 7,
+        "high": 15,
+        "rationale": "Higher FMD predicts lower CVD events (HR ~0.73 per 1% higher) and lower dementia risk; risk minimized in the upper part of the distribution. No outcome-defined cutpoint, so an upper-range reference is given.",
+        "source": "Inaba Y et al. 2010, Int J Cardiovasc Imaging, meta-analysis of FMD and cardiovascular events. PMID: 20857234"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "FMD is highly operator- and protocol-dependent with substantial between-lab variability; mean/SD is a representative healthy-adult value. PAT/reactive hyperemia index is a separate, non-interchangeable measure. Approximate."
+    },
+    "resting_heart_rate": {
+      "units": "bpm",
+      "scale": "linear",
+      "population_mean": 71,
+      "population_sd": 11,
+      "population_source": "NHANES US adult resting heart rate distribution, mean ~71 bpm, SD ~11. Ostchega Y et al. 2011, Natl Health Stat Report, resting pulse rate in US adults. PMID: 21905522",
+      "optimal": {
+        "low": 50,
+        "high": 65,
+        "rationale": "All-cause, CVD and cancer mortality rise with higher RHR (HR ~1.10-1.17 per 10 bpm); risk minimized roughly 50-65 bpm. Very low RHR (<40) in non-athletes can reflect conduction disease, hence not lower-is-always-better.",
+        "source": "Zhang D et al. 2016, CMAJ, dose-response meta-analysis of RHR and all-cause/CVD mortality. PMID: 27551033"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Mildly U-shaped at extreme low values in non-athletes; trained endurance athletes have low RHR without elevated risk. Wearable overnight RHR runs lower than seated clinic pulse."
+    },
+    "echo_measures": {
+      "units": "g/m^2 (LV mass index) or unitless (E/e' ratio)",
+      "scale": "linear",
+      "population_mean": 80,
+      "population_sd": 20,
+      "population_source": "LV mass index (echo, indexed to BSA) both-sex midpoint ~75-85 g/m^2 (men ~85, women ~75). ASE/EACVI Chamber Quantification reference ranges, Lang RM et al. 2015, J Am Soc Echocardiogr. PMID: 25559473",
+      "optimal": {
+        "low": 50,
+        "high": 95,
+        "rationale": "All-cause mortality and CVD events rise continuously with higher LV mass per SD; LVH is defined as >95 g/m^2 (women) / >115 g/m^2 (men). Lower-normal LV mass and normal diastolic function are risk-minimizing.",
+        "source": "Lang RM et al. 2015, ASE/EACVI Chamber Quantification (LVH thresholds, PMID: 25559473); Levy D et al. 1990, NEJM, Framingham LV mass and mortality. PMID: 2139921"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Composite domain: LV mass index (linear, shown here) plus diastolic-function indices (E/e', e', LA volume index) which are separate measures. Sex-specific LVH cutpoints differ. Treat the single LV-mass scale as approximate for the broader echo domain."
+    },
+    "processing_speed": {
+      "units": "z-score (within-cohort standardized)",
+      "scale": "linear",
+      "population_mean": 0,
+      "population_sd": 1,
+      "population_source": "By construction: cognitive processing speed in the heat map is reported as a within-cohort standardized z-score (e.g., DSST/SDMT/reaction-time scores normed to mean 0, SD 1). No external population concentration units apply.",
+      "optimal": {
+        "low": 0,
+        "high": 3,
+        "rationale": "Risk of dementia and mortality rises ~1.25-1.65 per 1-SD lower score; risk minimized at or above the cohort mean. Expressed on the z-scale because the underlying tests are heterogeneous and age-normed.",
+        "source": "Hooper J et al. / Kuh D et al.; Welmer AK et al. processing speed and outcomes; conventional cognitive-aging z-score framing"
+      },
+      "direction": "higher_better",
+      "applicable": false,
+      "verification_status": "approximate",
+      "note": "Not a single quantitative measurement: processing speed is captured by multiple non-interchangeable tests (DSST, SDMT, Trail A, reaction time) and reported only as scaled/normed z-scores. Population mean 0 / SD 1 holds by construction, not from an external concentration source. applicable=false."
+    },
+    "working_memory": {
+      "units": "z-score (within-cohort standardized)",
+      "scale": "linear",
+      "population_mean": 0,
+      "population_sd": 1,
+      "population_source": "By construction: working memory in the heat map is reported as a within-cohort standardized z-score (digit span backward, n-back, NIH Toolbox List Sorting normed to mean 0, SD 1). No external population concentration units apply.",
+      "optimal": {
+        "low": 0,
+        "high": 3,
+        "rationale": "Dementia/frailty/mortality risk rises per 1-SD lower score; risk minimized at or above the cohort mean. Expressed on the z-scale because underlying tasks are heterogeneous.",
+        "source": "Conventional cognitive-aging z-score framing; per-SD HRs in heat map outcomes (working-memory/executive composite)"
+      },
+      "direction": "higher_better",
+      "applicable": false,
+      "verification_status": "approximate",
+      "note": "Not a single quantitative measurement: a battery of non-interchangeable tasks reported only as normed z-scores. Population mean 0 / SD 1 holds by construction. applicable=false."
+    },
+    "executive_function": {
+      "units": "z-score (within-cohort standardized)",
+      "scale": "linear",
+      "population_mean": 0,
+      "population_sd": 1,
+      "population_source": "By construction: executive function in the heat map is reported as a within-cohort standardized composite z-score (Trail B, Stroop, fluency, NIH Toolbox Flanker normed to mean 0, SD 1). No external population concentration units apply.",
+      "optimal": {
+        "low": 0,
+        "high": 3,
+        "rationale": "Incident dementia risk rises ~1.6 per 1-SD lower composite score; CHD risk elevated in lowest tertile. Risk minimized at or above the cohort mean.",
+        "source": "Conventional cognitive-aging z-score framing; per-SD/tertile HRs in heat map outcomes"
+      },
+      "direction": "higher_better",
+      "applicable": false,
+      "verification_status": "approximate",
+      "note": "Not a single quantitative measurement: a composite of heterogeneous tests reported only as normed z-scores. Population mean 0 / SD 1 holds by construction. applicable=false."
+    },
+    "ptau217": {
+      "units": "pg/mL",
+      "scale": "log",
+      "population_mean": -0.8,
+      "population_sd": 0.6,
+      "population_source": "Cognitively unimpaired older adults: plasma p-tau217 (ALZpath Simoa) geometric mean ~0.4-0.5 pg/mL; ln-mean ~-0.8, ln-SD ~0.6 (markedly right-skewed). Ashton NJ et al. 2024, JAMA Neurol, ALZpath p-tau217 across cohorts. PMID: 38165442",
+      "optimal": {
+        "low": null,
+        "high": 0.3012,
+        "rationale": "Lower is better; risk of progression to Alzheimer dementia rises ~3.2 per 1-SD higher log p-tau217. Assay-specific clinical cutpoints (~0.4 pg/mL ALZpath) define abnormality; values well below the cohort mean are risk-minimizing.",
+        "source": "Ashton NJ et al. 2024, JAMA Neurol 81:255-263 (PMID: 38165442); Mattsson-Carlgren N et al. p-tau217 and progression"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Strongly assay-specific (Lilly/MSD, ALZpath, Janssen, %p-tau217 ratio variants not interchangeable); ln-scale mean/SD shown are approximate for the ALZpath Simoa assay in cognitively unimpaired adults. Rises with age and amyloid status. Confirm assay-specific reference before clinical use."
+    },
+    "nfl": {
+      "units": "pg/mL",
+      "scale": "log",
+      "population_mean": 2.7,
+      "population_sd": 0.5,
+      "population_source": "Plasma NfL (Simoa) rises steeply with age; midlife-adult geometric mean ~13-16 pg/mL (ln-mean ~2.7, ln-SD ~0.45-0.5). Simren J et al. 2022, Brain Commun, age-stratified NfL reference percentiles (>5000 individuals). PMID: 35813882",
+      "optimal": {
+        "low": null,
+        "high": 11.0232,
+        "rationale": "Lower is better; all-cause mortality (HR ~1.75/SD), incident dementia (~1.92/SD) and stroke rise with higher log NfL. No outcome-defined cutpoint; values below the age-specific mean are risk-minimizing. Use age-adjusted percentiles (e.g., <95th).",
+        "source": "Simren J et al. 2022, Brain Commun 4:fcac174 (PMID: 35813882); Kaeser SA et al. age-adjusted NfL reference"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "NfL rises markedly with age and is affected by renal function and BMI; ln-scale mean/SD shown is a representative midlife value, but individual placement must use age-stratified percentiles. Simoa platform-specific. Approximate."
+    },
+    "gfap": {
+      "units": "pg/mL",
+      "scale": "log",
+      "population_mean": 4.7,
+      "population_sd": 0.5,
+      "population_source": "Plasma GFAP (Simoa) rises with age; midlife/older-adult geometric mean ~100-130 pg/mL (ln-mean ~4.6-4.8, ln-SD ~0.45-0.5). Pichet Binette A et al. 2024 / Simoa GFAP age-stratified reference data. DOI: 10.1038/s41591-024-02857-3",
+      "optimal": {
+        "low": null,
+        "high": 81.4509,
+        "rationale": "Lower is better; incident Alzheimer/related dementia risk rises ~1.72 per 1-SD higher log GFAP, with associations also for mortality and CVD. No outcome-defined cutpoint; values below the age-specific mean are risk-minimizing.",
+        "source": "Pichet Binette A et al. 2024, Nat Med, plasma GFAP and AD progression. DOI: 10.1038/s41591-024-02857-3"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "GFAP rises with age and is influenced by renal function and BMI; ln-scale mean/SD is a representative value, individual placement should use age-stratified percentiles. Simoa platform-specific and assay-dependent. Approximate."
+    },
+    "hscrp": {
+      "units": "mg/L",
+      "scale": "log",
+      "population_mean": 0.51,
+      "population_sd": 1.18,
+      "population_source": "Derived from NHANES 1999-2010 hsCRP distributions; geometric mean ~1.6-1.8 mg/L, broadly right-skewed (ln-scale). Consistent with Woloshin & Schwartz 2005, Arch Intern Med (PMID:16157830) and NHANES summary statistics in Ridker 2003 Circulation (PMID:12551853).",
+      "optimal": {
+        "low": 0,
+        "high": 1,
+        "rationale": "CRP <1 mg/L defines low cardiovascular risk (AHA/CDC); mortality and CVD HRs rise log-linearly across the range, so the lowest measurable values are risk-minimizing. Above ~10 mg/L reflects acute infection and should be re-tested.",
+        "source": "Pearson TA et al. AHA/CDC scientific statement. Circulation 2003;107:499-511. PMID:12551879"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Right-skewed; analyzed log-transformed (per_log_sd in heat map). ln-scale mean/SD approximate (geometric mean ~1.67 mg/L). Values >10 mg/L usually indicate acute inflammation, not chronic risk."
+    },
+    "il6": {
+      "units": "pg/mL",
+      "scale": "log",
+      "population_mean": 0.46,
+      "population_sd": 0.68,
+      "population_source": "General-population IL-6 distributions; geometric mean ~1.5-1.6 pg/mL with strong right skew. Consistent with Cardiovascular Health Study and Health ABC cohorts (Harris TB et al. Am J Med 1999, PMID:10428105) and IL6R Mendelian-randomization consortium descriptive data.",
+      "optimal": {
+        "low": 0,
+        "high": 1.5,
+        "rationale": "Risk rises log-linearly with IL-6; lowest values are optimal. <1.5-2 pg/mL associated with lowest mortality and CVD risk in older-adult cohorts.",
+        "source": "IL6R Genetics Consortium / Emerging Risk Factors Collaboration. Lancet 2012;379:1205-1213. PMID:22421339"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Right-skewed; analyzed log-transformed (per_log_sd). ln-scale mean/SD approximate. Assay variability between platforms is substantial."
+    },
+    "tnf_alpha": {
+      "units": "pg/mL",
+      "scale": "log",
+      "population_mean": 0.92,
+      "population_sd": 0.45,
+      "population_source": "Framingham Offspring and Health ABC cohort TNF-alpha distributions; geometric mean ~2.5 pg/mL. Consistent with Cesari M et al. Circulation 2003 (PMID:12515748) and Health ABC inflammatory marker descriptives.",
+      "optimal": {
+        "low": 0,
+        "high": 2.5,
+        "rationale": "Higher TNF-alpha tracks with mortality and frailty (top vs bottom tertile HR ~1.2-1.5); lowest tertile is risk-minimizing. No formal outcome-derived cutpoint, so conventional low-tertile range used.",
+        "source": "Cesari M et al. Inflammatory markers and onset of cardiovascular events. Circulation 2003;108:2317-2322. PMID:14568895"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Right-skewed; conventionally log-analyzed and heat map gives a per_sd HR alongside tertiles. ln-scale mean/SD approximate; soluble TNF receptors (sTNFR1/2) are more stable analytes."
+    },
+    "glyca": {
+      "units": "mmol/L",
+      "scale": "linear",
+      "population_mean": 1.38,
+      "population_sd": 0.32,
+      "population_source": "NMR-measured GlycA in PREVEND and Women's Health Study populations; mean ~1.3-1.4 mmol/L. Consistent with Akinkuolie AO et al. Arterioscler Thromb Vasc Biol 2014 (PMID:24895013) and Duprez DA et al. (MESA).",
+      "optimal": {
+        "low": 1,
+        "high": 1.3,
+        "rationale": "GlycA is roughly normally distributed and analyzed per_sd; risk rises monotonically, so the lower part of the distribution (bottom quartile, ~<1.3 mmol/L) is risk-minimizing.",
+        "source": "Akinkuolie AO et al. A novel protein glycan biomarker and future cardiovascular disease events. Arterioscler Thromb Vasc Biol 2014;34:1922-1928. PMID:24895013"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "NMR composite glycoprotein signal; only roughly normal so linear scale used (per_sd in heat map). Platform-specific (LabCorp/Nightingale) calibration differs."
+    },
+    "nlr": {
+      "units": "ratio",
+      "scale": "linear",
+      "population_mean": 2.15,
+      "population_sd": 1.05,
+      "population_source": "NHANES 1999-2010 derived neutrophil:lymphocyte ratio in healthy adults; mean ~2.0-2.2, SD ~1.0. Consistent with Forget P et al. BMC Res Notes 2017 (PMID:28057051) reference-value study and NHANES-based analyses (Song M et al.).",
+      "optimal": {
+        "low": 1,
+        "high": 2,
+        "rationale": "NLR ~1-2 is the conventional healthy range and associated with lowest mortality; risk rises above ~3. Values <1 may reflect lymphocytosis. Lower-better within the normal band.",
+        "source": "Forget P et al. What is the normal value of the neutrophil-to-lymphocyte ratio? BMC Res Notes 2017;10:12. PMID:28057051"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Derived ratio analyzed per_sd; mildly right-skewed but linear scale used to match heat-map metric. Sensitive to acute illness, stress, and corticosteroids."
+    },
+    "fibrinogen": {
+      "units": "g/L",
+      "scale": "linear",
+      "population_mean": 3,
+      "population_sd": 0.6,
+      "population_source": "Fibrinogen Studies Collaboration individual-participant meta-analysis (154,000+ adults); usual mean ~3.0 g/L, SD ~0.6. Danesh J et al. JAMA 2005;294:1799-1809. PMID:16219884.",
+      "optimal": {
+        "low": 2,
+        "high": 3,
+        "rationale": "Risk rises approximately log-linearly with fibrinogen; the Fibrinogen Studies Collaboration showed continuous mortality/CVD gradients, so the lower part of the normal range (~2-3 g/L) is risk-minimizing.",
+        "source": "Fibrinogen Studies Collaboration (Danesh J et al.). Plasma fibrinogen level and risk of major cardiovascular disease and nonvascular mortality. JAMA 2005;294:1799-1809. PMID:16219884"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Heat map uses per_sd; distribution is only modestly skewed so linear scale used. Acute-phase reactant - elevated transiently with infection/inflammation."
+    },
+    "homocysteine": {
+      "units": "umol/L",
+      "scale": "linear",
+      "population_mean": 9.5,
+      "population_sd": 3.5,
+      "population_source": "NHANES 1999-2004 plasma total homocysteine in US adults; geometric mean ~8-9 umol/L, arithmetic mean ~9-10 umol/L. Consistent with Ganji V & Kafai MR, Am J Clin Nutr 2003 (PMID:12816782).",
+      "optimal": {
+        "low": 5,
+        "high": 10,
+        "rationale": "Homocysteine <10 umol/L is associated with lowest mortality, CVD and dementia risk; risk rises continuously above this. Hyperhomocysteinemia >15 umol/L is the conventional clinical threshold.",
+        "source": "Homocysteine Studies Collaboration. Homocysteine and risk of ischemic heart disease and stroke. JAMA 2002;288:2015-2022. PMID:12387654"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Right-skewed but heat map outcomes use per_unit (linear); linear scale used. Values rise with B12/folate deficiency, renal impairment, and delayed sample processing."
+    },
+    "ferritin": {
+      "units": "ng/mL",
+      "scale": "log",
+      "population_mean": 4,
+      "population_sd": 0.95,
+      "population_source": "NHANES serum ferritin distributions; strongly right-skewed, geometric mean ~50-60 ng/mL overall (markedly sex-dependent: men ~120, premenopausal women ~30). Consistent with NHANES iron-status reports (Cogswell ME et al. Am J Clin Nutr 2009, PMID:19357218).",
+      "optimal": {
+        "low": 30,
+        "high": 150,
+        "rationale": "As an inflammation/iron-overload marker, both extremes carry risk: <30 indicates iron deficiency, >150-300 associates with hepatic and metabolic risk and reflects inflammation. Mid-range is risk-minimizing.",
+        "source": "WHO. Serum ferritin concentrations for the assessment of iron status. WHO/NMH/NHD/MNM/11.2, 2020; and Camaschella C. NEJM 2015;372:1832. PMID:25946282"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Strongly right-skewed; log scale used (heat map uses quartiles for an inflammation framing). Acute-phase reactant - elevated by infection/inflammation independent of iron stores. Strongly sex- and age-dependent."
+    },
+    "supar": {
+      "units": "ng/mL",
+      "scale": "log",
+      "population_mean": 0.95,
+      "population_sd": 0.42,
+      "population_source": "General-population suPAR distributions from the Danish MONICA10 / Inter99 cohorts and Malmo Diet & Cancer; median ~2.5-3.0 ng/mL, right-skewed. Eugen-Olsen J et al. J Intern Med 2010 (PMID:20561148).",
+      "optimal": {
+        "low": 0,
+        "high": 3,
+        "rationale": "Risk rises continuously with suPAR; values <3 ng/mL are associated with lowest mortality and CKD risk in population cohorts. Lower-better.",
+        "source": "Eugen-Olsen J et al. Circulating soluble urokinase plasminogen activator receptor predicts cancer, cardiovascular disease, diabetes and mortality. J Intern Med 2010;268:296-308. PMID:20561148"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Right-skewed; conventionally log-analyzed (heat map gives per_sd). ln-scale mean/SD approximate (geometric mean ~2.6 ng/mL). Less affected by acute inflammation than CRP."
+    },
+    "egfr_cystatin_c": {
+      "units": "mL/min/1.73m2",
+      "scale": "linear",
+      "population_mean": 90,
+      "population_sd": 20,
+      "population_source": "NHANES 1999-2018 cystatin C-based eGFR (CKD-EPI 2012/2021) in US adults; mean ~85-95, declines with age. Consistent with Inker LA et al. NEJM 2012 (PMID:22762315) and NHANES CKD surveillance reports.",
+      "optimal": {
+        "low": 90,
+        "high": 120,
+        "rationale": "Mortality is lowest at eGFR ~90-105; risk rises steeply below 60 and modestly at very high values. Higher-better within the normal-to-high range. Per_sd lower eGFR = higher risk.",
+        "source": "Shlipak MG et al. Cystatin C versus creatinine in determining risk based on kidney function. NEJM 2013;369:932-943. PMID:24004120"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Linear scale (heat map per_sd). Strongly age-dependent; a mild U-shape exists at very high eGFR but lower values dominate risk. Cystatin C-based eGFR less affected by muscle mass than creatinine-based."
+    },
+    "cystatin_c": {
+      "units": "mg/L",
+      "scale": "linear",
+      "population_mean": 0.9,
+      "population_sd": 0.2,
+      "population_source": "NHANES 1999-2002 serum cystatin C in US adults; mean ~0.85-0.95 mg/L, rises with age. Kottgen A et al. Am J Kidney Dis 2008 (PMID:18495303); standardized to ERM-DA471 reference material.",
+      "optimal": {
+        "low": 0.6,
+        "high": 0.9,
+        "rationale": "Lower cystatin C reflects better kidney function and is associated with lower mortality and CVD risk; risk rises continuously above ~1.0 mg/L. Lower-better.",
+        "source": "Shlipak MG et al. Cystatin C and the risk of death and cardiovascular events among elderly persons. NEJM 2005;352:2049-2060. PMID:15901858"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Linear scale (heat map per_sd). Age-dependent; also elevated by inflammation, thyroid dysfunction, and corticosteroids independent of GFR."
+    },
+    "albuminuria_uacr": {
+      "units": "mg/g",
+      "scale": "log",
+      "population_mean": 1.95,
+      "population_sd": 1.1,
+      "population_source": "NHANES urine albumin:creatinine ratio in US adults; strongly right-skewed, median ~7-8 mg/g, geometric mean ~7 mg/g. Consistent with NHANES CKD surveillance and Chronic Kidney Disease Prognosis Consortium descriptive data.",
+      "optimal": {
+        "low": 0,
+        "high": 10,
+        "rationale": "Mortality and CVD/CKD risk rise continuously from very low UACR; values <10 mg/g (well below the 30 mg/g microalbuminuria threshold) are risk-minimizing. Lower-better.",
+        "source": "Chronic Kidney Disease Prognosis Consortium (Matsushita K et al.). Lancet 2010;375:2073-2081. PMID:20483451"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Strongly right-skewed; log scale used (heat map per_log_sd / per_doubling). ln-scale mean/SD approximate. High day-to-day variability; spot UACR should be confirmed."
+    },
+    "alt": {
+      "units": "U/L",
+      "scale": "log",
+      "population_mean": 3,
+      "population_sd": 0.5,
+      "population_source": "NHANES serum ALT distributions in US adults; right-skewed, median ~20-22 U/L (men higher than women). Consistent with Ruhl CE & Everhart JE, Gastroenterology 2012 (PMID:22326434).",
+      "optimal": {
+        "low": 10,
+        "high": 25,
+        "rationale": "A J-shaped mortality curve exists - very low ALT signals frailty/sarcopenia in older adults, very high signals liver injury. The risk trough is ~17-25 U/L; updated healthy thresholds are <25 (women) / <33 (men).",
+        "source": "Kunutsor SK et al. Liver aminotransferases and risk of all-cause mortality: a meta-analysis. Am J Epidemiol 2014;179:1158-1170. PMID:24682939"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Right-skewed; log scale used (heat map per_sd applied on skewed analyte, conventionally log-analyzed). U-shaped mortality: low ALT associated with frailty. Sex-dependent."
+    },
+    "ast": {
+      "units": "U/L",
+      "scale": "log",
+      "population_mean": 3.1,
+      "population_sd": 0.4,
+      "population_source": "NHANES serum AST distributions in US adults; right-skewed, median ~21-23 U/L. Consistent with Ruhl CE & Everhart JE, Gastroenterology 2012 (PMID:22326434).",
+      "optimal": {
+        "low": 15,
+        "high": 30,
+        "rationale": "Mortality rises at both low (frailty) and high (liver/cardiac injury) AST; the trough is ~20-30 U/L. AST/ALT ratio adds prognostic information.",
+        "source": "Kunutsor SK et al. Aspartate aminotransferase and risk of mortality: a systematic review and meta-analysis. Maturitas 2015;81:351-358. PMID:25998690"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Right-skewed; log scale used. AST is less liver-specific than ALT (also released from muscle, heart, RBCs)."
+    },
+    "ggt": {
+      "units": "U/L",
+      "scale": "log",
+      "population_mean": 3,
+      "population_sd": 0.65,
+      "population_source": "NHANES serum GGT distributions in US adults; strongly right-skewed, median ~18-22 U/L (men higher). Consistent with Ruhl CE & Everhart JE, Hepatology 2009 (PMID:19582814).",
+      "optimal": {
+        "low": 10,
+        "high": 25,
+        "rationale": "GGT shows a continuous log-linear association with mortality, CVD and cancer; the lowest tertile/decile is risk-minimizing. Low-normal GGT (~<25 U/L) is optimal.",
+        "source": "Kunutsor SK et al. Gamma-glutamyltransferase and risk of all-cause, cardiovascular and liver mortality. Eur J Epidemiol 2017;32:289-308. PMID:28425046"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Strongly right-skewed; log scale used (heat map per_log_sd). ln-scale mean/SD approximate. Sensitive marker of alcohol intake, hepatic steatosis, and oxidative stress."
+    },
+    "fib4": {
+      "units": "index",
+      "scale": "linear",
+      "population_mean": 1.1,
+      "population_sd": 0.6,
+      "population_source": "NHANES-derived FIB-4 distributions in US adults; mean ~1.0-1.2, rises with age. Consistent with Vilar-Gomez E et al. and NHANES-based FIB-4 prevalence studies (Kim D et al. Clin Gastroenterol Hepatol).",
+      "optimal": {
+        "low": 0,
+        "high": 1.3,
+        "rationale": "FIB-4 <1.3 rules out advanced fibrosis and is associated with lowest mortality; 1.3-2.67 is indeterminate; >2.67 indicates advanced fibrosis. Age-adjusted cutoff 2.0 used over age 65.",
+        "source": "Sterling RK et al. Development of a simple noninvasive index to predict significant fibrosis in HIV/HCV coinfection. Hepatology 2006;43:1317-1325. PMID:16729309"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Calculated index from age, AST, ALT, platelets; not a single measured analyte but a continuous quantitative score, so scorable. Heat map uses categorical (cutpoint) HRs. Age strongly inflates FIB-4."
+    },
+    "uric_acid": {
+      "units": "mg/dL",
+      "scale": "linear",
+      "population_mean": 5.4,
+      "population_sd": 1.4,
+      "population_source": "NHANES 2015-2016 serum uric acid in US adults; mean ~5.4 mg/dL (men ~6.0, women ~4.8). Consistent with NHANES gout/hyperuricemia surveillance (Chen-Xu M et al. Arthritis Rheumatol 2019, PMID:30618180).",
+      "optimal": {
+        "low": 3.5,
+        "high": 5.5,
+        "rationale": "U-shaped mortality: low uric acid associates with malnutrition/frailty and loss of antioxidant capacity, high uric acid with gout, CKD and CVD. The risk trough is ~4-5.5 mg/dL.",
+        "source": "Cho SK et al. U-shaped association between serum uric acid level and risk of mortality in U.S. adults. Arthritis Rheumatol 2018;70:1122-1132. PMID:29569437"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Linear scale (heat map per_sd). U-shaped mortality association well documented. Sex-dependent (men higher). Elevated by renal impairment, diuretics, and high-purine/fructose intake."
+    },
+    "vitamin_d_25oh": {
+      "units": "ng/mL",
+      "scale": "linear",
+      "population_mean": 25,
+      "population_sd": 10,
+      "population_source": "NHANES 2011-2014 standardized serum 25(OH)D in US adults; mean ~25-26 ng/mL (62-65 nmol/L). Herrick KA et al. Am J Clin Nutr 2019 (PMID:31022277).",
+      "optimal": {
+        "low": 30,
+        "high": 50,
+        "rationale": "U-shaped mortality: risk is elevated below ~20 ng/mL and a possible slight uptick above ~60-100 ng/mL. The risk-minimizing trough is ~30-50 ng/mL (75-125 nmol/L).",
+        "source": "Durazo-Arvizu RA et al. (D-CarDia) and Gaksch M et al. Vitamin D and mortality: individual participant data meta-analysis. PLoS One 2017;12:e0170791. PMID:28207791"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Linear scale (heat map per_sd). Strong seasonal and latitude variation. Mortality association is partly confounded by reverse causation (illness lowers 25(OH)D)."
+    },
+    "vitamin_b12": {
+      "units": "pg/mL",
+      "scale": "log",
+      "population_mean": 6.1,
+      "population_sd": 0.5,
+      "population_source": "NHANES serum vitamin B12 in US adults; right-skewed, geometric mean ~450-500 pg/mL. Consistent with Pfeiffer CM et al. Am J Clin Nutr 2013 NHANES B-vitamin status report (PMID:23596162).",
+      "optimal": {
+        "low": 400,
+        "high": 800,
+        "rationale": "U-shaped mortality: deficiency (<200-300 pg/mL) causes anemia/neuropathy; very high B12 (>800-1000 pg/mL) associates with higher mortality, often as a marker of liver disease or malignancy. Mid-normal range is optimal.",
+        "source": "Flores-Guerrero JL et al. Association of plasma concentration of vitamin B12 with all-cause mortality. JAMA Netw Open 2020;3:e1919274. PMID:31922561"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Right-skewed; log scale used. Total B12 is an imperfect status marker - MMA and holotranscobalamin are more sensitive. Heat map outcomes are categorical."
+    },
+    "folate": {
+      "units": "ng/mL",
+      "scale": "linear",
+      "population_mean": 16,
+      "population_sd": 7,
+      "population_source": "NHANES post-fortification serum folate in US adults; mean ~15-17 ng/mL. Pfeiffer CM et al. Am J Clin Nutr 2012 (PMID:22301929).",
+      "optimal": {
+        "low": 5,
+        "high": 20,
+        "rationale": "Adequate serum folate (>4-5 ng/mL) prevents megaloblastic anemia and elevated homocysteine; mortality is lowest in the mid-range. Very high serum folate may relate to unmetabolized folic acid; conventional adequacy range used.",
+        "source": "Bailey RL et al. and IOM Dietary Reference Intakes for folate; NHANES folate status (Pfeiffer CM et al. PMID:22301929)"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Heat map gives per_sd alongside quartiles. Post-fortification US population has high folate; deficiency is rare. RBC folate is a better long-term status marker than serum."
+    },
+    "methylmalonic_acid": {
+      "units": "umol/L",
+      "scale": "log",
+      "population_mean": -1.43,
+      "population_sd": 0.45,
+      "population_source": "NHANES serum methylmalonic acid in US adults; strongly right-skewed, geometric mean ~0.13-0.15 umol/L, rises with age and renal impairment. Pfeiffer CM et al. Am J Clin Nutr 2013 (PMID:23596162).",
+      "optimal": {
+        "low": 0,
+        "high": 0.27,
+        "rationale": "MMA <0.27 umol/L is the conventional threshold for adequate B12 status; elevated MMA marks functional B12 deficiency and tracks with mortality and cognitive decline. Lower-better.",
+        "source": "Pfeiffer CM et al. Applying inappropriate cutoffs leads to misinterpretation of folate status. Am J Clin Nutr 2013;98:1297-1300; and NHANES B12 status reports"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Strongly right-skewed; log scale used (population_mean/SD are ln of umol/L). Elevated by renal impairment independent of B12 status. Heat map outcomes categorical."
+    },
+    "omega3_index": {
+      "units": "% of total RBC fatty acids",
+      "scale": "linear",
+      "population_mean": 4.9,
+      "population_sd": 1.6,
+      "population_source": "US general-population RBC omega-3 index (EPA+DHA); mean ~4-5%, low relative to cardioprotective targets. Stark KD et al. Prog Lipid Res 2016 global survey (PMID:26920564); Harris WS et al.",
+      "optimal": {
+        "low": 8,
+        "high": 12,
+        "rationale": "An omega-3 index >=8% is associated with the lowest total mortality and CVD risk; 4-8% intermediate, <4% highest risk. Higher-better up to ~8-12%.",
+        "source": "Harris WS et al. Erythrocyte omega-3 index, mortality, and risk of incident CVD: a pooled analysis. Am J Clin Nutr 2021;113:1447-1454. PMID:33564854"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Linear scale (heat map quartiles/quintiles). Strongly influenced by fish/supplement intake. Some plateau above ~8% so functionally higher-better with a target band."
+    },
+    "magnesium_rbc": {
+      "units": "mg/dL",
+      "scale": "linear",
+      "population_mean": 5,
+      "population_sd": 0.5,
+      "population_source": "RBC magnesium reference distributions from clinical laboratory populations; typical mean ~5.0 mg/dL (range ~4.2-6.8 mg/dL). No large NHANES RBC-Mg dataset exists (NHANES measures serum Mg).",
+      "optimal": {
+        "low": 4.5,
+        "high": 6,
+        "rationale": "RBC magnesium reflects intracellular stores better than serum; mid-to-upper reference range is associated with lower arrhythmia and metabolic risk. Conventional reference range used (no outcome-derived cutpoint).",
+        "source": "Conventional clinical-laboratory reference interval (e.g., Mayo/Quest RBC magnesium); no large-cohort outcome data"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "unverified",
+      "note": "No large general-population RBC-magnesium dataset; population_mean/SD are typical lab reference values, not a cited cohort statistic - verification_status unverified. Serum magnesium has far more outcome data."
+    },
+    "zinc": {
+      "units": "ug/dL",
+      "scale": "linear",
+      "population_mean": 88,
+      "population_sd": 16,
+      "population_source": "NHANES II serum zinc in US adults; mean ~85-90 ug/dL. Hotz C et al. (NHANES II zinc reference) Am J Clin Nutr 2003 (PMID:12816771); IZiNCG reference values.",
+      "optimal": {
+        "low": 70,
+        "high": 110,
+        "rationale": "Conventional adequacy range; both deficiency (immune dysfunction, poor wound healing) and excess (copper depletion) carry risk. Mid-reference range is optimal. No outcome-derived cutpoint, so reference interval used.",
+        "source": "International Zinc Nutrition Consultative Group (IZiNCG) reference values; Hotz C et al. PMID:12816771"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Linear scale. Serum zinc is an insensitive status marker (homeostatically buffered); falls during acute inflammation. Diurnal variation and fasting state affect values. Heat map has no usable per-SD HR."
+    },
+    "copper": {
+      "units": "ug/dL",
+      "scale": "linear",
+      "population_mean": 105,
+      "population_sd": 25,
+      "population_source": "NHANES 2011-2016 serum copper in US adults; mean ~100-115 ug/dL (women higher; raised by estrogen/oral contraceptives). Consistent with NHANES trace-element reports.",
+      "optimal": {
+        "low": 80,
+        "high": 110,
+        "rationale": "U-shaped: deficiency impairs antioxidant and connective-tissue function; high serum copper (top tertile/quartile) associates with elevated all-cause, CVD and cancer mortality, partly as an inflammation marker. Mid-low normal is risk-minimizing.",
+        "source": "Malavolta M et al. Serum copper to zinc ratio and mortality in the elderly. and Bo S et al. associations of serum copper with mortality. (NHANES-based copper-mortality analyses, e.g. PMID:35613835)"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Linear scale. Serum copper rises with inflammation (ceruloplasmin is an acute-phase protein) and estrogen; high values partly reflect inflammation rather than copper excess. Sex-dependent."
+    },
+    "ceruloplasmin": {
+      "units": "mg/dL",
+      "scale": "linear",
+      "population_mean": 30,
+      "population_sd": 7,
+      "population_source": "Clinical-laboratory reference distributions for serum ceruloplasmin in adults; typical mean ~28-32 mg/dL (range ~20-40 mg/dL). No large NHANES ceruloplasmin dataset; raised by estrogen and inflammation.",
+      "optimal": {
+        "low": 20,
+        "high": 35,
+        "rationale": "Conventional reference range; low ceruloplasmin suggests Wilson disease/copper deficiency, high values reflect acute-phase inflammation and associate with higher CVD/mortality risk in quartile analyses. Mid-reference range used.",
+        "source": "Conventional clinical-laboratory reference interval; quartile mortality associations from inflammation cohorts (no single cited cohort statistic)"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "unverified",
+      "note": "No large general-population cohort statistic available; population_mean/SD are typical lab reference values - verification_status unverified. Acute-phase reactant strongly raised by inflammation and estrogen."
+    },
+    "transferrin_saturation": {
+      "units": "%",
+      "scale": "linear",
+      "population_mean": 27,
+      "population_sd": 10,
+      "population_source": "NHANES serum transferrin saturation in US adults; mean ~26-28%. Consistent with NHANES iron-status reports (Cogswell ME et al. Am J Clin Nutr 2009, PMID:19357218).",
+      "optimal": {
+        "low": 25,
+        "high": 35,
+        "rationale": "U-shaped mortality: low TSAT (<20%) indicates iron deficiency, high TSAT (>45-50%) indicates iron overload/hemochromatosis and tracks with higher mortality. The risk trough is ~25-35%.",
+        "source": "Ellervik C et al. and Pfeiffenberger J; UK Biobank transferrin saturation-mortality analyses (e.g. Daghlas I et al., PMID:33500563)"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Linear scale. Diurnal variation (higher in morning) and affected by fasting state and inflammation. Heat map outcomes categorical."
+    },
+    "tibc": {
+      "units": "ug/dL",
+      "scale": "linear",
+      "population_mean": 350,
+      "population_sd": 60,
+      "population_source": "NHANES total iron-binding capacity in US adults; mean ~340-360 ug/dL. Consistent with NHANES iron-status reports (Cogswell ME et al. Am J Clin Nutr 2009, PMID:19357218).",
+      "optimal": {
+        "low": 250,
+        "high": 400,
+        "rationale": "TIBC sits within the conventional reference range; high TIBC reflects iron deficiency, low TIBC reflects iron overload, inflammation or malnutrition. Mid-reference range is optimal. No outcome-derived cutpoint.",
+        "source": "Conventional clinical-laboratory reference interval; NHANES iron-status descriptive data (PMID:19357218)"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Linear scale. TIBC is largely a proxy for transferrin; interpreted jointly with serum iron and ferritin. Low TIBC also a malnutrition/inflammation marker. Heat map uses quartiles."
+    },
+    "selenium": {
+      "units": "ug/L",
+      "scale": "linear",
+      "population_mean": 124,
+      "population_sd": 20,
+      "population_source": "NHANES 2011-2016 serum selenium in US adults; mean ~120-128 ug/L (US population is selenium-replete). Consistent with NHANES trace-element reports and Bleys J et al. Arch Intern Med 2008 (PMID:18299496).",
+      "optimal": {
+        "low": 120,
+        "high": 150,
+        "rationale": "U-shaped mortality: risk falls as selenium rises to ~120-150 ug/L (optimizing selenoprotein/glutathione-peroxidase activity) then rises again above ~150-160 ug/L (pro-diabetic/pro-mortality). The trough is ~120-150 ug/L.",
+        "source": "Bleys J et al. Serum selenium levels and all-cause, cancer, and cardiovascular mortality among US adults. Arch Intern Med 2008;168:404-410. PMID:18299496"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Linear scale (heat map per_sd/quartile). Strongly geography-dependent (soil selenium); US population is replete, so a higher trough applies than in deficient regions."
+    },
+    "tmao_choline": {
+      "units": "umol/L",
+      "scale": "log",
+      "population_mean": 1.1,
+      "population_sd": 0.85,
+      "population_source": "Plasma TMAO distributions from the Cleveland Clinic GeneBank cohort and PREDIMED; strongly right-skewed, median ~3-4 umol/L. Tang WHW et al. NEJM 2013 (PMID:23614584).",
+      "optimal": {
+        "low": 0,
+        "high": 5,
+        "rationale": "Risk rises continuously with TMAO; the lowest quartile (~<5 umol/L) is associated with lowest MACE and mortality. Lower-better.",
+        "source": "Tang WHW et al. Intestinal microbial metabolism of phosphatidylcholine and cardiovascular risk. NEJM 2013;368:1575-1584. PMID:23614584; meta-analysis Heianza Y et al. J Am Heart Assoc 2017 PMID:28663251"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Strongly right-skewed; log scale used (population_mean/SD are ln of umol/L, approximate). Highly diet- and microbiome-dependent and elevated by renal impairment. Heat map outcomes categorical."
+    },
+    "cortisol_morning_serum": {
+      "units": "nmol/L",
+      "scale": "linear",
+      "population_mean": 372,
+      "population_sd": 130,
+      "population_source": "Approximate from morning (08:00-09:00) serum cortisol distributions; representative of healthy adults, e.g. Reynolds 2010 / population HPA studies. No single NHANES serum-cortisol release covers all years; value approximate.",
+      "optimal": {
+        "low": 200,
+        "high": 450,
+        "rationale": "Mid-range morning cortisol; both very low (adrenal insufficiency) and very high (chronic HPA activation, adverse metabolic/CVD/mortality outcomes) carry risk. Conventional morning reference ~140-550 nmol/L; risk-minimizing band is the middle of that range.",
+        "source": "Conventional clinical reference range; Kumari 2011 PMID:21307138 (flat/high cortisol exposure and mortality)"
+      },
+      "direction": "u_shaped",
+      "sex_specific": false,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Assumes a single standardized 07:00-09:00 venous draw. Strong diurnal/pulsatile variation makes a single value imprecise. Sexes broadly similar for total serum cortisol; oral estrogen/pregnancy raise CBG and total cortisol. Mean/SD approximate, not from a single definitive general-population PMID."
+    },
+    "cortisol_diurnal_slope": {
+      "units": "log10(nmol/L) per hour (slope of log-cortisol vs time since wake)",
+      "scale": "linear",
+      "population_mean": -0.11,
+      "population_sd": 0.04,
+      "population_source": "Approximate from pooled salivary diurnal-slope literature (e.g. Adam 2017 meta-analysis of diurnal cortisol slope and health outcomes, PMID:28892905).",
+      "optimal": {
+        "low": -0.18,
+        "high": -0.12,
+        "rationale": "A steeper (more negative) decline from morning peak to evening trough is healthy; flatter (less negative, toward 0) slopes index HPA dysregulation and predict higher mortality, CVD and inflammation.",
+        "source": "Adam 2017 PMID:28892905"
+      },
+      "direction": "lower_better",
+      "sex_specific": false,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Slope is a derived quantity; units and computation vary across studies (log10/hr vs log/hr; with or without the cortisol awakening response). 'lower_better' means more negative slope is healthier. Mean/SD approximate; depends heavily on sampling protocol."
+    },
+    "cortisol_hair": {
+      "units": "pg/mg",
+      "scale": "log",
+      "population_mean": 1.9,
+      "population_sd": 0.7,
+      "population_source": "Natural-log of hair cortisol concentration; approximate from population HCC distributions (median ~5-8 pg/mg, strongly right-skewed), e.g. Stalder 2017 meta-analysis PMID:28135674.",
+      "optimal": {
+        "low": 3,
+        "high": 12,
+        "rationale": "Mid-range chronic cortisol exposure (raw pg/mg). Elevated HCC indexes chronic stress load and associates with cardiometabolic risk; conventional range only, no validated mortality-trough.",
+        "source": "Stalder 2017 PMID:28135674 (conventional/normative reference)"
+      },
+      "direction": "u_shaped",
+      "sex_specific": false,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "HCC is strongly right-skewed so analyzed on log scale; population_mean/sd are of the NATURAL LOG of pg/mg. Optimal low/high given in raw pg/mg. Assays not standardized; hair treatment/washing affect values. No definitive single PMID for population mean/SD."
+    },
+    "dheas": {
+      "units": "ug/dL",
+      "scale": "linear",
+      "population_mean": 110,
+      "population_sd": 70,
+      "population_source": "Approximate adult-population serum DHEA-S; declines steeply with age (adrenopause). Representative of mid-adult range; NHANES did not routinely assay DHEA-S. Sex- and age-specific norms essential.",
+      "optimal": {
+        "low": 100,
+        "high": 280,
+        "rationale": "Higher DHEA-S within the youthful-adult range is associated with lower frailty and mortality; very low DHEA-S marks biological aging. Direction is broadly higher-better within physiological range.",
+        "source": "Conventional reference; Ohlsson 2010 PMID:20650977 (low DHEA-S and mortality in older men)"
+      },
+      "direction": "higher_better",
+      "sex_specific": true,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "DHEA-S falls ~80% between age 25 and 75, so a single population mean is age-dependent; value approximates a mid-adult (~40-50y) reference. Reference sex: men (women run somewhat lower). Use age-specific norms in practice. Mean/SD approximate."
+    },
+    "cortisol_dheas_ratio": {
+      "units": "ratio (cortisol nmol/L : DHEA-S nmol/L, dimensionless)",
+      "scale": "log",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": null,
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "No standardized reference range exists; units depend on which units each analyte is expressed in. A rising ratio indexes catabolic shift with age but lacks a validated population distribution or risk-optimal band.",
+        "source": null
+      },
+      "direction": "lower_better",
+      "sex_specific": true,
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "Derived ratio with arbitrary, non-standardized units; outcomes use categorical (tertile) metrics only. No general-population mean/SD is sourceable, so applicable:false. Interpret only relative to a within-study reference. A higher ratio = catabolic dominance is generally adverse."
+    },
+    "tsh": {
+      "units": "mIU/L",
+      "scale": "log",
+      "population_mean": 0.42,
+      "population_sd": 0.55,
+      "population_source": "Natural-log of serum TSH; NHANES III disease-free reference population, geometric mean ~1.5 mIU/L (ln ~0.42). Hollowell 2002 J Clin Endocrinol Metab PMID:11836274.",
+      "optimal": {
+        "low": 0.5,
+        "high": 2.5,
+        "rationale": "U-shaped mortality association: both subclinical hyperthyroidism (low TSH) and subclinical hypothyroidism (high TSH) raise CVD/mortality risk. Lowest-risk trough lies in the lower-mid reference range (~0.5-2.5 mIU/L); modestly higher TSH (up to ~4) may be benign in the elderly.",
+        "source": "Hollowell 2002 PMID:11836274; Asvold 2017 / thyroid-mortality literature"
+      },
+      "direction": "u_shaped",
+      "sex_specific": false,
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "TSH is log-normally distributed; population_mean/sd are of the NATURAL LOG of mIU/L (geometric mean ~1.5). Optimal low/high in raw mIU/L. Distribution shifts upward with age; sexes broadly similar."
+    },
+    "free_t4": {
+      "units": "pmol/L",
+      "scale": "linear",
+      "population_mean": 14.5,
+      "population_sd": 2.3,
+      "population_source": "Approximate adult-population free T4 (NHANES / large cohorts), reference range ~10-23 pmol/L (0.8-1.8 ng/dL). Hollowell 2002 PMID:11836274.",
+      "optimal": {
+        "low": 11,
+        "high": 16,
+        "rationale": "Within-reference-range higher free T4 is associated with greater all-cause mortality, atrial fibrillation and bone loss; lower-normal free T4 is metabolically favorable. Risk-minimizing band is the lower-mid reference range.",
+        "source": "Hollowell 2002 PMID:11836274; Yeap 2012 / free T4-mortality cohort studies"
+      },
+      "direction": "lower_better",
+      "sex_specific": false,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Free T4 estimates are method-dependent; reference ranges are assay-specific. Mean/SD approximate, in pmol/L (divide by ~12.87 for ng/dL). Sexes broadly similar."
+    },
+    "free_t3": {
+      "units": "pmol/L",
+      "scale": "linear",
+      "population_mean": 4.8,
+      "population_sd": 0.7,
+      "population_source": "Approximate adult-population free T3, conventional reference ~3.5-6.5 pmol/L. No single definitive general-population PMID.",
+      "optimal": {
+        "low": 4.5,
+        "high": 6,
+        "rationale": "Low free T3 is a hallmark of non-thyroidal illness syndrome and strongly predicts frailty and mortality; mid-to-upper-normal free T3 is favorable. Conventional reference with risk skewed toward avoiding low values.",
+        "source": "Conventional reference; non-thyroidal illness / low-T3 mortality literature"
+      },
+      "direction": "higher_better",
+      "sex_specific": false,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Free T3 is heavily confounded by illness; 'higher_better' applies only within the physiological range and largely reflects illness severity rather than intrinsic thyroid function. Mean/SD approximate, assay-dependent."
+    },
+    "reverse_t3": {
+      "units": "ng/dL",
+      "scale": "log",
+      "population_mean": 3,
+      "population_sd": 0.4,
+      "population_source": "Natural-log of serum reverse T3; conventional reference ~10-24 ng/dL (ln ~2.3-3.2). Assays poorly standardized; no definitive general-population PMID.",
+      "optimal": {
+        "low": 10,
+        "high": 20,
+        "rationale": "Conventional reference range only; elevated rT3 marks catabolic/non-thyroidal illness state. No validated risk-optimal band exists. Lower-to-mid range preferred as it indexes absence of illness stress.",
+        "source": "Conventional reference range (assay-dependent)"
+      },
+      "direction": "lower_better",
+      "sex_specific": false,
+      "applicable": true,
+      "verification_status": "unverified",
+      "note": "rT3 assays are poorly standardized and rT3 is dominated by acute/chronic illness rather than intrinsic physiology. population_mean/sd are of the NATURAL LOG of ng/dL and are approximate/unverified. Optimal in raw ng/dL. Outcomes use tertile metrics only."
+    },
+    "thyroid_antibodies": {
+      "units": "IU/mL (TPO antibody titre)",
+      "scale": "log",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": null,
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "Thyroid antibodies are interpreted as positive/negative against an assay cutoff, not as a continuous risk gradient. Most of the population is at or near the assay floor, producing a non-normal, censored distribution.",
+        "source": null
+      },
+      "direction": "lower_better",
+      "sex_specific": true,
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "Categorical (positive/negative) marker of thyroid autoimmunity, not a continuous quantitative biomarker; outcomes use categorical metrics. ~10-15% of adults (more in older women) are TPOAb-positive. No meaningful population mean/SD on a per-SD scale, so applicable:false."
+    },
+    "total_testosterone": {
+      "units": "nmol/L",
+      "scale": "linear",
+      "population_mean": 15,
+      "population_sd": 5,
+      "population_source": "Men 19-39y harmonized reference, NHANES-based: 10.4-30.1 nmol/L (2.5-97.5th centile), mean ~15. Travison 2017 J Clin Endocrinol Metab PMID:28324103 (harmonized reference ranges).",
+      "optimal": {
+        "low": 12,
+        "high": 22,
+        "rationale": "U-shaped mortality association in men: both low and very high total testosterone associate with higher mortality; lowest-risk band is the mid-to-upper normal range. Low T marks frailty and metabolic disease.",
+        "source": "Travison 2017 PMID:28324103; Yeap 2014 / testosterone-mortality cohorts"
+      },
+      "direction": "u_shaped",
+      "sex_specific": true,
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Reference sex: MEN (women run ~0.5-2.4 nmol/L, ~20-30x lower; a separate distribution applies). Morning sample assumed. Declines with age and obesity. ng/dL = nmol/L x 28.84."
+    },
+    "free_testosterone": {
+      "units": "pmol/L",
+      "scale": "linear",
+      "population_mean": 300,
+      "population_sd": 100,
+      "population_source": "Calculated free testosterone (Vermeulen equation) in men; healthy young-adult reference ~225-525 pmol/L (~65-150 pg/mL). Approximate from harmonized cohorts; assay/equation-dependent.",
+      "optimal": {
+        "low": 220,
+        "high": 450,
+        "rationale": "Low calculated free testosterone associates with frailty, dementia and mortality in men; mid-to-upper normal range is favorable. Conventional reference with risk skewed toward avoiding low values.",
+        "source": "Conventional reference; Hsu 2018 / free testosterone-frailty-mortality literature"
+      },
+      "direction": "u_shaped",
+      "sex_specific": true,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Reference sex: MEN. Free T is calculated, not directly measured, so depends on SHBG assay and chosen equation; women's distribution is far lower and separate. Mean/SD approximate. pg/mL = pmol/L / 3.47."
+    },
+    "shbg": {
+      "units": "nmol/L",
+      "scale": "log",
+      "population_mean": 3.6,
+      "population_sd": 0.45,
+      "population_source": "Natural-log of serum SHBG; adult men reference ~18-54 nmol/L, geometric mean ~35 (ln ~3.6). Approximate from large cohorts (e.g. EMAS / NHANES-linked studies).",
+      "optimal": {
+        "low": 25,
+        "high": 55,
+        "rationale": "U-shaped associations: low SHBG marks insulin resistance/hepatic fat and metabolic syndrome, while very high SHBG accompanies aging and frailty. Mid-range is risk-minimizing.",
+        "source": "Conventional reference; SHBG-metabolic-syndrome and SHBG-frailty literature"
+      },
+      "direction": "u_shaped",
+      "sex_specific": true,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "SHBG is right-skewed; population_mean/sd are of the NATURAL LOG of nmol/L (geometric mean ~35). Reference sex: MEN (women run higher, ~30-90 nmol/L). Optimal low/high in raw nmol/L. Raised by oral estrogen/thyroid hormone, lowered by insulin resistance."
+    },
+    "estradiol": {
+      "units": "pmol/L",
+      "scale": "log",
+      "population_mean": 3.5,
+      "population_sd": 0.6,
+      "population_source": "Natural-log of serum estradiol in postmenopausal women / older men (low-level range ~15-110 pmol/L). Premenopausal women have far higher, cycle-dependent levels. Approximate; LC-MS/MS-based cohorts.",
+      "optimal": {
+        "low": 40,
+        "high": 150,
+        "rationale": "Associations are strongly sex- and menopause-status-dependent; in postmenopausal women very high endogenous estradiol associates with breast cancer risk while extremely low levels associate with bone loss. No simple risk-minimizing band; conventional low-level reference given.",
+        "source": "Conventional reference; Key 2002 (endogenous estradiol and breast cancer) PMID:12189224"
+      },
+      "direction": "u_shaped",
+      "sex_specific": true,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Reference sex/state: POSTMENOPAUSAL women (and similar low range in men). Premenopausal estradiol is highly cycle-dependent (~110-1500 pmol/L) and not represented here. population_mean/sd are of the NATURAL LOG of pmol/L. pg/mL = pmol/L / 3.67. Immunoassays unreliable at low levels."
+    },
+    "progesterone": {
+      "units": "nmol/L",
+      "scale": "log",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": null,
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "Endogenous progesterone has extreme within-cycle variation (follicular <3 nmol/L vs luteal 15-90 nmol/L) and is near-undetectable in men and postmenopausal women; no stable population distribution applies for chronic-risk scaling.",
+        "source": null
+      },
+      "direction": "u_shaped",
+      "sex_specific": true,
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "A single progesterone value is interpretable only when timed to cycle phase; there is no meaningful general-population mean/SD for a per-SD risk scale. Only one outcome (cancer) has a continuous metric. applicable:false."
+    },
+    "lh": {
+      "units": "IU/L",
+      "scale": "log",
+      "population_mean": 1.6,
+      "population_sd": 0.5,
+      "population_source": "Natural-log of serum LH in adult men (reference ~1.7-8.6 IU/L, geometric mean ~5). Approximate; cycle- and menopause-dependent in women.",
+      "optimal": {
+        "low": 1.7,
+        "high": 8.6,
+        "rationale": "Conventional adult reference range only; rising LH signals declining gonadal feedback (aging/hypogonadism/menopause). No validated risk-optimal band for chronic outcomes; outcomes use categorical metrics.",
+        "source": "Conventional clinical reference range"
+      },
+      "direction": "u_shaped",
+      "sex_specific": true,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Reference sex: MEN. LH is pulsatile (90-120 min pulses) so single values are noisy; in women it is highly cycle/menopause dependent (postmenopausal far higher). population_mean/sd are of the NATURAL LOG of IU/L. Approximate."
+    },
+    "fsh": {
+      "units": "IU/L",
+      "scale": "linear",
+      "population_mean": 6,
+      "population_sd": 3.5,
+      "population_source": "Adult men FSH reference ~1.5-12.4 IU/L. Approximate from clinical cohorts; rises sharply with gonadal aging.",
+      "optimal": {
+        "low": 1.5,
+        "high": 8,
+        "rationale": "Lower FSH within the reference range reflects intact gonadal function; high FSH marks gonadal aging and has been linked experimentally to bone loss and adiposity. Risk-minimizing band is the lower reference range.",
+        "source": "Conventional reference; FSH-bone/CVD experimental literature"
+      },
+      "direction": "lower_better",
+      "sex_specific": true,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Reference sex: MEN (premenopausal women cycle-dependent; postmenopausal women run 25-135 IU/L, a wholly separate distribution). FSH is right-skewed but the per_sd outcome metric implies a linear analysis, so linear scale used. Mean/SD approximate."
+    },
+    "igf1": {
+      "units": "ng/mL",
+      "scale": "linear",
+      "population_mean": 155,
+      "population_sd": 55,
+      "population_source": "Adult IGF-1 reference; strongly age-dependent. Approximate mid-adult (~40-50y) value from harmonized assays. Friedrich 2014 / Burgers 2011 meta-analysis of IGF-1 and mortality (PMID:21677044).",
+      "optimal": {
+        "low": 120,
+        "high": 200,
+        "rationale": "U-shaped mortality association: both low and high IGF-1 increase all-cause/CVD mortality; high IGF-1 raises cancer risk while low IGF-1 marks frailty. Lowest-risk trough is the mid-normal range.",
+        "source": "Burgers 2011 PMID:21677044 (U-shaped IGF-1-mortality); Rahmani 2022 meta-analysis"
+      },
+      "direction": "u_shaped",
+      "sex_specific": false,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "IGF-1 declines markedly with age, so the population mean is strongly age-dependent; value approximates mid-adult. Use age-specific (and ideally assay-specific) reference ranges. Sexes broadly similar. Mean/SD approximate."
+    },
+    "igfbp3": {
+      "units": "ug/mL",
+      "scale": "linear",
+      "population_mean": 4.2,
+      "population_sd": 1,
+      "population_source": "Adult IGFBP-3 reference ~2-7 ug/mL (mg/L). Approximate mid-adult value from cohort studies; mildly age-dependent.",
+      "optimal": {
+        "low": 3.5,
+        "high": 5.5,
+        "rationale": "IGFBP-3 is interpreted mainly relative to IGF-1 (the IGF-1/IGFBP-3 ratio indexes free IGF-1); conventional mid-normal range given. Independent risk-optimal band is not well established.",
+        "source": "Conventional reference; IGF/IGFBP-3 cohort literature"
+      },
+      "direction": "u_shaped",
+      "sex_specific": false,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "IGFBP-3 is biologically meaningful chiefly in the context of IGF-1; independent interpretation is limited. Mildly age-dependent. Mean/SD approximate. Sexes broadly similar."
+    },
+    "growth_hormone": {
+      "units": "ng/mL",
+      "scale": "log",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": null,
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "A single random GH value carries little information because of pulsatile secretion (sleep peaks) and a ~15-minute half-life; assessment requires stimulation/suppression testing. No meaningful population distribution for a per-SD risk scale.",
+        "source": null
+      },
+      "direction": "u_shaped",
+      "sex_specific": true,
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "Not a single quantitative measurement usable for risk scaling; GH is assessed by dynamic testing or via IGF-1 as a stable proxy. Outcomes use categorical metrics only. applicable:false."
+    },
+    "melatonin": {
+      "units": "ng/mL (overnight urinary 6-sulfatoxymelatonin, aMT6s)",
+      "scale": "log",
+      "population_mean": 2.6,
+      "population_sd": 0.7,
+      "population_source": "Natural-log of overnight urinary aMT6s (integrated nocturnal melatonin output); right-skewed, declines with age and light-at-night. Approximate from cohort studies (e.g. Nurses' Health Study aMT6s, Devore 2013).",
+      "optimal": {
+        "low": 15,
+        "high": 60,
+        "rationale": "Higher integrated nocturnal melatonin output is broadly favorable (lower CVD/cancer risk in cohort studies); low/mistimed melatonin indexes circadian disruption. Conventional upper-range preferred; no validated risk trough.",
+        "source": "Conventional reference; Devore 2013 / aMT6s-outcome cohort literature"
+      },
+      "direction": "higher_better",
+      "sex_specific": false,
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Reported as integrated overnight urinary aMT6s; a single daytime plasma/saliva value is uninformative. population_mean/sd are of the NATURAL LOG of the aMT6s concentration and are approximate; absolute values depend heavily on collection protocol and units. Declines with age."
+    },
+    "horvath_clock": {
+      "units": "years (epigenetic age acceleration residual)",
+      "scale": "linear",
+      "population_mean": 0,
+      "population_sd": 5.5,
+      "population_source": "Mean 0 by construction (residual of DNAm age on chronological age). Typical SD of Horvath intrinsic/extrinsic age acceleration ~4-6 yr; e.g. Marioni 2015, Genome Biol, PMID:25633388.",
+      "optimal": {
+        "low": null,
+        "high": 0,
+        "rationale": "Negative age acceleration (epigenetically younger than calendar age) is associated with lower mortality; values <=0 are favorable. No risk-minimizing trough is well established.",
+        "source": "Chen 2016, Aging, PMID:27595879"
+      },
+      "direction": "lower_better",
+      "applicable": false,
+      "verification_status": "approximate",
+      "note": "Horvath age acceleration is a residual with mean 0 by construction, not an absolute quantity. A consumer cannot compare a raw 'value' to a population mean; only the residual relative to their own chronological age is meaningful, and it is lab/array/cell-composition dependent. SD is approximate and cohort-specific. Not scorable as a standalone population-referenced biomarker."
+    },
+    "hannum_clock": {
+      "units": "years (epigenetic age acceleration residual)",
+      "scale": "linear",
+      "population_mean": 0,
+      "population_sd": 5.5,
+      "population_source": "Mean 0 by construction. Typical SD of Hannum age acceleration ~4-6 yr; Marioni 2015, Genome Biol, PMID:25633388.",
+      "optimal": {
+        "low": null,
+        "high": 0,
+        "rationale": "Lower (negative) age acceleration associated with lower mortality.",
+        "source": "Chen 2016, Aging, PMID:27595879"
+      },
+      "direction": "lower_better",
+      "applicable": false,
+      "verification_status": "approximate",
+      "note": "Residual with mean 0 by construction; lab/array/cell-composition dependent. Not scorable as a population-referenced absolute value."
+    },
+    "phenoage_clock": {
+      "units": "years (PhenoAge acceleration residual, PhenoAgeAccel)",
+      "scale": "linear",
+      "population_mean": 0,
+      "population_sd": 5.5,
+      "population_source": "Mean 0 by construction. SD of PhenoAgeAccel typically ~5-6 yr; Levine 2018, Aging, PMID:29676998.",
+      "optimal": {
+        "low": null,
+        "high": 0,
+        "rationale": "Negative PhenoAge acceleration (younger phenotypic age than calendar age) tracks lower mortality and disease risk; <=0 favorable.",
+        "source": "Levine 2018, Aging, PMID:29676998"
+      },
+      "direction": "lower_better",
+      "applicable": false,
+      "verification_status": "approximate",
+      "note": "Second-generation clock but still reported as an age-acceleration residual (mean 0 by construction). Not scorable against a population mean as an absolute value; SD is cohort/array dependent."
+    },
+    "grimage_clock": {
+      "units": "years (GrimAge / GrimAge2 age acceleration residual, AgeAccelGrim)",
+      "scale": "linear",
+      "population_mean": 0,
+      "population_sd": 5,
+      "population_source": "Mean 0 by construction. SD of AgeAccelGrim typically ~4-5 yr; Lu 2019, Aging, PMID:30669119.",
+      "optimal": {
+        "low": null,
+        "high": 0,
+        "rationale": "GrimAge acceleration is the strongest mortality predictor among DNAm clocks; negative acceleration favorable, <=0 is the low-risk direction.",
+        "source": "Lu 2019, Aging, PMID:30669119"
+      },
+      "direction": "lower_better",
+      "applicable": false,
+      "verification_status": "approximate",
+      "note": "Age-acceleration residual with mean 0 by construction; lab/array dependent. Not scorable as an absolute population-referenced value."
+    },
+    "dunedinpace_clock": {
+      "units": "years of biological aging per calendar year (pace)",
+      "scale": "linear",
+      "population_mean": 1,
+      "population_sd": 0.14,
+      "population_source": "DunedinPACE is normalized to ~1.0 (one year of aging per calendar year) in the Dunedin reference cohort at age 45; SD ~0.09-0.16 across cohorts. Belsky 2022, eLife, PMID:35029144.",
+      "optimal": {
+        "low": 0.7,
+        "high": 1,
+        "rationale": "Pace below 1.0 means aging slower than calendar time; lower pace is associated with lower mortality, CVD and dementia risk. Risk-minimizing direction is lower, with ~0.7-1.0 a realistic favorable band.",
+        "source": "Belsky 2022, eLife, PMID:35029144"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Unlike age-acceleration clocks, DunedinPACE has an interpretable absolute scale (~1.0 = pace of calendar aging) so it is scorable. But absolute values shift with age, array batch and normalization; SD is approximate and cohort-dependent. Treat per-SD placement as indicative."
+    },
+    "telomere_length": {
+      "units": "assay-dependent (qPCR T/S ratio, or kb)",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": null,
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "Longer leukocyte telomere length is generally associated with lower mortality (per-SD shorter = higher risk), but no assay-independent risk-optimal range exists.",
+        "source": "Rode 2015, J Natl Cancer Inst, PMID:25862531"
+      },
+      "direction": "higher_better",
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "Leukocyte telomere length is strongly assay-dependent (qPCR T/S ratio vs Southern blot kb vs flow-FISH are not interchangeable) and not standardized across labs. No universal population mean/SD a consumer can compare against. Values are only interpretable as age-/sex-adjusted percentiles within a single lab's assay. Not scorable."
+    },
+    "glycanage": {
+      "units": "years (IgG glycan biological age)",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": null,
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "Glycan age above chronological age (excess >3 yr) is associated with higher cardiovascular risk; lower glycan age relative to calendar age favorable.",
+        "source": "Kristic 2014, J Gerontol A, PMID:24336995"
+      },
+      "direction": "lower_better",
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "GlycanAge is a proprietary biological-age estimate interpreted relative to chronological age (a gap), not an absolute population-scale measurement. No published consumer-comparable population mean/SD of the raw score. Not scorable."
+    },
+    "proteomic_age_clock": {
+      "units": "years (proteomic age gap residual, ProtAgeGap)",
+      "scale": "linear",
+      "population_mean": 0,
+      "population_sd": 7,
+      "population_source": "Mean 0 by construction (residual of proteomic age on chronological age). SD of ProtAgeGap ~6-8 yr; Argentieri 2024, Nat Med, PMID:39117961.",
+      "optimal": {
+        "low": null,
+        "high": 0,
+        "rationale": "Negative proteomic age gap (proteomically younger) is associated with lower mortality and disease risk; <=0 favorable.",
+        "source": "Argentieri 2024, Nat Med, PMID:39117961"
+      },
+      "direction": "lower_better",
+      "applicable": false,
+      "verification_status": "approximate",
+      "note": "Age-gap residual with mean 0 by construction; platform-specific (Olink vs SomaScan) and model-specific. Not scorable as an absolute population-referenced value; SD is approximate."
+    },
+    "dexa_body_fat_pct": {
+      "units": "% body fat (DXA)",
+      "scale": "linear",
+      "population_mean": 31,
+      "population_sd": 8,
+      "population_source": "NHANES 1999-2004 DXA whole-body, US adults 20+. Mean DXA total body fat is ~28% in men and ~40% in women; pooled adult ~31-34%, SD ~7-9%. Kelly 2009, PLoS One, PMID:19753111.",
+      "optimal": {
+        "low": 10,
+        "high": 25,
+        "rationale": "Mortality vs body fat % is U-shaped; lowest-risk trough is roughly 10-22% in men and ~23-35% in women. Sex-pooled low-risk band ~10-25% (men) / ~20-35% (women). Use sex-specific ranges in practice.",
+        "source": "Padwal 2016, Ann Intern Med, PMID:26954388"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Strongly sex-dependent; dashboard should use sex-specific mean/SD (men ~25-28%, women ~38-40%). Pooled values given here are approximate. DXA values are device/manufacturer dependent."
+    },
+    "visceral_adipose_tissue": {
+      "units": "cm2 (VAT cross-sectional area, CT/MRI) or g (DXA VAT mass)",
+      "scale": "linear",
+      "population_mean": 100,
+      "population_sd": 55,
+      "population_source": "CT-measured VAT area, Framingham Heart Study, US adults: mean ~140 cm2 men / ~95 cm2 women; pooled ~100-120 cm2, SD ~50-60 cm2. Maurovich-Horvat 2007 / Fox 2007, Circulation, PMID:17576866.",
+      "optimal": {
+        "low": 0,
+        "high": 100,
+        "rationale": "Higher VAT raises mortality, CVD and cancer risk monotonically in most data; lower is better. A VAT area below ~100 cm2 (CT) is a commonly used low-risk threshold.",
+        "source": "Fox 2007, Circulation, PMID:17576866"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Units differ by modality (CT/MRI cm2 vs DXA grams vs BIA estimate) and are not interchangeable; values given are for CT cross-sectional area at L4-L5. Strongly sex-dependent (men > women). Use modality- and sex-specific references."
+    },
+    "bone_mineral_density": {
+      "units": "T-score (SD vs young-adult reference)",
+      "scale": "linear",
+      "population_mean": 0,
+      "population_sd": 1,
+      "population_source": "T-score is defined as SD from the young healthy adult mean (NHANES III femoral-neck reference, non-Hispanic white women 20-29). By definition the young-adult reference mean is 0, SD 1. Looker 1998, Osteoporos Int, PMID:9797906.",
+      "optimal": {
+        "low": -1,
+        "high": null,
+        "rationale": "WHO criteria: T-score >= -1.0 is normal bone density; lower mortality and fracture/frailty risk. Osteoporosis at <= -2.5. Higher BMD is protective.",
+        "source": "WHO 1994 / Kanis 2008, Osteoporos Int, PMID:18266020"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Reported as T-score (already standardized to young-adult SD units); a consumer's T-score is directly on a per-SD scale by construction. An age-matched older population would have a mean well below 0 (older adults lose bone), so T-score 0 represents the young-adult reference, not the age-peer mean. Outcome HRs in the source are per-SD lower."
+    },
+    "waist_circumference": {
+      "units": "cm",
+      "scale": "linear",
+      "population_mean": 99,
+      "population_sd": 16,
+      "population_source": "NHANES 2015-2018, US adults 20+: mean waist circumference ~102 cm men, ~98 cm women; pooled ~99-100 cm, SD ~15-17 cm. Fryar 2021, NCHS / CDC anthropometric reference data, DOI:10.15620/cdc:100478.",
+      "optimal": {
+        "low": 0,
+        "high": 94,
+        "rationale": "Lower-risk threshold ~94 cm (men) / ~80 cm (women) per IDF/WHO; mortality rises with higher waist circumference adjusted for BMI. Sex-pooled favorable upper bound ~88-94 cm.",
+        "source": "WHO 2008 waist circumference report; Cerhan 2014, Mayo Clin Proc, PMID:24582763"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Strongly sex-dependent; use sex-specific thresholds (men 94/102 cm, women 80/88 cm action levels). Pooled mean/SD given. Measurement-site protocol affects values."
+    },
+    "waist_hip_ratio": {
+      "units": "ratio (waist cm / hip cm)",
+      "scale": "linear",
+      "population_mean": 0.9,
+      "population_sd": 0.08,
+      "population_source": "NHANES / pooled cohort data, US adults: mean WHR ~0.95 men, ~0.87 women; pooled ~0.90, SD ~0.07-0.09. WHO 2008 waist circumference and waist-hip ratio report.",
+      "optimal": {
+        "low": 0,
+        "high": 0.85,
+        "rationale": "WHO substantially-increased-risk cutoffs are >=0.90 men and >=0.85 women; mortality and CVD rise with higher WHR even adjusted for BMI. Lower is better; favorable upper bound ~0.85-0.90 sex-dependent.",
+        "source": "WHO 2008 waist circumference and waist-hip ratio report; Pischon 2008, NEJM, PMID:19005195"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Sex-dependent; use sex-specific cutoffs (men >=0.90, women >=0.85). Pooled mean/SD given as approximate."
+    },
+    "bmi": {
+      "units": "kg/m2",
+      "scale": "linear",
+      "population_mean": 29,
+      "population_sd": 7,
+      "population_source": "NHANES 2017-2018, US adults 20+: mean BMI ~29.5 kg/m2, SD ~7 kg/m2. Fryar 2021, NCHS anthropometric reference data, DOI:10.15620/cdc:100478.",
+      "optimal": {
+        "low": 22,
+        "high": 25,
+        "rationale": "All-cause mortality is U-shaped with a trough around BMI 22-25 in never-smokers without prevalent disease; both obesity (>=30) and underweight (<18.5-20) raise mortality and frailty risk. The 22-25 band is the low-risk trough.",
+        "source": "Global BMI Mortality Collaboration, Di Angelantonio 2016, Lancet, PMID:27423262"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "U-shaped mortality association; optimal is a trough range, not a one-sided threshold. US population mean (~29.5) sits in the overweight range. Trough shifts slightly upward at older ages."
+    },
+    "bioimpedance_phase_angle": {
+      "units": "degrees",
+      "scale": "linear",
+      "population_mean": 6,
+      "population_sd": 1,
+      "population_source": "Pooled BIA reference data, general adult population: mean phase angle ~6.0-6.5 degrees (higher in men, declines with age), SD ~0.9-1.1. Bosy-Westphal 2006, JPEN, PMID:17047168.",
+      "optimal": {
+        "low": 6,
+        "high": null,
+        "rationale": "Higher phase angle is associated with lower all-cause mortality and better cell-membrane integrity / muscle quality; no upper-risk bound. Values above the age/sex-specific median (~6 degrees) are favorable.",
+        "source": "Wirth 2010 / Norman 2012, Clin Nutr, PMID:22188785"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Strongly age-, sex- and device/frequency-dependent (declines with age, lower in women). Pooled mean/SD approximate; dashboard should use age/sex-specific BIA-device references. Single- vs multi-frequency devices not interchangeable."
+    },
+    "total_sleep_time": {
+      "units": "hours per night",
+      "scale": "linear",
+      "population_mean": 7,
+      "population_sd": 1.2,
+      "population_source": "NHANES self-reported sleep duration, US adults: mean ~7.0-7.1 h, SD ~1.2-1.5 h. Sheehan 2019, Sleep, PMID:30452725.",
+      "optimal": {
+        "low": 7,
+        "high": 8,
+        "rationale": "All-cause mortality and dementia are U-shaped with sleep duration; lowest risk at ~7-8 h. Both short (<7h) and long (>9h) sleep raise risk.",
+        "source": "Cappuccio 2010, Sleep, PMID:20469800; Yin 2017, J Am Heart Assoc, PMID:28889101"
+      },
+      "direction": "u_shaped",
+      "applicable": true,
+      "verification_status": "verified",
+      "note": "Self-reported total sleep time overestimates objective (actigraphy/PSG) duration by ~0.5-1 h; mean/SD given are for self-report (most large mortality cohorts). U-shaped association: optimal is a trough range."
+    },
+    "sleep_efficiency": {
+      "units": "% (time asleep / time in bed)",
+      "scale": "linear",
+      "population_mean": 88,
+      "population_sd": 8,
+      "population_source": "Actigraphy/PSG-derived sleep efficiency in adult cohorts: mean ~85-90%, SD ~6-9%. Mander 2017 / Ohayon 2004 normative meta-analysis, Sleep, PMID:15586779.",
+      "optimal": {
+        "low": 90,
+        "high": 100,
+        "rationale": "Sleep efficiency >=90% (or >93%) is conventionally 'good'; the lowest actigraphic quartile (<=85%) shows higher mortality. Higher is better up to ~100%.",
+        "source": "Ohayon 2004, Sleep, PMID:15586779; Dew 2003, Psychosom Med, PMID:12554815"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Strongly method-dependent (PSG vs actigraphy vs consumer wearable estimates differ); declines with age. Mean/SD approximate and method-mixed. Treat per-SD placement cautiously."
+    },
+    "deep_sleep_duration": {
+      "units": "% of total sleep (N3 slow-wave sleep) or minutes",
+      "scale": "linear",
+      "population_mean": 15,
+      "population_sd": 7,
+      "population_source": "PSG normative meta-analysis, healthy adults: N3/slow-wave sleep ~13-23% of total sleep, declining strongly with age; pooled adult ~15%, SD ~6-8%. Ohayon 2004, Sleep, PMID:15586779.",
+      "optimal": {
+        "low": 13,
+        "high": 23,
+        "rationale": "Lower slow-wave sleep is associated with higher mortality, hypertension and dementia; the normal healthy-adult range ~13-23% is the favorable band. More is generally better within physiological range.",
+        "source": "Ohayon 2004, Sleep, PMID:15586779; conventional reference (no risk-minimizing trough established)"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Strongly age-dependent (slow-wave sleep declines markedly with age) so a single population mean is a rough average; dashboard should use age-specific references. Consumer wearable 'deep sleep' estimates agree poorly with PSG N3 and are not directly comparable."
+    },
+    "rem_sleep_duration": {
+      "units": "% of total sleep",
+      "scale": "linear",
+      "population_mean": 21,
+      "population_sd": 6,
+      "population_source": "PSG normative meta-analysis, healthy adults: REM ~18-23% of total sleep; pooled ~20-22%, SD ~5-7%. Ohayon 2004, Sleep, PMID:15586779.",
+      "optimal": {
+        "low": 20,
+        "high": 25,
+        "rationale": "Lower REM percentage is associated with higher all-cause, cardiovascular and dementia risk (per 5% lower REM = higher risk); the normal ~20-25% band is favorable. Higher within physiological range is better.",
+        "source": "Leary 2020, JAMA Neurol, PMID:32628261 (MrOS/Wisconsin); conventional PSG reference"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "Method-dependent (PSG vs wearable HRV-based estimates); modestly age-dependent. Mean/SD approximate. Wearable REM estimates have moderate accuracy and are not interchangeable with PSG."
+    },
+    "sleep_apnea_severity": {
+      "units": "events per hour (AHI or ODI)",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": null,
+      "optimal": {
+        "low": 0,
+        "high": 5,
+        "rationale": "AHI <5 = no/minimal OSA and the reference low-risk category; severe OSA (AHI >=30) carries substantially higher mortality, MACE and dementia risk. Lower is better. Conventional clinical thresholds (no risk-minimizing trough).",
+        "source": "AASM scoring criteria; Marshall 2014 / Punjabi 2009, PLoS Med, PMID:19688045"
+      },
+      "direction": "lower_better",
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "AHI/ODI are heavily right-skewed count variables, not normally distributed, and depend strongly on the hypopnea scoring rule (3% vs 4% desaturation) and recording modality (in-lab PSG vs home test). A population mean/SD a consumer can compare per-SD against is not meaningful; OSA is graded categorically (<5 none, 5-15 mild, 15-30 moderate, >=30 severe). Not scorable on a per-SD scale; use clinical severity bands."
+    },
+    "sleep_regularity": {
+      "units": "Sleep Regularity Index (0-100)",
+      "scale": "linear",
+      "population_mean": 71,
+      "population_sd": 14,
+      "population_source": "UK Biobank accelerometry-derived Sleep Regularity Index, ~60,000 adults: distribution centered ~70-72, with quintile cutoffs roughly 60 / 71.6 / 79 / 87.3. Windred 2024, Sleep, PMID:37889880.",
+      "optimal": {
+        "low": 87,
+        "high": 100,
+        "rationale": "Most regular sleepers (highest SRI quintile, SRI >~87) have the lowest all-cause mortality and CVD risk; irregular sleepers (SRI <~71.6) have elevated risk. Higher SRI is better.",
+        "source": "Windred 2024, Sleep, PMID:37889880"
+      },
+      "direction": "higher_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "SRI is an index (0 = fully irregular, 100 = perfectly regular), not a physical measurement; mean/SD derived from UK Biobank accelerometry quintile cutoffs and are device/algorithm-dependent. Other regularity metrics (SD of sleep onset/duration) are not interchangeable with SRI. Scorable but treat per-SD placement as approximate."
+    },
+    "psa": {
+      "units": "ng/mL",
+      "scale": "log",
+      "population_mean": 1,
+      "population_sd": 1.2,
+      "population_source": "Age-dependent. NHANES 2001-2004 men with no prostate-cancer history: median total PSA ~0.7 ng/mL at age 40-49, ~1.0 at 50-59, ~1.5 at 60-69, ~2.1 at 70+ (Lim 2010; Tang 2010 NHANES analyses). PSA is markedly right-skewed, so the geometric mean (~0.9-1.1 ng/mL for men 40-59) is more representative than the arithmetic mean; the SD shown is an approximate spread on the raw ng/mL scale and is itself age-dependent.",
+      "optimal": {
+        "low": null,
+        "high": 1,
+        "rationale": "Not a treat-to-target biomarker. For long-term risk stratification, a single mid-life (age 40-55) PSA at or below the age-specific median (roughly <=1.0 ng/mL at 40-49, <=1.0-1.5 at 50-59) identifies men with very low long-term risk of lethal prostate cancer; the top decile at age 40-49 carries an ~8.7-fold odds of lethal prostate cancer over ~30 years. Diagnostic biopsy thresholds (commonly ~3-4 ng/mL) are a separate clinical-action concept and are age- and assay-dependent.",
+        "source": "Preston MA 2016 J Clin Oncol (PMID:27298404); Vickers AJ 2013 BMJ (PMID:23596126)"
+      },
+      "direction": "lower_better",
+      "applicable": true,
+      "verification_status": "approximate",
+      "note": "PSA is prostate- not cancer-specific: benign prostatic hyperplasia, prostatitis, recent ejaculation/cycling/DRE/instrumentation raise it, while 5-alpha-reductase inhibitors roughly halve it and obesity lowers measured values by hemodilution. Reference values are strongly age-dependent and the distribution is right-skewed (hence scale=log); a dashboard should compare against an age-specific reference, not a single mean. Population mean/SD shown are approximate composites from NHANES-based analyses, not a single primary statistic. Applies to people with a prostate.",
+      "_name": "PSA (prostate-specific antigen)",
+      "_domain": "cancer_screening"
+    },
+    "mced_galleri": {
+      "units": "binary call (cancer-signal detected / not detected, plus predicted tissue of origin)",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": "Not a continuous measurement with a population mean/SD. In the PATHFINDER cohort a cancer signal was detected in ~1.4% (92/6621) of adults age 50+.",
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "No continuous range exists. The desirable result is 'no cancer signal detected'; a 'signal detected' result triggers tissue-of-origin-directed diagnostic workup.",
+        "source": "Schrag D 2023 Lancet (PMID:37805216); Klein EA 2021 Ann Oncol (PMID:34176681)"
+      },
+      "direction": "lower_better",
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "Galleri is a multi-cancer early-detection screening test, not a quantitative aging biomarker. It returns a binary cancer-signal-detected/not-detected call plus a predicted tissue of origin, not a number on a scale, so there is no population mean/SD to score a person against. A dashboard should display it as a test status (detected / not detected) with the date performed and, if positive, the predicted tissue of origin and a recommendation for confirmatory workup; sensitivity is low for early-stage disease (~17% stage I) and no completed trial shows it reduces cancer mortality.",
+      "_name": "Multi-cancer early detection test (Galleri)",
+      "_domain": "cancer_screening"
+    },
+    "screening_compliance": {
+      "units": "categorical adherence status (up-to-date vs overdue per guideline-recommended screen)",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": "Not a biological measurement; it is an adherence behaviour. No population mean/SD applies.",
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "The desirable state is being up-to-date with every age- and risk-appropriate screen (e.g. colorectal, breast, cervical, lung where eligible). This is a checklist/status, not a continuous optimal band.",
+        "source": "USPSTF screening recommendations; Bretthauer M 2023 JAMA Intern Med (PMID:37639247)"
+      },
+      "direction": "higher_better",
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "Screening compliance is a behavioural composite (up-to-date vs overdue for each guideline-recommended cancer screen), not a single quantitative measurement, so there is no population mean/SD to score against. A dashboard should display it as a per-screen checklist (each screen: up-to-date / due / not-eligible, with next-due date) or a simple completed-fraction, rather than a standardized score. Observational mortality associations are heavily confounded by the healthy-screenee effect.",
+      "_name": "Age-appropriate screening compliance",
+      "_domain": "cancer_screening"
+    },
+    "mthfr_variants": {
+      "units": "genotype (CC / CT / TT for C677T rs1801133; optionally A1298C)",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": "A fixed genotype, not a continuous measurement. Allele frequency is ancestry-dependent (TT homozygote frequency roughly 10-15% in European, higher in some Hispanic/East Asian populations, lower in African-ancestry populations).",
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "There is no optimal value for a genotype. Risk contrasts are categorical (TT vs CC) and folate-status-dependent; the actionable downstream phenotype is homocysteine, which is covered by its own biomarker.",
+        "source": "Klerk M 2002 JAMA (PMID:12387655); Yang Q 2012 Am J Clin Nutr (PMID:22492374)"
+      },
+      "direction": "u_shaped",
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "MTHFR C677T is a fixed germline genotype (CC/CT/TT), not a quantitative measurement, so there is no mean/SD or optimal range to score against. A dashboard should display the genotype itself plus a plain-language interpretation (TT homozygotes have ~25-30% higher plasma homocysteine when folate is low) and direct attention to the modifiable downstream marker, homocysteine, and to adequate folate/B12/B6 intake. The CHD association is weak and conflicting once publication bias is corrected.",
+      "_name": "MTHFR variants (C677T)",
+      "_domain": "genetic"
+    },
+    "pharmacogenomic_panel": {
+      "units": "star-allele diplotypes and metabolizer phenotypes (poor / intermediate / normal / rapid / ultrarapid) per gene",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": "A multi-gene fixed genotype panel, not a continuous measurement. Star-allele and metabolizer-phenotype frequencies are ancestry-dependent and gene-specific.",
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "No optimal value exists; the panel predicts drug response and adverse-reaction risk, which is conditional on which medications a person is prescribed.",
+        "source": "Swen JJ 2023 Lancet, PREPARE trial (doi:10.1016/S0140-6736(22)01841-4)"
+      },
+      "direction": "u_shaped",
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "A pharmacogenomic panel is a set of fixed drug-metabolism genotypes, not a quantitative biomarker, so there is no population mean/SD or optimal range. A dashboard should display per-gene metabolizer phenotypes (e.g. CYP2C19 poor metabolizer, CYP2D6 ultrarapid metabolizer) with the relevant drug-gene guidance, surfaced at the point of prescribing rather than scored as a longevity metric.",
+      "_name": "Pharmacogenomic panel (CYP2D6, CYP2C19, etc.)",
+      "_domain": "genetic"
+    },
+    "polygenic_risk_scores": {
+      "units": "standardized polygenic score (SD units, per disease; e.g. CAD, breast cancer, Alzheimer's)",
+      "scale": "linear",
+      "population_mean": null,
+      "population_sd": null,
+      "population_source": "A PRS is by construction standardized to its reference population (mean 0, SD 1 in the ancestry-matched derivation/reference cohort), so there is no external mean/SD to add; the meaningful output is the individual's percentile within an ancestry-matched reference.",
+      "optimal": {
+        "low": null,
+        "high": null,
+        "rationale": "There is no optimal value for a fixed germline score. Each disease-specific PRS is a separate continuous risk score; per-SD HRs (e.g. ~1.7 for incident CAD with GPS-Mult, ~1.6 for invasive breast cancer with PRS313) describe relative risk, not a target band.",
+        "source": "Patel AP 2023 Nat Med (PMID:37414900); Mavaddat N 2019 Am J Hum Genet (PMID:30554720); Levin MG 2021 Circ Genom Precis Med (PMID:34670400)"
+      },
+      "direction": "lower_better",
+      "applicable": false,
+      "verification_status": "unverified",
+      "note": "Polygenic risk scores are fixed germline susceptibility scores reported as a percentile or SD-rank within an ancestry-matched reference population, not a single measurable biomarker with one population mean/SD a person can be scored against. There is also no single PRS: each disease (CAD, breast cancer, Alzheimer's) is a separate score with its own scale, version and ancestry-dependent calibration. A dashboard should display each disease-specific PRS as a percentile within an ancestry-matched reference, with the per-SD hazard ratio for context, and emphasize that the actionable response is earlier/intensified control of modifiable risk factors.",
+      "_name": "Polygenic risk scores (CAD, breast cancer, Alzheimer's)",
+      "_domain": "genetic"
+    }
+  }
+}

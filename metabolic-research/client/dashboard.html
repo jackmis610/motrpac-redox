@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personal Biomarker Dashboard</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <h1>Personal Biomarker Dashboard</h1>
+    <p>
+      Your measured biomarkers placed on the evidence map &mdash; each value
+      scored against its population distribution and risk-optimal range, then
+      translated through verified per-SD hazard ratios into modeled risk and,
+      across panels, a risk <em>trajectory</em>. Triaged by what is worth acting
+      on for you. No single composite score &mdash; each biomarker stands on its
+      own evidence.
+    </p>
+    <p class="meta" id="meta-line">Loading&hellip;</p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <button class="tab is-active" data-view="priorities">Priorities</button>
+    <button class="tab" data-view="panel">Full panel</button>
+    <button class="tab" data-view="tracked">Tracked / not scored</button>
+  </div>
+</nav>
+
+<main id="view"></main>
+
+<footer class="footnote">
+  <div class="wrap" style="padding:0">
+    <p><strong>How risk is modeled.</strong> For each biomarker, your value is
+      placed on the population SD scale; the distance from your risk-optimal
+      range is translated through that biomarker's verified per-SD hazard ratio
+      into a modeled hazard <em>relative to being at optimal</em>. This is a
+      per-biomarker estimate, not a diagnosis and not a combined score &mdash;
+      hazard ratios across correlated biomarkers cannot be multiplied together.
+      Modeled figures are directional coaching signals; confirm with a clinician.</p>
+  </div>
+</footer>
+
+<div id="modal" class="modal" hidden></div>
+
+<script src="refdata.js"></script>
+<script src="measurements.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
