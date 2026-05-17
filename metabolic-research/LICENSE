@@ -2,10 +2,6 @@ MIT License
 
 Copyright (c) 2026 Jack Mislinski
 
-This license applies to the SOURCE CODE in this repository (the contents of
-tools/, and the .js / .css / .html files in heatmap/ and client/). The dataset
-and written content are licensed separately — see LICENSE-DATA.
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights

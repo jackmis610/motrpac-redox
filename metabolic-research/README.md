@@ -60,7 +60,7 @@ composite score** — correlated hazard ratios cannot be multiplied together.
 ├── client/                    the personal coaching dashboard
 ├── profiles/biomarker-profiles.md   per-biomarker profiles + modifiability
 ├── writeup/summary.md         14-domain synthesis
-├── DISCLAIMER.md   ·   LICENSE   ·   LICENSE-DATA
+├── DISCLAIMER.md   ·   LICENSE   ·   DATA-LICENSE.md
 ```
 
 The data layer is kept separate from the visualizations so biomarkers can be
@@ -99,9 +99,11 @@ open an issue or a pull request — cite the primary source.
 - **Source code** (`tools/`, and the scripts/markup in `heatmap/` and
   `client/`): MIT — see [`LICENSE`](LICENSE).
 - **Dataset and written content** (`data/`, `profiles/`, `writeup/`): Creative
-  Commons Attribution 4.0 (CC BY 4.0) — see [`LICENSE-DATA`](LICENSE-DATA).
+  Commons Attribution 4.0 (CC BY 4.0) — see [`DATA-LICENSE.md`](DATA-LICENSE.md).
 
-Re-use is welcome, including commercially; please attribute.
+Re-use is welcome, including commercially; please attribute. (GitHub's license
+badge shows one license per repo — it will read **MIT**; the CC BY 4.0 terms for
+the dataset are in `DATA-LICENSE.md`.)
 
 ## Citing
 
