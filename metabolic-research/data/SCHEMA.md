@@ -89,7 +89,7 @@ cells are all comparable omit both fields.
 ```json
 {
   "hr": 1.43,                         // NATIVE HR, exactly as the source study reported it
-  "hr_metric": "per_sd | per_log_sd | tertile | quartile | quintile | median_split | per_unit | per_doubling | categorical",
+  "hr_metric": "per_sd | per_log_sd | tertile | quartile | quintile | decile | median_split | per_unit | per_doubling | categorical",
   "hr_unit_detail": "Exact contrast, e.g. 'per 1 SD higher', 'per 5 kg lower', 'Q4 vs Q1'.",
   "direction": "risk | protective",   // risk: higher value -> worse outcome
   "ci_low": 1.35,                     // native CI
